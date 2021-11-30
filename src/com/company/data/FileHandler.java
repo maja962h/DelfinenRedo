@@ -1,5 +1,4 @@
 package com.company.data;
-import com.company.domain.User;
 import com.company.member.Competitor;
 import com.company.member.Member;
 import java.io.File;
@@ -13,7 +12,6 @@ public class FileHandler {
 
     private ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Competitor> competitors = new ArrayList<>();
-    private ArrayList<User> users = new ArrayList<>(); //TODO: do we need an arraylist or???
 
 
     public void addNewMember(Member member){
@@ -147,9 +145,5 @@ public class FileHandler {
         competitors.add(competitor);
     }
 
-    //TODO: Güler laver denne metode!
-    public User findUser(String name, String password) {
-        return null;
-    }
 
 }

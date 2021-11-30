@@ -4,8 +4,6 @@ import com.company.member.Competitor;
 import com.company.member.Member;
 import com.company.ui.UserInterface;
 
-
-
 import java.util.Collections;
 
 public class Controller {
