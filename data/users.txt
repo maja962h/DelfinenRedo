@@ -1,0 +1,4 @@
+Guler;1234;admin
+Kenneth;1234;cashier
+Christopher;1234;trainer
+Maja;1234;trainer

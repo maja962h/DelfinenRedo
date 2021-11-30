@@ -48,6 +48,29 @@ public class FileHandler {
         }
     }
 
+    public boolean authenticated(String name, String password, String role){
+        boolean isAuthenticated = false;
+
+        File file = new File("data/users.txt");
+
+        try{
+            Scanner myReader = new Scanner(file);
+
+            while(myReader.hasNextLine()){
+                String line = myReader.nextLine();
+                String[] values = line.split(";");
+
+                if(values[0].equals(name) && values[1].equals(password) && values[2].equals(role)){
+                    isAuthenticated = true;
+                }
+            }
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        return isAuthenticated;
+    }
+
+
 
     public void saveCompetitor(){
         File file = new File("data/competitors.txt");

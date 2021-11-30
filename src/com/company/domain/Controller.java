@@ -23,7 +23,7 @@ public class Controller {
             int input = ui.intInput();
 
             switch (input) {
-                //case 1 -> logIn();
+                case 1 -> logIn();
                 case 2 -> createMember();
                 case 3 -> deleteMember();
                 case 4 -> showMemberList();
@@ -36,6 +36,23 @@ public class Controller {
             }
         }
     }
+
+    public void logIn() {
+        ui.printMessage("Are you logging in as the admin, cashier or trainer?");
+        String role = ui.stringInput();
+        ui.printMessage("Type in user name: ");
+        String name = ui.stringInput();
+        ui.printMessage("Type in password: ");
+        String password = ui.stringInput();
+
+        boolean user = fh.authenticated(name, password, role);
+        if(user){
+            ui.printMessage("Welcome " + role + " " + name);
+        } else {
+            ui.printMessage("User not found");
+        }
+    }
+
 
     public void createMember() {
         ui.printMessage("Please enter the members full name: ");
