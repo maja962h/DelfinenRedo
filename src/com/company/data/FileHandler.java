@@ -25,7 +25,7 @@ public class FileHandler {
         File file = new File("data/members.txt");
 
         try{
-            FileWriter fileWriter = new FileWriter(file, true);
+            FileWriter fileWriter = new FileWriter(file, false);
 
             for(Member member : memberList){
                 fileWriter.append(member.getName() + ";");
@@ -35,7 +35,7 @@ public class FileHandler {
                 fileWriter.append("\n");
             }
             fileWriter.close();
-            memberList.clear();
+            //memberList.clear();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,7 +91,7 @@ public class FileHandler {
         StringBuilder stringBuilder = new StringBuilder();
 
         //Loops through the list of members.
-        for (Member member : readFile()) {
+        for (Member member : memberList) {
 
             stringBuilder.append(member.getName()).append(" ");
 

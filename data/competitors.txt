@@ -1,1 +1,2 @@
 Maja;Senior;active;Competitor;Crawl
+Chris;Senior;active;Competitor;Butterfly

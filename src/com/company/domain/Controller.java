@@ -16,6 +16,7 @@ public class Controller {
 
     public void start() {
 
+        fh.readFile();
         ui.printWelcomeMessage();
         while (running) {
             ui.startMenu();
