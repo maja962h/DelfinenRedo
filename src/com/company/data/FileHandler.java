@@ -2,7 +2,6 @@ package com.company.data;
 import com.company.domain.User;
 import com.company.member.Competitor;
 import com.company.member.Member;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -28,7 +27,7 @@ public class FileHandler {
     }
 
     public void saveMember(){
-        File file = new File("data/members.txt");
+        File file = new File("data/members.csv");
 
         try{
             FileWriter fileWriter = new FileWriter(file, false);
@@ -73,7 +72,7 @@ public class FileHandler {
 
 
     public void saveCompetitor(){
-        File file = new File("data/competitors.txt");
+        File file = new File("data/competitors.csv");
 
         try{
             FileWriter fileWriter = new FileWriter(file, true);
@@ -95,7 +94,7 @@ public class FileHandler {
     }
 
     public ArrayList<Member> readFile(){
-        File myObj = new File("data/members.txt");
+        File myObj = new File("data/members.csv");
         try {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
