@@ -25,12 +25,12 @@ public class Controller {
             switch (input) {
                 //case 1 -> logIn();
                 case 2 -> createMember();
-                case 3 -> showMemberList();
-                case 4 -> checkDelinquentStatus(); //Check what members have not paid their fees.
-                case 5 -> scoreBoard();
-                case 6 -> compSwimmingSchedule(); //place, time and registration for competitions.
-                case 7 -> swimmerTierList(); //top 5 swimmers in every category.
-                case 8 -> deleteMember();
+                case 3 -> deleteMember();
+                case 4 -> showMemberList();
+                case 5 -> checkDelinquentStatus(); //Check what members have not paid their fees.
+                case 6 -> scoreBoard();
+                case 7 -> compSwimmingSchedule(); //place, time and registration for competitions.
+                case 8 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 0 -> exit();
                 default -> ui.printError();
             }

@@ -23,11 +23,12 @@ public class UserInterface {
         printMessage("""
                 Type (1) to Login.
                 Type (2) to create a member.
-                Type (3) to get the list of members.
-                Type (4) to check which members haven't paid their fees.
-                Type (5) to see the swimmer's best results and dates.
-                Type (6) to register an event, time and location for the swimmers that have participated.
-                Type (7) to see the top 5 swimmers in each category.
+                Type (3) to delete a member.
+                Type (4) to get the list of members.
+                Type (5) to check which members haven't paid their fees.
+                Type (6) to see the swimmer's best results and dates.
+                Type (7) to register an event, time and location for the swimmers that have participated.
+                Type (8) to see the top 5 swimmers in each category.
                 Type (0) to exit the program.
                 """);
     }
