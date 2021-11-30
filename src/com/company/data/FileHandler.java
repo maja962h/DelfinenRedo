@@ -50,7 +50,7 @@ public class FileHandler {
     public boolean authenticated(String name, String password, String role){
         boolean isAuthenticated = false;
 
-        File file = new File("data/users.txt");
+        File file = new File("data/users.csv");
 
         try{
             Scanner myReader = new Scanner(file);
