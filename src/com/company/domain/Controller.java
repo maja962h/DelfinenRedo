@@ -30,6 +30,7 @@ public class Controller {
                 case 5 -> scoreBoard();
                 case 6 -> compSwimmingSchedule(); //place, time and registration for competitions.
                 case 7 -> swimmerTierList(); //top 5 swimmers in every category.
+                case 8 -> deleteMember();
                 case 0 -> exit();
                 default -> ui.printError();
             }
@@ -52,6 +53,16 @@ public class Controller {
 
         fh.addNewMember(member);
         fh.saveMember();
+    }
+
+    public void deleteMember(){
+        int arrayCorrection = -1;
+        ui.printMessage("Here is the list of all the members:");
+        showMemberList();
+        ui.printMessage("Please enter the number of the person you want to delete: ");
+        int deleteMember = ui.intInput() + arrayCorrection;
+
+        fh.removeMember(deleteMember);
     }
 
     public void isActiveOrPassive(Member member, String input){

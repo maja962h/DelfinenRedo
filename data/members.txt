@@ -1,3 +1,2 @@
-Chris;Senior;active;Competitor
-Maja;Senior;passive;none
 Kenneth Lønfeldt';Junior;passive;none
+Maja;Senior;passive;none

@@ -21,6 +21,12 @@ public class FileHandler {
         memberList.add(member);
     }
 
+    public void removeMember(int member){
+        memberList.remove(member);
+        saveMember();
+        System.out.println("done");
+    }
+
     public void saveMember(){
         File file = new File("data/members.txt");
 
@@ -40,8 +46,8 @@ public class FileHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
+
 
     public void saveCompetitor(){
         File file = new File("data/competitors.txt");
