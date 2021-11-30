@@ -37,9 +37,8 @@ public class UserInterface {
         printMessage("""
                 Which list would you like to view?
                 (1) Full member list.
-                (2) Full competitor list.
-                (3) Junior member list.
-                (4) Senior memberList.
+                (2) Junior member list.
+                (3) Senior memberList.
                 """);
     }
 
