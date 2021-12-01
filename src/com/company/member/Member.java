@@ -28,7 +28,6 @@ public class Member implements Comparable {
         this.activeStatus = activeStatus;
         this.ageRange = ageRange;
         this.competitiveStatus = competitiveStatus;
-
     }
 
     public Member(String name, int age, String ageRange){
@@ -93,15 +92,12 @@ public class Member implements Comparable {
             return this.activeStatus;
     }
 
-    public boolean setActiveStatus(String activeStatus) {
+    public void setActiveStatus(String activeStatus) {
         if(activeStatus.equals('p') || activeStatus.equals("passive")){
             this.activeStatus = false;
-            return false;
         } else if(activeStatus.equals("a") || activeStatus.equals("active")){
             this.activeStatus = true;
-            return true;
         }
-        return false;
     }
 
 }
