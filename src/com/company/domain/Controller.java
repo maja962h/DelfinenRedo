@@ -49,6 +49,57 @@ public class Controller {
         } else {
             ui.printMessage("User not found");
         }
+
+        if (role.equals("admin")){
+            adminStart();
+        } else if (role.equals("cashier")){
+            cashierStart();
+        } else if (role.equals("trainer")){
+            trainerStart();
+        }
+    }
+
+    public void adminStart(){
+        while (running) {
+            ui.adminStartMenu();
+            int input = ui.intInput();
+
+            switch (input) {
+                case 1 -> createMember();
+                case 2 -> deleteMember();
+                case 3 -> showMemberList();
+                case 0 -> exit();
+                default -> ui.printError();
+            }
+        }
+    }
+
+    public void cashierStart(){
+        while (running) {
+            ui.cashierStartMenu();
+            int input = ui.intInput();
+
+            switch (input) {
+                case 1 -> checkDelinquentStatus(); //Check what members have not paid their fees.
+                case 0 -> exit();
+                default -> ui.printError();
+            }
+        }
+    }
+
+    public void trainerStart(){
+        while (running) {
+            ui.trainerStartMenu();
+            int input = ui.intInput();
+
+            switch (input) {
+                case 1 -> scoreBoard();
+                case 2 -> compSwimmingSchedule(); //place, time and registration for competitions.
+                case 3 -> swimmerTierList(); //top 5 swimmers in every category.
+                case 0 -> exit();
+                default -> ui.printError();
+            }
+        }
     }
 
 
