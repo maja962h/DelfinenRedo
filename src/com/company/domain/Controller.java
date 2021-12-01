@@ -50,12 +50,10 @@ public class Controller {
             ui.printMessage("User not found");
         }
 
-        if (role.equals("admin")){
-            adminStart();
-        } else if (role.equals("cashier")){
-            cashierStart();
-        } else if (role.equals("trainer")){
-            trainerStart();
+        switch (role) {
+            case "admin" -> adminStart();
+            case "cashier" -> cashierStart();
+            case "trainer" -> trainerStart();
         }
     }
 
