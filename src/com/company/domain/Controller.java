@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Controller {
 
     private UserInterface ui = new UserInterface();
-    FileHandler fh = new FileHandler();
+    private FileHandler fh = new FileHandler();
     private boolean running = true;
 
     public void start() {
