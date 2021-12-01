@@ -56,6 +56,15 @@ public class UserInterface {
         System.out.println(message);
     }
 
+    public void printDouble(double number){
+        System.out.println(number);
+    }
+
+    public void printInt(int number){
+        System.out.println(number);
+    }
+
+
     public void printError(){
         System.out.println("The input was invalid, please try again.");
     }

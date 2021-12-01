@@ -32,6 +32,7 @@ public class FileHandler {
 
             for(Member member : memberList){
                 fileWriter.append(member.getName() + ";");
+                fileWriter.append(member.getAge() + ";");
                 fileWriter.append(member.getAgeRange() + ";");
                 fileWriter.append(member.getActiveStatusText() + ";");
                 fileWriter.append(member.getCompetitiveStatus());
@@ -121,6 +122,8 @@ public class FileHandler {
         for (Member member : memberList) {
 
             stringBuilder.append(member.getName()).append(" ");
+
+            stringBuilder.append(member.getAge()).append(" ");
 
             stringBuilder.append(member.getAgeRange()).append(" ");
 

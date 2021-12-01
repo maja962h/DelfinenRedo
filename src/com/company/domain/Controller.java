@@ -11,10 +11,13 @@ public class Controller {
     private UserInterface ui = new UserInterface();
     private FileHandler fh = new FileHandler();
     private boolean running = true;
+    Calculator calculator = new Calculator();
+
 
     public void start() {
 
         fh.readFile();
+        calculator.totalContingent();
         ui.printWelcomeMessage();
         while (running) {
             ui.startMenu();
@@ -29,6 +32,7 @@ public class Controller {
                 case 6 -> scoreBoard();
                 case 7 -> compSwimmingSchedule(); //place, time and registration for competitions.
                 case 8 -> swimmerTierList(); //top 5 swimmers in every category.
+                case 9 -> totalContingentAmount(); //ui.printDouble(calculator.contingentCalculator("junior", true));
                 case 0 -> exit();
                 default -> ui.printError();
             }
@@ -147,6 +151,12 @@ public class Controller {
         }
     }
 
+    public void totalContingentAmount(){
+        Calculator calc = new Calculator();
+        calc.totalContingent();
+        ui.printDouble(calc.getTotal());
+    }
+
 
     public void checkDelinquentStatus() {
 
@@ -165,13 +175,14 @@ public class Controller {
         running = false;
     }
 
-    //TODO: move to member class???
     private String ageRange(int age) {
         String ageRange = "";
         if (age < 18) {
             ageRange = "Junior";
         } else if (age >= 18) {
             ageRange = "Senior";
+        } else if(age >= 60){
+            ageRange = "Senior plus";
         }
         return ageRange;
     }
@@ -223,6 +234,13 @@ public class Controller {
             return false;
         }else
             return false;
+    }
+
+    public void getAges(){
+        for (Member member : fh.getMemberList()) {
+            ui.printInt(member.getAge());
+
+        }
     }
 
 
