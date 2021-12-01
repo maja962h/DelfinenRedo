@@ -3,12 +3,12 @@ package com.company.member;
 import java.util.ArrayList;
 
 public enum Discipline {
-    BUTTERFLY("butterfly"),
-    CRAWL("crawl"),
-    BACKCRAWL("backcrawl"),
-    BREASTSTROKE("breaststroke");
+    BUTTERFLY,
+    CRAWL,
+    BACKCRAWL,
+    BREASTSTROKE;
 
-    private String disciplineName;
+    /*private String disciplineName;
 
     Discipline(String disciplineName){
         this.disciplineName = disciplineName;
@@ -22,7 +22,7 @@ public enum Discipline {
         return disciplineName;
     }
 
-    public ArrayList<Discipline> getDisciplines(){
+    public ArrayList<Discipline> getDisciplineList(){
         ArrayList<Discipline> disciplines = new ArrayList<>();
         disciplines.add(Discipline.BUTTERFLY);
         disciplines.add(Discipline.CRAWL);
@@ -30,4 +30,9 @@ public enum Discipline {
         disciplines.add(Discipline.BREASTSTROKE);
         return disciplines;
     }
+
+    @Override
+    public String toString() {
+        return disciplineName;
+    }*/
 }

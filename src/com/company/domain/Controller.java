@@ -1,16 +1,20 @@
 package com.company.domain;
 import com.company.data.FileHandler;
 import com.company.member.Competitor;
+import com.company.member.Discipline;
 import com.company.member.Member;
 import com.company.ui.UserInterface;
 
+import java.util.ArrayList;
 import java.util.Collections;
 
 public class Controller {
 
     private UserInterface ui = new UserInterface();
     private FileHandler fh = new FileHandler();
+    Discipline di = null;
     private boolean running = true;
+    private final int EXIT = -1;
 
     public void start() {
 
@@ -115,11 +119,27 @@ public class Controller {
 
     public void chooseDisciplines(Member member) {
         boolean keepAdding = true;
+        ArrayList<Discipline> selectedDisci = new ArrayList<>();
+
+        do{
+        ui.disciplineMenu();
+        int choice = ui.intInput();
+        selectedDisci = chooseDisciplines(choice, selectedDisci);
+            ui.printMessage("do you want to add another discipline? yes(y) or no(n)");
+            String addAnotherDiscipline = ui.stringInput();
+            keepAdding = continueAddingDisciplines(addAnotherDiscipline);
+        } while(keepAdding);
+
+        Competitor competitor = new Competitor(member, selectedDisci);
+
+        fh.addNewCompetitor(competitor);
+        fh.saveCompetitor();
+
+
+        /*boolean keepAdding = true;
         String discipline = "";
 
         while (keepAdding) {
-            //Print status for alle kategorier
-            //TODO: how to not override disciplines? array???
             ui.disciplineMenu();
             int disciplineInput = ui.intInput();
             discipline = getDisciplines(disciplineInput);
@@ -130,7 +150,7 @@ public class Controller {
         Competitor competitor = new Competitor(member, discipline);
 
         fh.addNewCompetitor(competitor);
-        fh.saveCompetitor();
+        fh.saveCompetitor();*/
         //TODO: can only add one discipline, this needs to be fixed.
     }
 
@@ -202,21 +222,20 @@ public class Controller {
         }
     }
 
-    public String getDisciplines(int input) {
-        String discipline = "";
+    public ArrayList<Discipline> chooseDisciplines(int input, ArrayList<Discipline> selectedDisciplines) {
         if (input == 1) {
-            discipline = "Butterfly";
+            selectedDisciplines.add(Discipline.BUTTERFLY);
         } else if (input == 2) {
-            discipline = "Crawl";
+            selectedDisciplines.add(Discipline.CRAWL);
         } else if (input == 3) {
-            discipline = "Back crawl";
+            selectedDisciplines.add(Discipline.BACKCRAWL);
         } else if (input == 4) {
-            discipline = "Breaststroke";
+            selectedDisciplines.add(Discipline.BREASTSTROKE);
         }
-        return discipline;
+        return selectedDisciplines;
     }
 
-    public boolean continueAddingDisciplines(String input, String discipline) {
+    public boolean continueAddingDisciplines(String input) {
         if(input.equals("y")){
             return true;
         }else if(input.equals("n")){
