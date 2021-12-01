@@ -1,5 +1,8 @@
 package com.company.domain;
 
+import com.company.data.FileHandler;
+import com.company.member.Member;
+
 public class Calculator {
 
     private int junior = 17;
@@ -22,6 +25,16 @@ public class Calculator {
             contingetSum = overSixty;
         }
         return contingetSum;
+    }
+
+    public double totalContingent(){
+        double tempTotal = 0;
+        FileHandler fh = new FileHandler();
+        for (Member member : fh.getMemberList()){
+            double tempCon = contingentCalculator(member.getAge(), member.activeStatus());
+            tempTotal += tempCon;
+        }
+        return tempTotal;
     }
 
 }

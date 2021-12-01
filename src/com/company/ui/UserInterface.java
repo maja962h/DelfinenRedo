@@ -7,8 +7,8 @@ public class UserInterface {
     Scanner scanner = new Scanner(System.in);
 
     public void printWelcomeMessage(){
-        //TODO: find dolphin code drawing thingy XD
-        // TODO: Add source
+        //Found:
+        //https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
         printMessage("""
                  __      __         .__                                         __                __   .__                 ________           .__           .__         \s
                 /  \\    /  \\  ____  |  |    ____   ____    _____    ____      _/  |_  ____      _/  |_ |  |__    ____      \\______ \\    ____  |  |  ______  |__|  ____  \s

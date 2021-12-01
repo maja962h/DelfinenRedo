@@ -4,13 +4,25 @@ public class Member implements Comparable {
 
     protected String name;
     protected int age;
-    protected String activeStatus; //active or passive?
+    protected boolean activeStatus; //active or passive?
     protected String ageRange; //junior or senior?
     protected String competitiveStatus; //competitive or non-competitive?
 
 
+    public Member(){
 
-    public Member(String name, int age, String ageRange, String activeStatus, String competitiveStatus){
+    }
+
+    public Member(Member clone){
+        this.name = clone.name;
+        this.age = clone.age;
+        this.activeStatus = clone.activeStatus;
+        this.ageRange = clone.ageRange;
+        this.competitiveStatus = clone.competitiveStatus;
+
+    }
+
+    public Member(String name, int age, String ageRange, boolean activeStatus, String competitiveStatus){
         this.name = name;
         this.age = age;
         this.activeStatus = activeStatus;
@@ -25,11 +37,8 @@ public class Member implements Comparable {
         this.ageRange = ageRange;
     }
 
-    public Member(String name, String ageRange, String activeStatus, String competitiveStatus){
-        this.name = name;
-        this.ageRange = ageRange;
-        this.activeStatus = activeStatus;
-        this.competitiveStatus = competitiveStatus;
+    public Member(String name, String ageRange, boolean activeStatus, String competitiveStatus){
+        this(name,0,ageRange,activeStatus,competitiveStatus);
     }
 
 
@@ -45,17 +54,17 @@ public class Member implements Comparable {
         return age;
     }
 
-    public String getActiveStatus() {
+   /* public String getActiveStatus() {
         return activeStatus;
-    }
+    }*/
 
     public String getCompetitiveStatus() {
         return competitiveStatus;
     }
 
-    public void setActiveStatus(String activeStatus) {
+    /*public void setActiveStatus(String activeStatus) {
         this.activeStatus = activeStatus;
-    }
+    }*/
 
     public void setCompetitiveStatus(String competitiveStatus) {
         this.competitiveStatus = competitiveStatus;
@@ -70,6 +79,29 @@ public class Member implements Comparable {
     public int compareTo(Object other) {
         Member anotherMember = (Member) other; // Typecasting
         return name.compareTo(anotherMember.name);
+    }
+
+    public String getActiveStatusText() {
+        if(!activeStatus()){
+            return "passive";
+        } else {
+            return "active";
+        }
+    }
+
+    public boolean activeStatus(){
+            return this.activeStatus;
+    }
+
+    public boolean setActiveStatus(String activeStatus) {
+        if(activeStatus.equals('p') || activeStatus.equals("passive")){
+            this.activeStatus = false;
+            return false;
+        } else if(activeStatus.equals("a") || activeStatus.equals("active")){
+            this.activeStatus = true;
+            return true;
+        }
+        return false;
     }
 
 }

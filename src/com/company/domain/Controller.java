@@ -127,7 +127,9 @@ public class Controller {
             String addAnotherDiscipline = ui.stringInput();
             keepAdding = continueAddingDisciplines(addAnotherDiscipline, discipline);
         }
-        Competitor competitor = new Competitor(member.getName(), member.getAge(), member.getAgeRange(), member.getActiveStatus(), member.getCompetitiveStatus(), discipline);
+        //Competitor competitor = new Competitor(member.getName(), member.getAge(), member.getAgeRange(), member.setActiveStatus(member.getActiveStatusText()), member.getCompetitiveStatus(), discipline);
+        Competitor competitor = new Competitor(member, discipline);
+
         fh.addNewCompetitor(competitor);
         fh.saveCompetitor();
         //TODO: can only add one discipline, this needs to be fixed.

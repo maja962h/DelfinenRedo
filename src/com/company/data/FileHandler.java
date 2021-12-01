@@ -33,7 +33,7 @@ public class FileHandler {
             for(Member member : memberList){
                 fileWriter.append(member.getName() + ";");
                 fileWriter.append(member.getAgeRange() + ";");
-                fileWriter.append(member.getActiveStatus() + ";");
+                fileWriter.append(member.getActiveStatusText() + ";");
                 fileWriter.append(member.getCompetitiveStatus());
                 fileWriter.append("\n");
             }
@@ -78,7 +78,7 @@ public class FileHandler {
             for(Competitor competitor : competitors){
                 fileWriter.append(competitor.getName() + ";");
                 fileWriter.append(competitor.getAgeRange() + ";");
-                fileWriter.append(competitor.getActiveStatus() + ";");
+                fileWriter.append(competitor.getActiveStatusText() + ";");
                 fileWriter.append(competitor.getCompetitiveStatus() + ";");
                 fileWriter.append(competitor.getDiscipline());
                 fileWriter.append("\n");
@@ -93,12 +93,14 @@ public class FileHandler {
 
     public ArrayList<Member> readFile(){
         File myObj = new File("data/members.csv");
+        Member member1 = new Member();
         try {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] test = data.split(";");
-                Member member = new Member(test[0], test[1], test[2], test[3]);
+                Member member = new Member(test[0], test[1], false, test[3]);
+                member.setActiveStatus(test[2]);
                 memberList.add(member);
             }
             return memberList;
@@ -123,7 +125,7 @@ public class FileHandler {
 
             stringBuilder.append(member.getAgeRange()).append(" ");
 
-            stringBuilder.append(member.getActiveStatus()).append(" ");
+            stringBuilder.append(member.getActiveStatusText()).append(" ");
 
             stringBuilder.append(member.getCompetitiveStatus()).append("\n");
 

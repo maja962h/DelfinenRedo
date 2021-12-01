@@ -4,8 +4,8 @@ public class Competitor extends Member{
 
     private String discipline;
 
-    public Competitor(String name, int age, String ageRange, String activeStatus, String competitiveStatus, String discipline){
-        super(name, age, ageRange, activeStatus, competitiveStatus);
+    public Competitor(Member member, String discipline){
+        super(member);
         this.discipline = discipline;
     }
 
