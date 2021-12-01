@@ -127,7 +127,6 @@ public class Controller {
             String addAnotherDiscipline = ui.stringInput();
             keepAdding = continueAddingDisciplines(addAnotherDiscipline, discipline);
         }
-        //Competitor competitor = new Competitor(member.getName(), member.getAge(), member.getAgeRange(), member.setActiveStatus(member.getActiveStatusText()), member.getCompetitiveStatus(), discipline);
         Competitor competitor = new Competitor(member, discipline);
 
         fh.addNewCompetitor(competitor);
@@ -180,10 +179,6 @@ public class Controller {
     private void fullMemberList() {
         Collections.sort(fh.getMemberList());
 
-        /*// loops through ArrayList and prints info.
-        for (Member member : fh.getMemberList()){
-            ui.printMessage(member.toString());
-        }*/
         ui.printMessage(fh.makeStringMember());
     }
 

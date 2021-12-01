@@ -4,9 +4,9 @@ public class Member implements Comparable {
 
     protected String name;
     protected int age;
-    protected boolean activeStatus; //active or passive?
-    protected String ageRange; //junior or senior?
-    protected String competitiveStatus; //competitive or non-competitive?
+    protected boolean activeStatus;
+    protected String ageRange;
+    protected String competitiveStatus;
 
 
     public Member(){

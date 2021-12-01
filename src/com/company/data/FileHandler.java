@@ -93,7 +93,6 @@ public class FileHandler {
 
     public ArrayList<Member> readFile(){
         File myObj = new File("data/members.csv");
-        Member member1 = new Member();
         try {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
