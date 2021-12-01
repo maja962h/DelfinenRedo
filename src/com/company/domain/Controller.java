@@ -249,10 +249,10 @@ public class Controller {
         String ageRange = "";
         if (age < 18) {
             ageRange = "Junior";
-        } else if (age >= 18) {
+        } else if (age >= 18 && age < 60) {
             ageRange = "Senior";
         } else if(age >= 60){
-            ageRange = "Senior plus";
+            ageRange = "elder";
         }
         return ageRange;
     }

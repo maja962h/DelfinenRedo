@@ -60,7 +60,7 @@ public class Calculator {
         ArrayList<Member> allMembers = fh.getMemberList();
         //System.out.println(allMembers.size());
         for (Member member : allMembers){
-            tempTotal += addTotal(contingentCalculator(member.getAgeRange(), member.activeStatus()));
+            tempTotal = addTotal(contingentCalculator(member.getAgeRange(), member.activeStatus()));
             //tempCon = contingentCalculator(member.getAgeRange(), member.activeStatus());
             //tempTotal += tempCon;
 
