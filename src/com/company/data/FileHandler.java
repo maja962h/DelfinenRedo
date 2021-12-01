@@ -81,7 +81,7 @@ public class FileHandler {
                 fileWriter.append(competitor.getAgeRange() + ";");
                 fileWriter.append(competitor.getActiveStatusText() + ";");
                 fileWriter.append(competitor.getCompetitiveStatus() + ";");
-                fileWriter.append(competitor.getDiscipline());
+                fileWriter.append(competitor.getDisciplines().toString());
                 fileWriter.append("\n");
             }
             fileWriter.close();

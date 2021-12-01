@@ -33,6 +33,31 @@ public class UserInterface {
                 """);
     }
 
+    public void adminStartMenu(){
+        printMessage("""
+                Type (1) to create a member.
+                Type (2) to delete a member.
+                Type (3) to get the list of members.
+                Type (0) to exit the program.
+                """);
+    }
+
+    public void cashierStartMenu(){
+        printMessage("""
+                Type (1) to check which members haven't paid their fees.
+                Type (0) to exit the program.
+                """);
+    }
+
+    public void trainerStartMenu(){
+        printMessage("""
+                Type (1) to see the swimmer's best results and dates.
+                Type (2) to register an event, time and location for the swimmers that have participated.
+                Type (3) to see the top 5 swimmers in each category.
+                Type (0) to exit the program.
+                """);
+    }
+
     public void memberListMenu(){
         printMessage("""
                 Which list would you like to view?
