@@ -1,15 +1,26 @@
 package com.company.member;
 
-public class Competition {
+import java.time.LocalDate;
 
-    private Competitor competitorName;
+public class Competition extends TrainingResults {
+
     private String competitionName;
-    private Discipline discipline;
-    private int swimmerPlacement;
-    private double swimTime;
 
+    public Competition(Competitor competitor, LocalDate date, Discipline discipline, double swimTime, String competitionName) {
+        super(competitor, date, discipline, swimTime);
+        this.competitionName = competitionName;
+    }
 
+    public String getCompetitionName() {
+        return competitionName;
+    }
 
+    public void setCompetitionName(String competitionName) {
+        this.competitionName = competitionName;
+    }
 
-
+    @Override
+    public String toString() {
+        return competitionName + ". " + getCompetitor() + ": " + getDate() + " - " + getDiscipline() + ": " + getSwimTime();
+    }
 }
