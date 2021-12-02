@@ -1,13 +1,14 @@
 package com.company.member;
 
+import java.time.Duration;
 import java.time.LocalDate;
 
 public class Competition extends TrainingResults {
 
     private String competitionName;
 
-    public Competition(Competitor competitor, LocalDate date, Discipline discipline, double swimTime, String competitionName) {
-        super(competitor, date, discipline, swimTime);
+    public Competition(LocalDate date, Discipline discipline, Duration swimTime, String competitionName) {
+        super(date, discipline, swimTime);
         this.competitionName = competitionName;
     }
 
@@ -21,6 +22,6 @@ public class Competition extends TrainingResults {
 
     @Override
     public String toString() {
-        return competitionName + ". " + getCompetitor() + ": " + getDate() + " - " + getDiscipline() + ": " + getSwimTime();
+        return competitionName + ". " + getDate() + " - " + getDiscipline() + ": " + getSwimTime();
     }
 }

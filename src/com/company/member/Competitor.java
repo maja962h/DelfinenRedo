@@ -5,19 +5,23 @@ import java.util.ArrayList;
 public class Competitor extends Member{
 
     private ArrayList<Discipline> disciplines;
+    //private TrainingResults tr = new TrainingResults();
 
     public Competitor(Member member, ArrayList<Discipline> disciplines){
         super(member);
         this.disciplines = disciplines;
     }
 
+   /* public Competitor(Member member, TrainingResults tr){
+        super(member);
+        this.tr = tr;
+    }*/
+
+
     public ArrayList<Discipline> getDisciplines() {
         return disciplines;
     }
 
-    public void setDisciplines(ArrayList<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
 
     @Override
     public String toString() {

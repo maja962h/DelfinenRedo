@@ -1,55 +1,68 @@
 package com.company.member;
-
+import java.time.Duration;
 import java.time.LocalDate;
 
-public class TrainingResults {
+public class TrainingResults implements Comparable<TrainingResults> {
 
     private Competitor competitor;
     private LocalDate date;
     private Discipline discipline;
-    private double swimTime;
+    private Duration swimTime;
 
-    public TrainingResults(Competitor competitor, LocalDate date, Discipline discipline, double swimTime) {
+    public TrainingResults(LocalDate date, Discipline discipline, Duration swimTime) {
+        this.date = date;
+        this.discipline = discipline;
+        this.swimTime = swimTime;
+    }
+
+    public TrainingResults(Competitor competitor, LocalDate date, Discipline discipline, Duration swimTime) {
         this.competitor = competitor;
         this.date = date;
         this.discipline = discipline;
         this.swimTime = swimTime;
     }
 
-    public Competitor getCompetitor() {
-        return competitor;
+    public TrainingResults(){
+
     }
 
-    public void setCompetitor(Competitor competitor) {
-        this.competitor = competitor;
+    public Competitor getCompetitor(){
+        return competitor;
     }
 
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 
     public Discipline getDiscipline() {
         return discipline;
     }
 
-    public void setDiscipline(Discipline discipline) {
-        this.discipline = discipline;
-    }
 
-    public double getSwimTime() {
+    public Duration getSwimTime() {
         return swimTime;
     }
 
-    public void setSwimTime(double swimTime) {
-        this.swimTime = swimTime;
-    }
 
     @Override
     public String toString() {
-        return competitor.getName() + ": " + date + " - " + discipline + ": " + swimTime;
+        return date + " - " + discipline + ": " + swimTime;
     }
+
+    @Override
+    public int compareTo(TrainingResults other) {
+
+       if (this.getSwimTime().toSeconds() == 0 && other.getSwimTime().toSeconds() == 0) {
+            return 0;
+        } else if (this.getSwimTime().toSeconds() == 0) {
+            return 1;
+        } else if (other.getSwimTime().toSeconds() == 0) {
+            return -1;
+        }
+
+        return swimTime.compareTo(other.getSwimTime());
+    }
+
+
 }

@@ -1,4 +1,6 @@
 package com.company.ui;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -52,7 +54,7 @@ public class UserInterface {
     public void trainerStartMenu(){
         printMessage("""
                 Type (1) to see the swimmer's best results and dates.
-                Type (2) to register an event, time and location for the swimmers that have participated.
+                Type (2) to register time and results for competitive swimmers.
                 Type (3) to see the top 5 swimmers in each category.
                 Type (0) to exit the program.
                 """);
@@ -106,6 +108,16 @@ public class UserInterface {
 
     public void printArray(List list){
         System.out.println(list);
+    }
+
+    public LocalDate dateInput(){
+
+        return LocalDate.parse(scanner.nextLine());
+    }
+
+    public Duration timeInput(){
+        Duration input = Duration.ofSeconds(scanner.nextInt());
+        return input;
     }
 
 }

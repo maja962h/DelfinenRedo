@@ -1,10 +1,11 @@
 package com.company.domain;
+import com.company.data.Database;
 import com.company.data.FileHandler;
-import com.company.member.Competitor;
-import com.company.member.Discipline;
-import com.company.member.Member;
+import com.company.member.*;
 import com.company.ui.UserInterface;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -12,9 +13,9 @@ public class Controller {
 
     private UserInterface ui = new UserInterface();
     private FileHandler fh = new FileHandler();
-    Discipline di = null;
+    private Discipline di = null;
+    private Database db = new Database();
     private boolean running = true;
-    private final int EXIT = -1;
     Calculator calculator = new Calculator();
 
 
@@ -33,7 +34,7 @@ public class Controller {
                 case 4 -> showMemberList();
                 case 5 -> checkDelinquentStatus(); //Check what members have not paid their fees.
                 case 6 -> scoreBoard();
-                case 7 -> compSwimmingSchedule(); //place, time and registration for competitions.
+                case 7 -> addCompetitorResults(); //place, time and registration for competitions.
                 case 8 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 9 -> totalContingentAmount(); //ui.printDouble(calculator.contingentCalculator("junior", true));
                 case 0 -> exit();
@@ -99,7 +100,7 @@ public class Controller {
 
             switch (input) {
                 case 1 -> scoreBoard();
-                case 2 -> compSwimmingSchedule(); //place, time and registration for competitions.
+                case 2 -> addCompetitorResults(); //place, time and registration for competitions.
                 case 3 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 0 -> exit();
                 default -> ui.printError();
@@ -187,22 +188,6 @@ public class Controller {
         fh.addNewCompetitor(competitor);
         fh.saveCompetitor();
 
-
-        /*boolean keepAdding = true;
-        String discipline = "";
-
-        while (keepAdding) {
-            ui.disciplineMenu();
-            int disciplineInput = ui.intInput();
-            discipline = getDisciplines(disciplineInput);
-            ui.printMessage("do you want to add another discipline? yes(y) or no(n)");
-            String addAnotherDiscipline = ui.stringInput();
-            keepAdding = continueAddingDisciplines(addAnotherDiscipline, discipline);
-        }
-        Competitor competitor = new Competitor(member, discipline);
-
-        fh.addNewCompetitor(competitor);
-        fh.saveCompetitor();*/
         //TODO: can only add one discipline, this needs to be fixed.
     }
 
@@ -233,8 +218,72 @@ public class Controller {
     public void scoreBoard() {
     }
 
-    public void compSwimmingSchedule() {
+    public void addCompetitorResults() {
+        Competitor competitor;
+        ui.printMessage("Would you like to register (t)training results or (c)competition results?");
+        String choice = ui.stringInput();
+
+        if (choice.equals("t")){
+            Discipline ds = null;
+            ui.printMessage("Start by typing competitor name: ");
+            String compName = ui.stringInput();
+
+            ui.printMessage("Type training date (YYYY-MM-DD): ");
+            LocalDate date = ui.dateInput();
+
+            ui.printMessage("Next, type the swimmer's time (in seconds): ");
+            Duration time = ui.timeInput();
+
+            ui.printMessage("Lastly, chose the discipline: ");
+
+            ui.disciplineMenu();
+            int input = ui.intInput();
+            if (input == 1) {
+                ds = Discipline.BUTTERFLY;
+            } else if (input == 2) {
+                ds = Discipline.CRAWL;
+            } else if (input == 3) {
+                ds = Discipline.BACKCRAWL;
+            } else if (input == 4) {
+                ds = Discipline.BREASTSTROKE;
+            }
+
+            TrainingResults trainingResults = new TrainingResults(db.findCompetitor(compName),date, ds, time);
+
+            fh.addNewResult(trainingResults);
+            fh.saveResults();
+
+        } else if (choice.equals("c")){
+            Discipline ds = null;
+            ui.printMessage("Start by typing in the name of the competition: ");
+            String competitionName = ui.stringInput();
+
+            ui.printMessage("Type in training date (YYYY-MM-DD): ");
+            LocalDate date = ui.dateInput();
+
+            ui.printMessage("Next, type in the swimmer's time: ");
+            Duration time = ui.timeInput();
+
+            ui.printMessage("Lastly, chose the discipline: ");
+
+            ui.disciplineMenu();
+            int input = ui.intInput();
+            if (input == 1) {
+                ds = Discipline.BUTTERFLY;
+            } else if (input == 2) {
+                ds = Discipline.CRAWL;
+            } else if (input == 3) {
+                ds = Discipline.BACKCRAWL;
+            } else if (input == 4) {
+                ds = Discipline.BREASTSTROKE;
+            }
+
+            Competition competition = new Competition(date, ds, time, competitionName);
+
+        }
+
     }
+
 
     public void swimmerTierList() {
     }
@@ -283,6 +332,7 @@ public class Controller {
     }
 
     public ArrayList<Discipline> chooseDisciplines(int input, ArrayList<Discipline> selectedDisciplines) {
+
         if (input == 1) {
             selectedDisciplines.add(Discipline.BUTTERFLY);
         } else if (input == 2) {

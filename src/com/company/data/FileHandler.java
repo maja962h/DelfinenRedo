@@ -1,6 +1,8 @@
 package com.company.data;
 import com.company.member.Competitor;
 import com.company.member.Member;
+import com.company.member.TrainingResults;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,6 +14,7 @@ public class FileHandler {
 
     private ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Competitor> competitors = new ArrayList<>();
+    private ArrayList<TrainingResults> results = new ArrayList<>();
 
 
     public void addNewMember(Member member){
@@ -22,6 +25,10 @@ public class FileHandler {
         memberList.remove(member);
         saveMember();
         System.out.println("done");
+    }
+
+    public void addNewResult(TrainingResults tr){
+        results.add(tr);
     }
 
     public void saveMember(){
@@ -90,6 +97,29 @@ public class FileHandler {
         }
 
     }
+
+    public void saveResults(){
+        File file = new File("data/results.csv");
+
+        try{
+            FileWriter fileWriter = new FileWriter(file, true);
+
+            for(TrainingResults trainingResults : results){
+                fileWriter.append(trainingResults.getCompetitor() + ";");
+                fileWriter.append(trainingResults.getDate() + ";");
+                fileWriter.append(trainingResults.getDiscipline() + ";");
+                fileWriter.append(trainingResults.getSwimTime() + ";");
+                fileWriter.append("\n");
+            }
+            fileWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     public ArrayList<Member> readFile(){
         File myObj = new File("data/members.csv");
