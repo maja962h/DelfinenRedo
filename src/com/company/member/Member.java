@@ -93,9 +93,9 @@ public class Member implements Comparable {
     }
 
     public void setActiveStatus(String activeStatus) {
-        if(activeStatus.equals('p') || activeStatus.equals("passive")){
+        if (activeStatus.equals("passive")){
             this.activeStatus = false;
-        } else if(activeStatus.equals("a") || activeStatus.equals("active")){
+        } else if (activeStatus.equals("active")){
             this.activeStatus = true;
         }
     }

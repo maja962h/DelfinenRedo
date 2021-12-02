@@ -17,9 +17,6 @@ public class Calculator {
     private int passiveCon = 500;
     private double overSixty = seniorCon * 0.75;
 
-    public Calculator(){
-        totalContingent();
-    }
 
     public double contingentCalculator(String age, boolean isActive){
         int ageNumber = 0;
@@ -53,19 +50,13 @@ public class Calculator {
     }
 
     public void totalContingent(){
-        double tempCon = 0;
-        double tempTotal = 0;
         FileHandler fh = new FileHandler();
         fh.readFile();
         ArrayList<Member> allMembers = fh.getMemberList();
         //System.out.println(allMembers.size());
         for (Member member : allMembers){
-            tempTotal = addTotal(contingentCalculator(member.getAgeRange(), member.activeStatus()));
-            //tempCon = contingentCalculator(member.getAgeRange(), member.activeStatus());
-            //tempTotal += tempCon;
-
+            addTotal(contingentCalculator(member.getAgeRange(), member.activeStatus()));
         }
-        total = tempTotal;
     }
 
 }

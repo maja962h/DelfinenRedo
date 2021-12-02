@@ -21,7 +21,6 @@ public class Controller {
     public void start() {
 
         fh.readFile();
-        calculator.totalContingent();
         ui.printWelcomeMessage();
         while (running) {
             ui.startMenu();
@@ -310,6 +309,10 @@ public class Controller {
             ui.printInt(member.getAge());
 
         }
+    }
+
+    public ArrayList<Member> getMembers(){
+        return fh.getMemberList();
     }
 
 
