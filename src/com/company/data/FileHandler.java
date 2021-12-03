@@ -1,4 +1,5 @@
 package com.company.data;
+import com.company.member.AgeRange;
 import com.company.member.Competitor;
 import com.company.member.Member;
 import com.company.member.TrainingResults;
@@ -8,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class FileHandler {
@@ -39,7 +41,7 @@ public class FileHandler {
 
             for(Member member : memberList){
                 fileWriter.append(member.getName() + ";");
-                fileWriter.append(member.getAgeRange() + ";");
+                fileWriter.append(member.getAgeRange().toUpperCase() + ";");
                 fileWriter.append(member.getActiveStatusText() + ";");
                 fileWriter.append(member.getCompetitiveStatus());
                 fileWriter.append("\n");
@@ -116,10 +118,7 @@ public class FileHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
-
 
     public ArrayList<Member> readFile(){
         File myObj = new File("data/members.csv");
@@ -128,7 +127,8 @@ public class FileHandler {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] test = data.split(";");
-                Member member = new Member(test[0], test[1], false, test[3]);
+                Member member = new Member(test[0],0, test[1], false, test[3], AgeRange.JUNIOR);
+                member.setEnum(test[1]);
                 member.setActiveStatus(test[2]);
                 memberList.add(member);
             }
@@ -152,9 +152,7 @@ public class FileHandler {
 
             stringBuilder.append(member.getName()).append(" ");
 
-            stringBuilder.append(member.getAge()).append(" ");
-
-            stringBuilder.append(member.getAgeRange()).append(" ");
+            stringBuilder.append(member.getAgeRange().toLowerCase()).append(" ");
 
             stringBuilder.append(member.getActiveStatusText()).append(" ");
 

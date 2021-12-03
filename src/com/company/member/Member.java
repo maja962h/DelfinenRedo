@@ -7,6 +7,7 @@ public class Member implements Comparable {
     protected boolean activeStatus;
     protected String ageRange;
     protected String competitiveStatus;
+    private AgeRange eAgeRange;
 
 
     public Member(){
@@ -19,15 +20,16 @@ public class Member implements Comparable {
         this.activeStatus = clone.activeStatus;
         this.ageRange = clone.ageRange;
         this.competitiveStatus = clone.competitiveStatus;
-
+        this.eAgeRange = clone.eAgeRange;
     }
 
-    public Member(String name, int age, String ageRange, boolean activeStatus, String competitiveStatus){
+    public Member(String name, int age, String ageRange, boolean activeStatus, String competitiveStatus, AgeRange eAgeRange){
         this.name = name;
         this.age = age;
         this.activeStatus = activeStatus;
         this.ageRange = ageRange;
         this.competitiveStatus = competitiveStatus;
+        this.eAgeRange = eAgeRange;
     }
 
     public Member(String name, int age, String ageRange){
@@ -35,11 +37,6 @@ public class Member implements Comparable {
         this.age = age;
         this.ageRange = ageRange;
     }
-
-    public Member(String name, String ageRange, boolean activeStatus, String competitiveStatus){
-        this(name,0,ageRange,activeStatus,competitiveStatus);
-    }
-
 
     public String getAgeRange() {
         return ageRange;
@@ -93,11 +90,20 @@ public class Member implements Comparable {
     }
 
     public void setActiveStatus(String activeStatus) {
-        if (activeStatus.equals("passive")){
+        if(activeStatus.equals('p') || activeStatus.equals("passive")){
             this.activeStatus = false;
-        } else if (activeStatus.equals("active")){
+        } else if(activeStatus.equals("a") || activeStatus.equals("active")){
             this.activeStatus = true;
         }
     }
+
+    public AgeRange geteAgeRange(){
+        return eAgeRange;
+    }
+
+    public void setEnum(String ageRange) {
+        this.eAgeRange = AgeRange.valueOf(ageRange);
+    }
+
 
 }

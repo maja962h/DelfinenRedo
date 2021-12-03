@@ -16,8 +16,6 @@ public class Controller {
     private Discipline di = null;
     private Database db = new Database();
     private boolean running = true;
-    Calculator calculator = new Calculator();
-
 
     public void start() {
 
@@ -310,6 +308,14 @@ public class Controller {
 
         ui.printMessage(fh.makeStringMember());
     }
+
+  /*  private void findMember(){
+        String search = ui.stringInput();
+        for (Member member: fh.getMemberList()) {
+            if(member.getName().equals(search));
+            ui.printMessage(member.toString());
+        }
+    }*/
 
     private void juniorMemberList() {
         Collections.sort(fh.getMemberList());

@@ -1,6 +1,7 @@
 package com.company.domain;
 
 import com.company.data.FileHandler;
+import com.company.member.AgeRange;
 import com.company.member.Member;
 
 import java.util.ArrayList;
@@ -8,34 +9,21 @@ import java.util.ArrayList;
 public class Calculator {
 
     private double total;
-    private double totalDebt;
-    private int junior = 17;
-    private int senior = 18;
-    private int elder = 60;
     private int juniorCon = 1000;
     private int seniorCon = 1600;
     private int passiveCon = 500;
     private double overSixty = seniorCon * 0.75;
 
-
-    public double contingentCalculator(String age, boolean isActive){
-        int ageNumber = 0;
-        if(age.equals(junior)){
-            ageNumber = 15;
-        } else if(age.equals(senior)) {
-            ageNumber = 20;
-        } else if(age.equals(elder)){
-            ageNumber = 60;
-        }
+    public double contingentCalculator(AgeRange eAgeRange, boolean isActive){
 
         double contingentSum = 0;
         if(!isActive){
             contingentSum = passiveCon;
-        } else if(ageNumber <= junior){
+        } else if(eAgeRange.equals(AgeRange.JUNIOR)){
             contingentSum = juniorCon;
-        } else if(ageNumber >= senior){
+        } else if(eAgeRange.equals(AgeRange.SENIOR)){
             contingentSum = seniorCon;
-        }else if (ageNumber >= elder){
+        }else if (eAgeRange.equals(AgeRange.ELDER)){
             contingentSum = overSixty;
         }
         return contingentSum;
@@ -53,9 +41,8 @@ public class Calculator {
         FileHandler fh = new FileHandler();
         fh.readFile();
         ArrayList<Member> allMembers = fh.getMemberList();
-        //System.out.println(allMembers.size());
         for (Member member : allMembers){
-            addTotal(contingentCalculator(member.getAgeRange(), member.activeStatus()));
+            addTotal(contingentCalculator(member.geteAgeRange(), member.activeStatus()));
         }
     }
 
