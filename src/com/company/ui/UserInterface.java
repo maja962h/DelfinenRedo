@@ -66,6 +66,7 @@ public class UserInterface {
                 (1) Full member list.
                 (2) Junior member list.
                 (3) Senior memberList.
+                (4) Full competitorList.
                 """);
     }
 
