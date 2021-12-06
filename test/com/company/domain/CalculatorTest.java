@@ -1,8 +1,6 @@
 package com.company.domain;
 
-import com.company.data.FileHandler;
 import com.company.member.AgeRange;
-import com.company.member.Member;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

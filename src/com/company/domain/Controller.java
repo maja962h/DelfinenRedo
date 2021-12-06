@@ -134,40 +134,34 @@ public class Controller {
     }
 
     public void isActiveOrPassive(Member member, String input){
-        switch (input){
-            case "a":
+        switch (input) {
+            case "a" -> {
                 member.setActiveStatus("active");
                 ui.printMessage("Is the member an exerciser(e) or competitor(c)?");
                 String eOrc = ui.stringInput();
                 isCompetitorOrExerciser(member, eOrc);
-                break;
-            case "p":
+            }
+            case "p" -> {
                 member.setActiveStatus("passive");
                 member.setCompetitiveStatus("none");
-                break;
-            default:
-                ui.printMessage("try again");
-                break;
+            }
+            default -> ui.printMessage("try again");
         }
     }
 
     public void isCompetitorOrExerciser(Member member, String input){
-        switch (input){
-            case "c":
+        switch (input) {
+            case "c" -> {
                 member.setCompetitiveStatus("Competitor");
                 chooseDisciplines(member);
-                break;
-            case "e":
-                member.setCompetitiveStatus("Exerciser");
-                break;
-            default:
-                ui.printMessage("try again");
-                break;
+            }
+            case "e" -> member.setCompetitiveStatus("Exerciser");
+            default -> ui.printMessage("try again");
         }
     }
 
     public void chooseDisciplines(Member member) {
-        boolean keepAdding = true;
+        boolean keepAdding;
         ArrayList<Discipline> selectedDisci = new ArrayList<>();
 
         do{
