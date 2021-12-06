@@ -162,18 +162,18 @@ public class Controller {
 
     public void chooseDisciplines(Member member) {
         boolean keepAdding;
-        ArrayList<Discipline> selectedDisci = new ArrayList<>();
+        ArrayList<Discipline> selectedDiscipline = new ArrayList<>();
 
         do{
         ui.disciplineMenu();
         int choice = ui.intInput();
-        selectedDisci = chooseDisciplines(choice, selectedDisci);
+        selectedDiscipline = chooseDisciplines(choice, selectedDiscipline);
             ui.printMessage("do you want to add another discipline? yes(y) or no(n)");
             String addAnotherDiscipline = ui.stringInput();
             keepAdding = continueAddingDisciplines(addAnotherDiscipline);
         } while(keepAdding);
 
-        Competitor competitor = new Competitor(member, selectedDisci);
+        Competitor competitor = new Competitor(member, selectedDiscipline);
 
         fh.addNewCompetitor(competitor);
         fh.saveCompetitor();
@@ -325,6 +325,7 @@ public class Controller {
             return false;
     }
 
+    //TODO: delete if not used
     public void getAges(){
         for (Member member : fh.getMemberList()) {
             ui.printInt(member.getAge());
@@ -332,6 +333,7 @@ public class Controller {
         }
     }
 
+    //TODO: delete if not used
     public ArrayList<Member> getMembers(){
         return fh.getMemberList();
     }
