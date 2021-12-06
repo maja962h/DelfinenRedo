@@ -217,11 +217,7 @@ public class Controller {
     }
 
     public void addCompetitorResults() {
-        Competitor competitor;
-        ui.printMessage("Would you like to register (t)training results or (c)competition results?");
-        String choice = ui.stringInput();
 
-        if (choice.equals("t")){
             Discipline ds = null;
             ui.printMessage("Start by typing competitor name: ");
             String compName = ui.stringInput();
@@ -246,39 +242,20 @@ public class Controller {
                 ds = Discipline.BREASTSTROKE;
             }
 
-            TrainingResults trainingResults = new TrainingResults(db.findCompetitor(compName),date, ds, time);
+            ui.printMessage("Is this a competition result? ('y' / 'n')");
+            String answer = ui.stringInput();
+            Result registeredResult = null;
 
-            fh.addNewResult(trainingResults);
-            fh.saveResults();
-
-        } else if (choice.equals("c")){
-            Discipline ds = null;
-            ui.printMessage("Start by typing in the name of the competition: ");
-            String competitionName = ui.stringInput();
-
-            ui.printMessage("Type in training date (YYYY-MM-DD): ");
-            LocalDate date = ui.dateInput();
-
-            ui.printMessage("Next, type in the swimmer's time: ");
-            Duration time = ui.timeInput();
-
-            ui.printMessage("Lastly, chose the discipline: ");
-
-            ui.disciplineMenu();
-            int input = ui.intInput();
-            if (input == 1) {
-                ds = Discipline.BUTTERFLY;
-            } else if (input == 2) {
-                ds = Discipline.CRAWL;
-            } else if (input == 3) {
-                ds = Discipline.BACKCRAWL;
-            } else if (input == 4) {
-                ds = Discipline.BREASTSTROKE;
+            if(answer.equalsIgnoreCase("n")){
+                registeredResult = new Result(db.findCompetitor(compName),date, ds, time);
+            } else if(answer.equalsIgnoreCase("y")){
+                ui.printMessage("Type in the name of the competition: ");
+                String competitionName = ui.stringInput();
+                registeredResult = new Result(db.findCompetitor(compName), date, ds, time, competitionName);
             }
 
-            Competition competition = new Competition(date, ds, time, competitionName);
-
-        }
+            fh.addNewResult(registeredResult);
+            fh.saveResults();
 
     }
 

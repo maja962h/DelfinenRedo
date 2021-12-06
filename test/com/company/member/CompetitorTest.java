@@ -1,16 +1,16 @@
 package com.company.member;
-import com.company.data.Database;
+/*import com.company.data.Database;
 import com.company.data.FileHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;*/
 
 class CompetitorTest {
 
-    @Test
+   /* @Test
     void setEnum() {
         Database database = new Database();
         FileHandler fileHandler = new FileHandler();
@@ -25,6 +25,6 @@ class CompetitorTest {
         ArrayList<Competitor> liste = fileHandler.getCompetitors();
 
         assertEquals(10,liste.size());
-    }
+    }*/
 
 }

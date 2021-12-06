@@ -2,21 +2,20 @@ package com.company.data;
 import com.company.member.AgeRange;
 import com.company.member.Competitor;
 import com.company.member.Member;
-import com.company.member.TrainingResults;
+import com.company.member.Result;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class FileHandler {
 
     private ArrayList<Member> memberList = new ArrayList<>();
     private ArrayList<Competitor> competitors = new ArrayList<>();
-    private ArrayList<TrainingResults> results = new ArrayList<>();
+    private ArrayList<Result> results = new ArrayList<>();
 
     public FileHandler() {
         readFile();
@@ -33,7 +32,7 @@ public class FileHandler {
         System.out.println("done");
     }
 
-    public void addNewResult(TrainingResults tr){
+    public void addNewResult(Result tr){
         results.add(tr);
     }
 
@@ -105,11 +104,12 @@ public class FileHandler {
         try{
             FileWriter fileWriter = new FileWriter(file, true);
 
-            for(TrainingResults trainingResults : results){
+            for(Result trainingResults : results){
                 fileWriter.append(trainingResults.getCompetitor() + ";");
                 fileWriter.append(trainingResults.getDate() + ";");
                 fileWriter.append(trainingResults.getDiscipline() + ";");
                 fileWriter.append(trainingResults.getSwimTime() + ";");
+                fileWriter.append(trainingResults.getCompName());
                 fileWriter.append("\n");
             }
             fileWriter.close();

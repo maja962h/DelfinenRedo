@@ -26,20 +26,15 @@ public class Competitor extends Member{
             disciplines.add(Discipline.valueOf(disp.trim()));
         }
 
-        System.out.println(disciplines);
-
-
-
     }
-
-   /* public Competitor(Member member, TrainingResults tr){
-        super(member);
-        this.tr = tr;
-    }*/
 
 
     public ArrayList<Discipline> getDisciplines() {
         return disciplines;
+    }
+
+    public String makeStringCompetitorShort(){
+        return name + ", " + ageRange + ", " + disciplines;
     }
 
 

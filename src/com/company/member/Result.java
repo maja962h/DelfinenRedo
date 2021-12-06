@@ -2,32 +2,41 @@ package com.company.member;
 import java.time.Duration;
 import java.time.LocalDate;
 
-public class TrainingResults implements Comparable<TrainingResults> {
+public class Result implements Comparable<Result> {
 
     private Competitor competitor;
     private LocalDate date;
     private Discipline discipline;
     private Duration swimTime;
+    private String compName;
 
-    public TrainingResults(LocalDate date, Discipline discipline, Duration swimTime) {
+ /*   public TrainingResults(LocalDate date, Discipline discipline, Duration swimTime) {
         this.date = date;
         this.discipline = discipline;
         this.swimTime = swimTime;
-    }
+    }*/
 
-    public TrainingResults(Competitor competitor, LocalDate date, Discipline discipline, Duration swimTime) {
+    public Result(Competitor competitor, LocalDate date, Discipline discipline, Duration swimTime) {
         this.competitor = competitor;
         this.date = date;
         this.discipline = discipline;
         this.swimTime = swimTime;
     }
 
-    public TrainingResults(){
+    public Result(Competitor competitor, LocalDate date, Discipline discipline, Duration swimTime, String compName) {
+        this.competitor = competitor;
+        this.date = date;
+        this.discipline = discipline;
+        this.swimTime = swimTime;
+        this.compName = compName;
+    }
+
+    public Result(){
 
     }
 
-    public Competitor getCompetitor(){
-        return competitor;
+    public String getCompetitor(){
+        return competitor.makeStringCompetitorShort();
     }
 
     public LocalDate getDate() {
@@ -44,6 +53,9 @@ public class TrainingResults implements Comparable<TrainingResults> {
         return swimTime;
     }
 
+    public String getCompName() {
+        return compName;
+    }
 
     @Override
     public String toString() {
@@ -51,7 +63,7 @@ public class TrainingResults implements Comparable<TrainingResults> {
     }
 
     @Override
-    public int compareTo(TrainingResults other) {
+    public int compareTo(Result other) {
 
        if (this.getSwimTime().toSeconds() == 0 && other.getSwimTime().toSeconds() == 0) {
             return 0;

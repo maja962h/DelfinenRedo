@@ -16,7 +16,7 @@ public class Database {
 
     public Competitor findCompetitor(String name){
         for (Competitor competitor: fh.getCompetitors()) {
-            if(competitor.getName().equals(name)){
+            if(competitor.getName().equalsIgnoreCase(name.trim())){
                 return competitor;
             }
         }
