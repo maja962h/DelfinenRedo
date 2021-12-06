@@ -11,14 +11,12 @@ import java.util.Collections;
 
 public class Controller {
 
-    private UserInterface ui = new UserInterface();
-    private FileHandler fh = new FileHandler();
-    private Discipline di = null;
-    private Database db = new Database();
+    private final UserInterface ui = new UserInterface();
+    private final FileHandler fh = new FileHandler();
+    private final Database db = new Database();
     private boolean running = true;
 
     public void start() {
-
 
         ui.printWelcomeMessage();
         while (running) {
@@ -34,7 +32,7 @@ public class Controller {
                 case 6 -> scoreBoard();
                 case 7 -> addCompetitorResults(); //place, time and registration for competitions.
                 case 8 -> swimmerTierList(); //top 5 swimmers in every category.
-                case 9 -> totalContingentAmount(); //ui.printDouble(calculator.contingentCalculator("junior", true));
+                case 9 -> totalContingentAmount();
                 case 0 -> exit();
                 default -> ui.printError();
             }
@@ -259,7 +257,6 @@ public class Controller {
 
     }
 
-
     public void swimmerTierList() {
     }
 
@@ -267,7 +264,6 @@ public class Controller {
         running = false;
     }
 
-    //TODO: move to member class???
     private String ageRange(int age) {
         String ageRange = "";
         if (age < 18) {
