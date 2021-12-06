@@ -85,7 +85,7 @@ public class FileHandler {
         File file = new File("data/competitors.csv");
 
         try{
-            FileWriter fileWriter = new FileWriter(file, true);
+            FileWriter fileWriter = new FileWriter(file, false);
 
             for(Competitor competitor : competitors){
                 fileWriter.append(competitor.toFileString());

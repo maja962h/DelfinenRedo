@@ -10,11 +10,6 @@ public class Result implements Comparable<Result> {
     private Duration swimTime;
     private String compName;
 
- /*   public TrainingResults(LocalDate date, Discipline discipline, Duration swimTime) {
-        this.date = date;
-        this.discipline = discipline;
-        this.swimTime = swimTime;
-    }*/
 
     public Result(Competitor competitor, LocalDate date, Discipline discipline, Duration swimTime) {
         this.competitor = competitor;
@@ -31,9 +26,6 @@ public class Result implements Comparable<Result> {
         this.compName = compName;
     }
 
-    public Result(){
-
-    }
 
     public String getCompetitor(){
         return competitor.makeStringCompetitorShort();

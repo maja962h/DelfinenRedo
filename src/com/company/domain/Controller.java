@@ -186,7 +186,6 @@ public class Controller {
         fh.addNewCompetitor(competitor);
         fh.saveCompetitor();
 
-        //TODO: can only add one discipline, this needs to be fixed.
     }
 
     // You are able to view different member lists
