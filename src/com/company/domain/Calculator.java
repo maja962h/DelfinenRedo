@@ -42,7 +42,7 @@ public class Calculator {
         fh.readFile();
         ArrayList<Member> allMembers = fh.getMemberList();
         for (Member member : allMembers){
-            addTotal(contingentCalculator(member.geteAgeRange(), member.activeStatus()));
+            addTotal(contingentCalculator(member.getEnumAgeRange(), member.activeStatus()));
         }
     }
 

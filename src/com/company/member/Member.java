@@ -54,6 +54,7 @@ public class Member implements Comparable {
         return activeStatus;
     }*/
 
+    //TODO: delete if not used
     public String getCompetitiveStatus() {
         return competitiveStatus;
     }
@@ -97,7 +98,7 @@ public class Member implements Comparable {
         }
     }
 
-    public AgeRange geteAgeRange(){
+    public AgeRange getEnumAgeRange(){
         return eAgeRange;
     }
 
