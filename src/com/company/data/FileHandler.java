@@ -43,18 +43,30 @@ public class FileHandler implements DataInterface {
             FileWriter fileWriter = new FileWriter(file, false);
 
             for(Member member : memberList){
-                fileWriter.append(member.getName() + ";");
-                fileWriter.append(member.getAgeRange().toUpperCase() + ";");
-                fileWriter.append(member.getActiveStatusText() + ";");
-                fileWriter.append(member.getCompetitiveStatus());
-                fileWriter.append("\n");
+                fileWriter.append(member.toMemberFileString());
             }
             fileWriter.close();
-            //memberList.clear();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void saveCompetitor(){
+        File file = new File("data/competitors.csv");
+
+        try{
+            FileWriter fileWriter = new FileWriter(file, false);
+
+            for(Competitor competitor : competitors){
+                fileWriter.append(competitor.toCompFileString());
+            }
+            fileWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public boolean authenticated(String name, String password, String role){
@@ -79,38 +91,18 @@ public class FileHandler implements DataInterface {
         return isAuthenticated;
     }
 
-
-
-    public void saveCompetitor(){
-        File file = new File("data/competitors.csv");
-
-        try{
-            FileWriter fileWriter = new FileWriter(file, false);
-
-            for(Competitor competitor : competitors){
-                fileWriter.append(competitor.toFileString());
-            }
-            fileWriter.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public void saveResults(){
         File file = new File("data/results.csv");
 
         try{
             FileWriter fileWriter = new FileWriter(file, true);
 
-            for(Result trainingResults : results){
-                fileWriter.append(trainingResults.getCompetitor() + ";");
-                fileWriter.append(trainingResults.getDate() + ";");
-                fileWriter.append(trainingResults.getDiscipline() + ";");
-                fileWriter.append(trainingResults.getSwimTime() + ";");
-                fileWriter.append(trainingResults.getCompName());
-                fileWriter.append("\n");
+            for(Result result : results){
+                if(result.getCompName() != null){
+                    fileWriter.append(result.toCompetitionString());
+                } else {
+                    fileWriter.append(result.toTrainingString());
+                }
             }
             fileWriter.close();
 
@@ -166,14 +158,7 @@ public class FileHandler implements DataInterface {
         //Loops through the list of members.
         for (Member member : memberList) {
 
-            stringBuilder.append(member.getName()).append(" ");
-
-            stringBuilder.append(member.getAgeRange().toLowerCase()).append(" ");
-
-            stringBuilder.append(member.getActiveStatusText()).append(" ");
-
-            stringBuilder.append(member.getCompetitiveStatus()).append("\n");
-
+            stringBuilder.append(member.toMemberString());
         }
         return stringBuilder.toString();
     }
@@ -187,14 +172,7 @@ public class FileHandler implements DataInterface {
         //Loops through the list of members.
         for (Competitor competitor : competitors) {
 
-            stringBuilder.append(competitor.getName()).append(" ");
-
-            stringBuilder.append(competitor.getAgeRange().toLowerCase()).append(" ");
-
-            stringBuilder.append(competitor.getDisciplines()).append("\n");
-
-            //stringBuilder.append(member.getCompetitiveStatus()).append("\n");
-
+            stringBuilder.append(competitor.toCompString());
         }
         return stringBuilder.toString();
     }
@@ -207,7 +185,6 @@ public class FileHandler implements DataInterface {
     public ArrayList<Competitor> getCompetitors() {
         return competitors;
     }
-
 
     public void addNewCompetitor(Competitor competitor){
         competitors.add(competitor);

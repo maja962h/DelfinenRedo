@@ -34,7 +34,7 @@ public class Competitor extends Member{
     }
 
     public String makeStringCompetitorShort(){
-        return name + ", " + ageRange + ", " + disciplines;
+        return name + ", " + ageRange ;
     }
 
 
@@ -43,12 +43,21 @@ public class Competitor extends Member{
         return name + ": " + age + " år, " + ageRange + ". Discipline(s): " + disciplines +  "\n";
     }
 
-    public String toFileString() {
+    public String toCompFileString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name + ";");
         sb.append(ageRange + ";");
         sb.append(getActiveStatusText() + ";");
         sb.append(competitiveStatus + ";");
+        sb.append(disciplines);
+        sb.append("\n");
+        return sb.toString();
+    }
+
+    public String toCompString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name + " ");
+        sb.append(ageRange + " ");
         sb.append(disciplines);
         sb.append("\n");
         return sb.toString();

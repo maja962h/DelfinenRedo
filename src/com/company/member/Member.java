@@ -105,5 +105,24 @@ public class Member implements Comparable {
         this.eAgeRange = AgeRange.valueOf(ageRange);
     }
 
+    public String toMemberFileString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name + ";");
+        sb.append(ageRange.toUpperCase() + ";");
+        sb.append(getActiveStatusText() + ";");
+        sb.append(competitiveStatus + ";");
+        sb.append("\n");
+        return sb.toString();
+    }
+
+    public String toMemberString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name + " ");
+        sb.append(ageRange.toLowerCase() + " ");
+        sb.append(getActiveStatusText() + " ");
+        sb.append(competitiveStatus + " ");
+        sb.append("\n");
+        return sb.toString();
+    }
 
 }

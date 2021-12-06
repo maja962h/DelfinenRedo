@@ -68,5 +68,25 @@ public class Result implements Comparable<Result> {
         return swimTime.compareTo(other.getSwimTime());
     }
 
+    public String toCompetitionString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getCompetitor() + ";");
+        sb.append(date + ";");
+        sb.append(discipline + ";");
+        sb.append(swimTime + ";");
+        sb.append(compName + ";");
+        sb.append("\n");
+        return sb.toString();
+    }
+
+    public String toTrainingString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getCompetitor() + ";");
+        sb.append(date + ";");
+        sb.append(discipline + ";");
+        sb.append(swimTime + ";");
+        sb.append("\n");
+        return sb.toString();
+    }
 
 }
