@@ -18,6 +18,10 @@ public class FileHandler {
     private ArrayList<Competitor> competitors = new ArrayList<>();
     private ArrayList<TrainingResults> results = new ArrayList<>();
 
+    public FileHandler() {
+        readFile();
+        readCompetitorFile();
+    }
 
     public void addNewMember(Member member){
         memberList.add(member);
@@ -85,12 +89,7 @@ public class FileHandler {
             FileWriter fileWriter = new FileWriter(file, true);
 
             for(Competitor competitor : competitors){
-                fileWriter.append(competitor.getName() + ";");
-                fileWriter.append(competitor.getAgeRange() + ";");
-                fileWriter.append(competitor.getActiveStatusText() + ";");
-                fileWriter.append(competitor.getCompetitiveStatus() + ";");
-                fileWriter.append(competitor.getDisciplines().toString());
-                fileWriter.append("\n");
+                fileWriter.append(competitor.toFileString());
             }
             fileWriter.close();
 
@@ -133,6 +132,24 @@ public class FileHandler {
                 memberList.add(member);
             }
             return memberList;
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<Competitor> readCompetitorFile(){
+        try {
+            Scanner myReader = new Scanner(new File("data/competitors.csv"));
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+
+                Competitor competitor = new Competitor(data);
+                competitors.add(competitor);
+            }
+            return competitors;
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");

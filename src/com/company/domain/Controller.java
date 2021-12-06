@@ -19,7 +19,7 @@ public class Controller {
 
     public void start() {
 
-        fh.readFile();
+
         ui.printWelcomeMessage();
         while (running) {
             ui.startMenu();
@@ -308,14 +308,6 @@ public class Controller {
 
         ui.printMessage(fh.makeStringMember());
     }
-
-  /*  private void findMember(){
-        String search = ui.stringInput();
-        for (Member member: fh.getMemberList()) {
-            if(member.getName().equals(search));
-            ui.printMessage(member.toString());
-        }
-    }*/
 
     private void juniorMemberList() {
         Collections.sort(fh.getMemberList());

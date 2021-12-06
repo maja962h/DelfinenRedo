@@ -1,6 +1,10 @@
-Maja;Senior;active;Competitor;Crawl
-Chris;Senior;active;Competitor;Butterfly
-Marc;Junior;active;Competitor;Butterfly
+Maja;competitors.csv;active;Competitor;[CRAWL]
+Chris;Senior;active;Competitor;[BUTTERFLY]
+Marc;Junior;active;Competitor;[BUTTERFLY]
 maja;Senior;active;Competitor;[BUTTERFLY, BACKCRAWL]
 chris;Junior;active;Competitor;[BACKCRAWL, CRAWL, BREASTSTROKE]
 Jens Georg;Senior;active;Competitor;[BUTTERFLY, BACKCRAWL]
+Peter;Senior;active;Competitor;[BUTTERFLY]
+cram;Senior;active;Competitor;[CRAWL]
+cram;Senior;active;Competitor;[CRAWL]
+Jon;Senior;active;Competitor;[BUTTERFLY, CRAWL]

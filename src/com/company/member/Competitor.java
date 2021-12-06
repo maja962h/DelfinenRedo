@@ -1,6 +1,7 @@
 package com.company.member;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Competitor extends Member{
 
@@ -10,6 +11,25 @@ public class Competitor extends Member{
     public Competitor(Member member, ArrayList<Discipline> disciplines){
         super(member);
         this.disciplines = disciplines;
+    }
+
+    public Competitor(String lineFromFile) {
+        String[] test = lineFromFile.split(";");
+        name = test[0];
+        ageRange = test[1];
+        setActiveStatus(test[2]);
+        setCompetitiveStatus(test[3]);
+        // Disciplines
+        disciplines = new ArrayList<>();
+        String list[] = test[4].substring(1,test[4].length()-1).split(", ");
+        for( String disp : list) {
+            disciplines.add(Discipline.valueOf(disp.trim()));
+        }
+
+        System.out.println(disciplines);
+
+
+
     }
 
    /* public Competitor(Member member, TrainingResults tr){
@@ -28,4 +48,14 @@ public class Competitor extends Member{
         return name + ": " + age + " år, " + ageRange + ". Discipline(s): " + disciplines +  "\n";
     }
 
+    public String toFileString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name + ";");
+        sb.append(ageRange + ";");
+        sb.append(getActiveStatusText() + ";");
+        sb.append(competitiveStatus + ";");
+        sb.append(disciplines);
+        sb.append("\n");
+        return sb.toString();
+    }
 }

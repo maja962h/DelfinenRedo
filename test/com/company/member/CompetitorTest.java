@@ -14,7 +14,7 @@ class CompetitorTest {
     void setEnum() {
         Database database = new Database();
         FileHandler fileHandler = new FileHandler();
-        Competitor competitor = database.findCompetitor(fileHandler.getCompetitors(), "Maja");
+        Competitor competitor = database.findCompetitor("Maja");
 
         assertNotNull(competitor);
     }
@@ -24,7 +24,7 @@ class CompetitorTest {
         FileHandler fileHandler = new FileHandler();
         ArrayList<Competitor> liste = fileHandler.getCompetitors();
 
-        assertEquals(6,liste.size());
+        assertEquals(10,liste.size());
     }
 
 }
