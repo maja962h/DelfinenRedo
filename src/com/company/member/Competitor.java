@@ -1,12 +1,10 @@
 package com.company.member;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Competitor extends Member{
 
-    private ArrayList<Discipline> disciplines;
-    //private TrainingResults tr = new TrainingResults();
+    private final ArrayList<Discipline> disciplines;
 
     public Competitor(Member member, ArrayList<Discipline> disciplines){
         super(member);
@@ -19,16 +17,16 @@ public class Competitor extends Member{
         ageRange = test[1];
         setActiveStatus(test[2]);
         setCompetitiveStatus(test[3]);
-        // Disciplines
+
         disciplines = new ArrayList<>();
-        String list[] = test[4].substring(1,test[4].length()-1).split(", ");
-        for( String disp : list) {
-            disciplines.add(Discipline.valueOf(disp.trim()));
+        String[] list = test[4].substring(1,test[4].length()-1).split(", ");
+        for( String discipline : list) {
+            disciplines.add(Discipline.valueOf(discipline.trim()));
         }
 
     }
 
-
+    //TODO: delete if not used
     public ArrayList<Discipline> getDisciplines() {
         return disciplines;
     }
@@ -36,7 +34,6 @@ public class Competitor extends Member{
     public String makeStringCompetitorShort(){
         return name + ", " + ageRange ;
     }
-
 
     @Override
     public String toString() {
