@@ -5,6 +5,7 @@ import com.company.member.Member;
 public class Database {
     FileHandler fh = new FileHandler();
 
+    //TODO: delete if not used
     public Member findMember(String name){
         for (Member member: fh.getMemberList()) {
             if(member.getName().equals(name)){
