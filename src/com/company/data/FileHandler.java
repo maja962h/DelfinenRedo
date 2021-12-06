@@ -13,9 +13,9 @@ import java.util.Scanner;
 
 public class FileHandler implements DataInterface {
 
-    private ArrayList<Member> memberList = new ArrayList<>();
-    private ArrayList<Competitor> competitors = new ArrayList<>();
-    private ArrayList<Result> results = new ArrayList<>();
+    private final ArrayList<Member> memberList = new ArrayList<>();
+    private final ArrayList<Competitor> competitors = new ArrayList<>();
+    private final ArrayList<Result> results = new ArrayList<>();
 
     public FileHandler() {
         readFile();
@@ -111,6 +111,7 @@ public class FileHandler implements DataInterface {
         }
     }
 
+    //TODO: make method void since the return value is never used?
     public ArrayList<Member> readFile(){
         try {
             Scanner myReader = new Scanner(new File("data/members.csv"));
@@ -131,6 +132,7 @@ public class FileHandler implements DataInterface {
         return null;
     }
 
+    //TODO: make method void since the return value is never used?
     public ArrayList<Competitor> readCompetitorFile(){
         try {
             Scanner myReader = new Scanner(new File("data/competitors.csv"));
@@ -149,29 +151,21 @@ public class FileHandler implements DataInterface {
         return null;
     }
 
-    // Turns arraylist into string, so it can be printed to console.
     public String makeStringMember(){
-
-        //Initializing a StringBuilder object.
         StringBuilder stringBuilder = new StringBuilder();
 
-        //Loops through the list of members.
         for (Member member : memberList) {
-
             stringBuilder.append(member.toMemberString());
         }
         return stringBuilder.toString();
     }
 
-    // Turns arraylist into string, so it can be printed to console.
     public String makeStringCompetitor(){
 
-        //Initializing a StringBuilder object.
         StringBuilder stringBuilder = new StringBuilder();
 
-        //Loops through the list of members.
-        for (Competitor competitor : competitors) {
 
+        for (Competitor competitor : competitors) {
             stringBuilder.append(competitor.toCompString());
         }
         return stringBuilder.toString();
@@ -179,14 +173,17 @@ public class FileHandler implements DataInterface {
 
 
     public ArrayList<Member> getMemberList() {
+
         return memberList;
     }
 
     public ArrayList<Competitor> getCompetitors() {
+
         return competitors;
     }
 
     public void addNewCompetitor(Competitor competitor){
+
         competitors.add(competitor);
     }
 
