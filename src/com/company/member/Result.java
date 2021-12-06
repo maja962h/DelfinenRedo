@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class Result implements Comparable<Result> {
 
-    private Competitor competitor;
-    private LocalDate date;
-    private Discipline discipline;
-    private Duration swimTime;
+    private final Competitor competitor;
+    private final LocalDate date;
+    private final Discipline discipline;
+    private final Duration swimTime;
     private String compName;
 
 
@@ -31,15 +31,15 @@ public class Result implements Comparable<Result> {
         return competitor.makeStringCompetitorShort();
     }
 
+    //TODO: delete if not used
     public LocalDate getDate() {
         return date;
     }
 
-
+    //TODO: delete if not used
     public Discipline getDiscipline() {
         return discipline;
     }
-
 
     public Duration getSwimTime() {
         return swimTime;
@@ -88,5 +88,4 @@ public class Result implements Comparable<Result> {
         sb.append("\n");
         return sb.toString();
     }
-
 }

@@ -1,7 +1,5 @@
 package com.company.member;
 
-import java.util.ArrayList;
-
 public enum Discipline {
     BUTTERFLY,
     CRAWL,
