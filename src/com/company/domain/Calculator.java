@@ -9,10 +9,10 @@ import java.util.ArrayList;
 public class Calculator {
 
     private double total;
-    private int juniorCon = 1000;
-    private int seniorCon = 1600;
-    private int passiveCon = 500;
-    private double overSixty = seniorCon * 0.75;
+    private final int juniorCon = 1000;
+    private final int seniorCon = 1600;
+    private final int passiveCon = 500;
+    private final double overSixty = seniorCon * 0.75;
 
     public double contingentCalculator(AgeRange eAgeRange, boolean isActive){
 
@@ -29,6 +29,7 @@ public class Calculator {
         return contingentSum;
     }
 
+    //TODO: make method void since the return value is never used?
     public double addTotal(double fee){
         return this.total = total + fee;
     }
