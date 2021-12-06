@@ -120,9 +120,8 @@ public class FileHandler {
     }
 
     public ArrayList<Member> readFile(){
-        File myObj = new File("data/members.csv");
         try {
-            Scanner myReader = new Scanner(myObj);
+            Scanner myReader = new Scanner(new File("data/members.csv"));
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] test = data.split(";");
@@ -174,6 +173,27 @@ public class FileHandler {
             stringBuilder.append(member.getActiveStatusText()).append(" ");
 
             stringBuilder.append(member.getCompetitiveStatus()).append("\n");
+
+        }
+        return stringBuilder.toString();
+    }
+
+    // Turns arraylist into string, so it can be printed to console.
+    public String makeStringCompetitor(){
+
+        //Initializing a StringBuilder object.
+        StringBuilder stringBuilder = new StringBuilder();
+
+        //Loops through the list of members.
+        for (Competitor competitor : competitors) {
+
+            stringBuilder.append(competitor.getName()).append(" ");
+
+            stringBuilder.append(competitor.getAgeRange().toLowerCase()).append(" ");
+
+            stringBuilder.append(competitor.getDisciplines()).append("\n");
+
+            //stringBuilder.append(member.getCompetitiveStatus()).append("\n");
 
         }
         return stringBuilder.toString();

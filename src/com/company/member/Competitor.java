@@ -25,11 +25,6 @@ public class Competitor extends Member{
         for( String disp : list) {
             disciplines.add(Discipline.valueOf(disp.trim()));
         }
-
-        System.out.println(disciplines);
-
-
-
     }
 
    /* public Competitor(Member member, TrainingResults tr){

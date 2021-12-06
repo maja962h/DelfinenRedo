@@ -198,6 +198,7 @@ public class Controller {
             case 1 -> fullMemberList();
             case 2 -> juniorMemberList();
             case 3 -> seniorMemberList();
+            case 4 -> fullCompetitorList();
             default -> ui.printError();
         }
     }
@@ -307,6 +308,12 @@ public class Controller {
         Collections.sort(fh.getMemberList());
 
         ui.printMessage(fh.makeStringMember());
+    }
+
+    private void fullCompetitorList() {
+        Collections.sort(fh.getMemberList());
+
+        ui.printMessage(fh.makeStringCompetitor());
     }
 
     private void juniorMemberList() {
