@@ -10,7 +10,6 @@ public class Controller {
 
     private final UserInterface ui = new UserInterface();
     private final FileHandler fh = new FileHandler();
-    private final Database db = new Database();
     private boolean running = true;
     private MemberController mc = new MemberController();
     private ListController lc = new ListController();
@@ -103,31 +102,6 @@ public class Controller {
         }
     }
 
-
-   /* public void deleteMember(){
-        int arrayCorrection = -1;
-        ui.printMessage("Here is the list of all the members:");
-        showMemberList();
-        ui.printMessage("Please enter the number of the person you want to delete: ");
-        int deleteMember = ui.intInput() + arrayCorrection;
-
-        fh.removeMember(deleteMember);
-    }*/
-
-    // You are able to view different member lists
-    /*public void showMemberList() {
-        ui.memberListMenu();
-        int listInput = ui.intInput();
-
-        switch (listInput) {
-            case 1 -> fullMemberList();
-            case 2 -> juniorMemberList();
-            case 3 -> seniorMemberList();
-            case 4 -> fullCompetitorList();
-            default -> ui.printError();
-        }
-    }*/
-
     public void totalContingentAmount(){
         Calculator calc = new Calculator();
         calc.totalContingent();
@@ -142,48 +116,6 @@ public class Controller {
     public void scoreBoard() {
     }
 
-    /*public void addCompetitorResults() {
-
-            Discipline ds = null;
-            ui.printMessage("Start by typing competitor name: ");
-            String compName = ui.stringInput();
-
-            ui.printMessage("Type training date (YYYY-MM-DD): ");
-            LocalDate date = ui.dateInput();
-
-            ui.printMessage("Next, type the swimmer's time (in seconds): ");
-            Duration time = ui.timeInput();
-
-            ui.printMessage("Lastly, chose the discipline: ");
-
-            ui.disciplineMenu();
-            int input = ui.intInput();
-            if (input == 1) {
-                ds = Discipline.BUTTERFLY;
-            } else if (input == 2) {
-                ds = Discipline.CRAWL;
-            } else if (input == 3) {
-                ds = Discipline.BACKCRAWL;
-            } else if (input == 4) {
-                ds = Discipline.BREASTSTROKE;
-            }
-
-            ui.printMessage("Is this a competition result? ('y' / 'n')");
-            String answer = ui.stringInput();
-            Result registeredResult = null;
-
-            if(answer.equalsIgnoreCase("n")){
-                registeredResult = new Result(db.findCompetitor(compName),date, ds, time);
-            } else if(answer.equalsIgnoreCase("y")){
-                ui.printMessage("Type in the name of the competition: ");
-                String competitionName = ui.stringInput();
-                registeredResult = new Result(db.findCompetitor(compName), date, ds, time, competitionName);
-            }
-
-            fh.addNewResult(registeredResult);
-            fh.saveResults();
-
-    }*/
 
     public void swimmerTierList() {
     }
@@ -191,37 +123,5 @@ public class Controller {
     public void exit() {
         running = false;
     }
-
-   /* private void fullMemberList() {
-        Collections.sort(fh.getMemberList());
-
-        ui.printMessage(fh.makeStringMember());
-    }
-
-    private void fullCompetitorList() {
-        Collections.sort(fh.getMemberList());
-
-        ui.printMessage(fh.makeStringCompetitor());
-    }
-
-    private void juniorMemberList() {
-        Collections.sort(fh.getMemberList());
-
-        for (Member member : fh.getMemberList()) {
-            if (member.getAgeRange().equals("Junior")) {
-                ui.printMessage(member.toString());
-            }
-        }
-    }
-
-    public void seniorMemberList() {
-        Collections.sort(fh.getMemberList());
-
-        for (Member member : fh.getMemberList()) {
-            if (member.getAgeRange().equals("Senior")) {
-                ui.printMessage(member.toString());
-            }
-        }
-    }*/
 
 }
