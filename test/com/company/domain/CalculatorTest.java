@@ -12,6 +12,7 @@ class CalculatorTest {
 
         Calculator calc = new Calculator();
         calc.addTotal(calc.contingentCalculator(AgeRange.SENIOR, true));
-        assertEquals(1600, calc.getTotal());
+        calc.addTotal(calc.contingentCalculator(AgeRange.JUNIOR, true));
+        assertEquals(2600, calc.getTotal());
     }
 }

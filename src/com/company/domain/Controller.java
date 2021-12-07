@@ -31,6 +31,7 @@ public class Controller {
                 case 7 -> lc.addCompetitorResults(); //place, time and registration for competitions.
                 case 8 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 9 -> totalContingentAmount();
+                case 10 -> System.out.println(fh.getResults());
                 case 0 -> exit();
                 default -> ui.printError();
             }
@@ -114,6 +115,7 @@ public class Controller {
     }
 
     public void scoreBoard() {
+
     }
 
 

@@ -92,7 +92,6 @@ public class UserInterface {
         System.out.println(number);
     }
 
-
     public void printError(){
         System.out.println("The input was invalid, please try again.");
     }

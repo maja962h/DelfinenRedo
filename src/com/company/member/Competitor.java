@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Competitor extends Member{
 
-    private final ArrayList<Discipline> disciplines;
+    private ArrayList<Discipline> disciplines;
 
     public Competitor(Member member, ArrayList<Discipline> disciplines){
         super(member);
@@ -26,8 +26,12 @@ public class Competitor extends Member{
 
     }
 
+    public Competitor() {
+
+    }
+
     public String makeStringCompetitorShort(){
-        return name + ", " + ageRange ;
+        return name + ";" + ageRange ;
     }
 
     @Override
@@ -54,4 +58,7 @@ public class Competitor extends Member{
         sb.append("\n");
         return sb.toString();
     }
+
+
+
 }

@@ -1,13 +1,16 @@
 package com.company.member;
+import com.company.data.Database;
+import com.company.data.FileHandler;
+
 import java.time.Duration;
 import java.time.LocalDate;
 
 public class Result implements Comparable<Result> {
 
-    private final Competitor competitor;
-    private final LocalDate date;
-    private final Discipline discipline;
-    private final Duration swimTime;
+    private Competitor competitor;
+    private LocalDate date;
+    private Discipline discipline;
+    private Duration swimTime;
     private String compName;
 
 
@@ -24,6 +27,18 @@ public class Result implements Comparable<Result> {
         this.discipline = discipline;
         this.swimTime = swimTime;
         this.compName = compName;
+    }
+
+    public Result(String lineFromFile){
+
+        String[] test = lineFromFile.split(";");
+        Competitor competitor = new Competitor();
+        competitor.setName(test[0]);
+        competitor.setAgeRange(test[1]);
+        date = LocalDate.parse(test[2]);
+        discipline = Discipline.valueOf(test[3]);
+        swimTime = Duration.parse(test[4]);
+        compName = test[5];
     }
 
 

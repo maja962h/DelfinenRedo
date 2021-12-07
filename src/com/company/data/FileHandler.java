@@ -20,6 +20,11 @@ public class FileHandler implements DataInterface {
     public FileHandler() {
         readFile();
         readCompetitorFile();
+        readResultFile();
+    }
+
+    public ArrayList<Result> getResults() {
+        return results;
     }
 
     public void addNewMember(Member member){
@@ -98,11 +103,9 @@ public class FileHandler implements DataInterface {
             FileWriter fileWriter = new FileWriter(file, true);
 
             for(Result result : results){
-                if(result.getCompName() != null){
+
                     fileWriter.append(result.toCompetitionString());
-                } else {
-                    fileWriter.append(result.toTrainingString());
-                }
+
             }
             fileWriter.close();
 
@@ -150,6 +153,25 @@ public class FileHandler implements DataInterface {
         }
         return null;
     }
+
+    public ArrayList<Result> readResultFile(){
+        try {
+            Scanner myReader = new Scanner(new File("data/results.csv"));
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+
+                Result result = new Result(data);
+                results.add(result);
+            }
+            return results;
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public String makeStringMember(){
         StringBuilder stringBuilder = new StringBuilder();
