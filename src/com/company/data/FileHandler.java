@@ -27,16 +27,24 @@ public class FileHandler implements DataInterface {
         return results;
     }
 
+    public ArrayList<Member> getMemberList() {
+
+        return memberList;
+    }
+
+    //TODO: move to memberController
     public void addNewMember(Member member){
         memberList.add(member);
     }
 
+    //TODO: move to memberController
     public void removeMember(int member){
         memberList.remove(member);
         saveMember();
         System.out.println("done");
     }
 
+    //TODO: move to memberController
     public void addNewResult(Result tr){
         results.add(tr);
     }
@@ -74,6 +82,7 @@ public class FileHandler implements DataInterface {
 
     }
 
+    //TODO: move?
     public boolean authenticated(String name, String password, String role){
         boolean isAuthenticated = false;
 
@@ -172,7 +181,7 @@ public class FileHandler implements DataInterface {
         return null;
     }
 
-
+    //TODO: move to memberController
     public String makeStringMember(){
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -182,6 +191,7 @@ public class FileHandler implements DataInterface {
         return stringBuilder.toString();
     }
 
+    //TODO: move to memberController
     public String makeStringCompetitor(){
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -194,16 +204,12 @@ public class FileHandler implements DataInterface {
     }
 
 
-    public ArrayList<Member> getMemberList() {
-
-        return memberList;
-    }
-
     public ArrayList<Competitor> getCompetitors() {
 
         return competitors;
     }
 
+    //TODO: move to memberController
     public void addNewCompetitor(Competitor competitor){
 
         competitors.add(competitor);

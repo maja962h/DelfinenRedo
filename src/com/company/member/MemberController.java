@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class MemberController {
 
     private final UserInterface ui = new UserInterface();
-    private final FileHandler fh = new FileHandler();
+    private final FileHandler fileHandler = new FileHandler();
 
 
     public void createMember() {
@@ -25,8 +25,8 @@ public class MemberController {
         Member member = new Member(name, age, ageRange);
         isActiveOrPassive(member, input);
 
-        fh.addNewMember(member);
-        fh.saveMember();
+        fileHandler.addNewMember(member);
+        fileHandler.saveMember();
     }
 
     public void isActiveOrPassive(Member member, String input){
@@ -71,8 +71,8 @@ public class MemberController {
 
         Competitor competitor = new Competitor(member, selectedDiscipline);
 
-        fh.addNewCompetitor(competitor);
-        fh.saveCompetitor();
+        fileHandler.addNewCompetitor(competitor);
+        fileHandler.saveCompetitor();
 
     }
 
