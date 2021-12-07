@@ -13,8 +13,8 @@ import java.util.Collections;
 public class ListController {
 
     private final UserInterface ui = new UserInterface();
-    private final FileHandler fh = new FileHandler();
-    private final Database db = new Database();
+    private final FileHandler fileHandler = new FileHandler();
+    private final Database database = new Database();
 
 
     public void showMemberList() {
@@ -31,21 +31,21 @@ public class ListController {
     }
 
     private void fullMemberList() {
-        Collections.sort(fh.getMemberList());
+        Collections.sort(fileHandler.getMemberList());
 
-        ui.printMessage(fh.makeStringMember());
+        ui.printMessage(fileHandler.makeStringMember());
     }
 
     private void fullCompetitorList() {
-        Collections.sort(fh.getMemberList());
+        Collections.sort(fileHandler.getMemberList());
 
-        ui.printMessage(fh.makeStringCompetitor());
+        ui.printMessage(fileHandler.makeStringCompetitor());
     }
 
     private void juniorMemberList() {
-        Collections.sort(fh.getMemberList());
+        Collections.sort(fileHandler.getMemberList());
 
-        for (Member member : fh.getMemberList()) {
+        for (Member member : fileHandler.getMemberList()) {
             if (member.getEnumAgeRange().equals(AgeRange.JUNIOR)) {
                 ui.printMessage(member.toString());
             }
@@ -53,9 +53,9 @@ public class ListController {
     }
 
     public void seniorMemberList() {
-        Collections.sort(fh.getMemberList());
+        Collections.sort(fileHandler.getMemberList());
 
-        for (Member member : fh.getMemberList()) {
+        for (Member member : fileHandler.getMemberList()) {
             if (member.getEnumAgeRange().equals(AgeRange.SENIOR)) {
                 ui.printMessage(member.toString());
             }
@@ -69,7 +69,7 @@ public class ListController {
         ui.printMessage("Please enter the number of the person you want to delete: ");
         int deleteMember = ui.intInput() + arrayCorrection;
 
-        fh.removeMember(deleteMember);
+        fileHandler.removeMember(deleteMember);
     }
 
     public void addCompetitorResults() {
@@ -103,15 +103,15 @@ public class ListController {
         Result registeredResult = null;
 
         if(answer.equalsIgnoreCase("n")){
-            registeredResult = new Result(db.findCompetitor(compName),date, ds, time);
+            registeredResult = new Result(database.findCompetitor(compName),date, ds, time);
         } else if(answer.equalsIgnoreCase("y")){
             ui.printMessage("Type in the name of the competition: ");
             String competitionName = ui.stringInput();
-            registeredResult = new Result(db.findCompetitor(compName), date, ds, time, competitionName);
+            registeredResult = new Result(database.findCompetitor(compName), date, ds, time, competitionName);
         }
 
-        fh.addNewResult(registeredResult);
-        fh.saveResults();
+        fileHandler.addNewResult(registeredResult);
+        fileHandler.saveResults();
 
     }
 

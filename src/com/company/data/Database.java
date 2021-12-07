@@ -3,11 +3,11 @@ import com.company.member.Competitor;
 import com.company.member.Member;
 
 public class Database {
-    FileHandler fh = new FileHandler();
+    FileHandler fileHandler = new FileHandler();
 
     //TODO: delete if not used
-    public Member findMember(String name){
-        for (Member member: fh.getMemberList()) {
+    public Member findMember(String name, FileHandler fileHandler){
+        for (Member member: fileHandler.getMemberList()) {
             if(member.getName().equals(name)){
                 return member;
             }
@@ -16,7 +16,7 @@ public class Database {
     }
 
     public Competitor findCompetitor(String name){
-        for (Competitor competitor: fh.getCompetitors()) {
+        for (Competitor competitor: fileHandler.getCompetitors()) {
             if(competitor.getName().equalsIgnoreCase(name.trim())){
                 return competitor;
             }

@@ -160,7 +160,7 @@ public class FileHandler implements DataInterface {
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
 
-                Result result = new Result(data);
+                Result result = new Result(data, competitors.get(0));
                 results.add(result);
             }
             return results;

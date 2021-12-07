@@ -8,10 +8,10 @@ import com.company.ui.UserInterface;
 public class Controller {
 
     private final UserInterface ui = new UserInterface();
-    private final FileHandler fh = new FileHandler();
+    private final FileHandler fileHandler = new FileHandler();
     private boolean running = true;
-    private MemberController mc = new MemberController();
-    private ListController lc = new ListController();
+    private MemberController memberController = new MemberController();
+    private ListController listController = new ListController();
 
     public void start() {
 
@@ -22,15 +22,15 @@ public class Controller {
 
             switch (input) {
                 case 1 -> logIn();
-                case 2 -> mc.createMember();
-                case 3 -> lc.deleteMember();
-                case 4 -> lc.showMemberList();
+                case 2 -> memberController.createMember();
+                case 3 -> listController.deleteMember();
+                case 4 -> listController.showMemberList();
                 case 5 -> checkDelinquentStatus(); //Check what members have not paid their fees.
                 case 6 -> scoreBoard();
-                case 7 -> lc.addCompetitorResults(); //place, time and registration for competitions.
+                case 7 -> listController.addCompetitorResults(); //place, time and registration for competitions.
                 case 8 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 9 -> totalContingentAmount();
-                case 10 -> System.out.println(fh.getResults());
+                case 10 -> System.out.println(fileHandler.getResults());
                 case 0 -> exit();
                 default -> ui.printError();
             }
@@ -45,7 +45,7 @@ public class Controller {
         ui.printMessage("Type in password: ");
         String password = ui.stringInput();
 
-        boolean user = fh.authenticated(name, password, role);
+        boolean user = fileHandler.authenticated(name, password, role);
         if(user){
             ui.printMessage("Welcome " + role + " " + name);
         } else {
@@ -65,9 +65,9 @@ public class Controller {
             int input = ui.validateInput();
 
             switch (input) {
-                case 1 -> mc.createMember();
-                case 2 -> lc.deleteMember();
-                case 3 -> lc.showMemberList();
+                case 1 -> memberController.createMember();
+                case 2 -> listController.deleteMember();
+                case 3 -> listController.showMemberList();
                 case 0 -> exit();
                 default -> ui.printError();
             }
@@ -94,7 +94,7 @@ public class Controller {
 
             switch (input) {
                 case 1 -> scoreBoard();
-                case 2 -> lc.addCompetitorResults(); //place, time and registration for competitions.
+                case 2 -> listController.addCompetitorResults(); //place, time and registration for competitions.
                 case 3 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 0 -> exit();
                 default -> ui.printError();
@@ -104,7 +104,7 @@ public class Controller {
 
     public void totalContingentAmount(){
         Calculator calc = new Calculator();
-        calc.totalContingent();
+        calc.totalContingent(fileHandler);
         ui.printDouble(calc.getTotal());
     }
 

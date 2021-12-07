@@ -1,6 +1,4 @@
 package com.company.member;
-import com.company.data.Database;
-import com.company.data.FileHandler;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -11,7 +9,7 @@ public class Result implements Comparable<Result> {
     private LocalDate date;
     private Discipline discipline;
     private Duration swimTime;
-    private String compName;
+    private String competitionName;
 
 
     public Result(Competitor competitor, LocalDate date, Discipline discipline, Duration swimTime) {
@@ -26,19 +24,19 @@ public class Result implements Comparable<Result> {
         this.date = date;
         this.discipline = discipline;
         this.swimTime = swimTime;
-        this.compName = compName;
+        this.competitionName = compName;
     }
 
-    public Result(String lineFromFile){
+    public Result(String lineFromFile, Competitor competitor){
 
         String[] test = lineFromFile.split(";");
-        Competitor competitor = new Competitor();
+        //Competitor competitor = new Competitor();
         competitor.setName(test[0]);
         competitor.setAgeRange(test[1]);
         date = LocalDate.parse(test[2]);
         discipline = Discipline.valueOf(test[3]);
         swimTime = Duration.parse(test[4]);
-        compName = test[5];
+        competitionName = test[5];
     }
 
 
@@ -60,8 +58,8 @@ public class Result implements Comparable<Result> {
         return swimTime;
     }
 
-    public String getCompName() {
-        return compName;
+    public String getCompetitionName() {
+        return competitionName;
     }
 
     @Override
@@ -84,23 +82,23 @@ public class Result implements Comparable<Result> {
     }
 
     public String toCompetitionString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getCompetitor() + ";");
-        sb.append(date + ";");
-        sb.append(discipline + ";");
-        sb.append(swimTime + ";");
-        sb.append(compName + ";");
-        sb.append("\n");
-        return sb.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getCompetitor() + ";");
+        stringBuilder.append(date + ";");
+        stringBuilder.append(discipline + ";");
+        stringBuilder.append(swimTime + ";");
+        stringBuilder.append(competitionName + ";");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 
     public String toTrainingString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getCompetitor() + ";");
-        sb.append(date + ";");
-        sb.append(discipline + ";");
-        sb.append(swimTime + ";");
-        sb.append("\n");
-        return sb.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getCompetitor() + ";");
+        stringBuilder.append(date + ";");
+        stringBuilder.append(discipline + ";");
+        stringBuilder.append(swimTime + ";");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 }

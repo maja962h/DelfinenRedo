@@ -5,5 +5,4 @@ public enum Discipline {
     CRAWL,
     BACKCRAWL,
     BREASTSTROKE;
-
 }
