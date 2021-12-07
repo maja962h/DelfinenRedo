@@ -1,13 +1,10 @@
 package com.company.domain;
 import com.company.data.Database;
 import com.company.data.FileHandler;
+import com.company.data.ListController;
 import com.company.member.*;
 import com.company.ui.UserInterface;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class Controller {
 
@@ -16,6 +13,7 @@ public class Controller {
     private final Database db = new Database();
     private boolean running = true;
     private MemberController mc = new MemberController();
+    private ListController lc = new ListController();
 
     public void start() {
 
@@ -27,11 +25,11 @@ public class Controller {
             switch (input) {
                 case 1 -> logIn();
                 case 2 -> mc.createMember();
-                case 3 -> deleteMember();
-                case 4 -> showMemberList();
+                case 3 -> lc.deleteMember();
+                case 4 -> lc.showMemberList();
                 case 5 -> checkDelinquentStatus(); //Check what members have not paid their fees.
                 case 6 -> scoreBoard();
-                case 7 -> addCompetitorResults(); //place, time and registration for competitions.
+                case 7 -> lc.addCompetitorResults(); //place, time and registration for competitions.
                 case 8 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 9 -> totalContingentAmount();
                 case 0 -> exit();
@@ -69,8 +67,8 @@ public class Controller {
 
             switch (input) {
                 case 1 -> mc.createMember();
-                case 2 -> deleteMember();
-                case 3 -> showMemberList();
+                case 2 -> lc.deleteMember();
+                case 3 -> lc.showMemberList();
                 case 0 -> exit();
                 default -> ui.printError();
             }
@@ -97,7 +95,7 @@ public class Controller {
 
             switch (input) {
                 case 1 -> scoreBoard();
-                case 2 -> addCompetitorResults(); //place, time and registration for competitions.
+                case 2 -> lc.addCompetitorResults(); //place, time and registration for competitions.
                 case 3 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 0 -> exit();
                 default -> ui.printError();
@@ -106,25 +104,7 @@ public class Controller {
     }
 
 
-   /* public void createMember() {
-        ui.printMessage("Please enter the members full name: ");
-        String name = ui.stringInput();
-
-        ui.printMessage("Please enter the members age: ");
-        int age = ui.intInput();
-        String ageRange = ageRange(age);
-
-        ui.printMessage("Is the member active(a) or passive(p)?");
-        String input = ui.stringInput();
-
-        Member member = new Member(name, age, ageRange);
-        isActiveOrPassive(member, input);
-
-        fh.addNewMember(member);
-        fh.saveMember();
-    }*/
-
-    public void deleteMember(){
+   /* public void deleteMember(){
         int arrayCorrection = -1;
         ui.printMessage("Here is the list of all the members:");
         showMemberList();
@@ -132,57 +112,10 @@ public class Controller {
         int deleteMember = ui.intInput() + arrayCorrection;
 
         fh.removeMember(deleteMember);
-    }
-
-  /*  public void isActiveOrPassive(Member member, String input){
-        switch (input) {
-            case "a" -> {
-                member.setActiveStatus("active");
-                ui.printMessage("Is the member an exerciser(e) or competitor(c)?");
-                String eOrc = ui.stringInput();
-                isCompetitorOrExerciser(member, eOrc);
-            }
-            case "p" -> {
-                member.setActiveStatus("passive");
-                member.setCompetitiveStatus("none");
-            }
-            default -> ui.printMessage("try again");
-        }
-    }
-
-    public void isCompetitorOrExerciser(Member member, String input){
-        switch (input) {
-            case "c" -> {
-                member.setCompetitiveStatus("Competitor");
-                chooseDisciplines(member);
-            }
-            case "e" -> member.setCompetitiveStatus("Exerciser");
-            default -> ui.printMessage("try again");
-        }
-    }
-
-    public void chooseDisciplines(Member member) {
-        boolean keepAdding;
-        ArrayList<Discipline> selectedDiscipline = new ArrayList<>();
-
-        do{
-        ui.disciplineMenu();
-        int choice = ui.intInput();
-        selectedDiscipline = chooseDisciplines(choice, selectedDiscipline);
-            ui.printMessage("do you want to add another discipline? yes(y) or no(n)");
-            String addAnotherDiscipline = ui.stringInput();
-            keepAdding = continueAddingDisciplines(addAnotherDiscipline);
-        } while(keepAdding);
-
-        Competitor competitor = new Competitor(member, selectedDiscipline);
-
-        fh.addNewCompetitor(competitor);
-        fh.saveCompetitor();
-
     }*/
 
     // You are able to view different member lists
-    public void showMemberList() {
+    /*public void showMemberList() {
         ui.memberListMenu();
         int listInput = ui.intInput();
 
@@ -193,7 +126,7 @@ public class Controller {
             case 4 -> fullCompetitorList();
             default -> ui.printError();
         }
-    }
+    }*/
 
     public void totalContingentAmount(){
         Calculator calc = new Calculator();
@@ -209,7 +142,7 @@ public class Controller {
     public void scoreBoard() {
     }
 
-    public void addCompetitorResults() {
+    /*public void addCompetitorResults() {
 
             Discipline ds = null;
             ui.printMessage("Start by typing competitor name: ");
@@ -250,7 +183,7 @@ public class Controller {
             fh.addNewResult(registeredResult);
             fh.saveResults();
 
-    }
+    }*/
 
     public void swimmerTierList() {
     }
@@ -258,20 +191,8 @@ public class Controller {
     public void exit() {
         running = false;
     }
-/*
-    private String ageRange(int age) {
-        String ageRange = "";
-        if (age < 18) {
-            ageRange = "Junior";
-        } else if (age >= 18 && age < 60) {
-            ageRange = "Senior";
-        } else if(age >= 60){
-            ageRange = "elder";
-        }
-        return ageRange;
-    }*/
 
-    private void fullMemberList() {
+   /* private void fullMemberList() {
         Collections.sort(fh.getMemberList());
 
         ui.printMessage(fh.makeStringMember());
@@ -301,32 +222,6 @@ public class Controller {
                 ui.printMessage(member.toString());
             }
         }
-    }
-
-   /* public ArrayList<Discipline> chooseDisciplines(int input, ArrayList<Discipline> selectedDisciplines) {
-
-        if (input == 1) {
-            selectedDisciplines.add(Discipline.BUTTERFLY);
-        } else if (input == 2) {
-            selectedDisciplines.add(Discipline.CRAWL);
-        } else if (input == 3) {
-            selectedDisciplines.add(Discipline.BACKCRAWL);
-        } else if (input == 4) {
-            selectedDisciplines.add(Discipline.BREASTSTROKE);
-        }
-        return selectedDisciplines;
-    }
-
-    public boolean continueAddingDisciplines(String input) {
-        if(input.equals("y")){
-            return true;
-        }else if(input.equals("n")){
-            return false;
-        }else
-            return false;
     }*/
-
-
-
 
 }

@@ -1,6 +1,5 @@
 package com.company.member;
 
-import com.company.data.Database;
 import com.company.data.FileHandler;
 import com.company.ui.UserInterface;
 
@@ -111,7 +110,5 @@ public class MemberController {
         }
         return ageRange;
     }
-
-
 
 }
