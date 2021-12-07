@@ -118,4 +118,20 @@ public class UserInterface {
         return input;
     }
 
+    public int validateInput(){
+        int input = 0;
+        boolean valid = true;
+        while(valid) {
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
+                valid = false;
+            } else {
+                printMessage("Dette er ikke et nummer.");
+                scanner.next();
+            }
+        }
+        return input;
+    }
+
+
 }
