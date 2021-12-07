@@ -15,6 +15,7 @@ public class Controller {
     private final FileHandler fh = new FileHandler();
     private final Database db = new Database();
     private boolean running = true;
+    private MemberController mc = new MemberController();
 
     public void start() {
 
@@ -25,7 +26,7 @@ public class Controller {
 
             switch (input) {
                 case 1 -> logIn();
-                case 2 -> createMember();
+                case 2 -> mc.createMember();
                 case 3 -> deleteMember();
                 case 4 -> showMemberList();
                 case 5 -> checkDelinquentStatus(); //Check what members have not paid their fees.
@@ -67,7 +68,7 @@ public class Controller {
             int input = ui.intInput();
 
             switch (input) {
-                case 1 -> createMember();
+                case 1 -> mc.createMember();
                 case 2 -> deleteMember();
                 case 3 -> showMemberList();
                 case 0 -> exit();
@@ -105,7 +106,7 @@ public class Controller {
     }
 
 
-    public void createMember() {
+   /* public void createMember() {
         ui.printMessage("Please enter the members full name: ");
         String name = ui.stringInput();
 
@@ -121,7 +122,7 @@ public class Controller {
 
         fh.addNewMember(member);
         fh.saveMember();
-    }
+    }*/
 
     public void deleteMember(){
         int arrayCorrection = -1;
@@ -133,7 +134,7 @@ public class Controller {
         fh.removeMember(deleteMember);
     }
 
-    public void isActiveOrPassive(Member member, String input){
+  /*  public void isActiveOrPassive(Member member, String input){
         switch (input) {
             case "a" -> {
                 member.setActiveStatus("active");
@@ -178,7 +179,7 @@ public class Controller {
         fh.addNewCompetitor(competitor);
         fh.saveCompetitor();
 
-    }
+    }*/
 
     // You are able to view different member lists
     public void showMemberList() {
@@ -257,7 +258,7 @@ public class Controller {
     public void exit() {
         running = false;
     }
-
+/*
     private String ageRange(int age) {
         String ageRange = "";
         if (age < 18) {
@@ -268,7 +269,7 @@ public class Controller {
             ageRange = "elder";
         }
         return ageRange;
-    }
+    }*/
 
     private void fullMemberList() {
         Collections.sort(fh.getMemberList());
@@ -302,7 +303,7 @@ public class Controller {
         }
     }
 
-    public ArrayList<Discipline> chooseDisciplines(int input, ArrayList<Discipline> selectedDisciplines) {
+   /* public ArrayList<Discipline> chooseDisciplines(int input, ArrayList<Discipline> selectedDisciplines) {
 
         if (input == 1) {
             selectedDisciplines.add(Discipline.BUTTERFLY);
@@ -323,20 +324,8 @@ public class Controller {
             return false;
         }else
             return false;
-    }
+    }*/
 
-    //TODO: delete if not used
-    public void getAges(){
-        for (Member member : fh.getMemberList()) {
-            ui.printInt(member.getAge());
-
-        }
-    }
-
-    //TODO: delete if not used
-    public ArrayList<Member> getMembers(){
-        return fh.getMemberList();
-    }
 
 
 

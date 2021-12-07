@@ -50,12 +50,6 @@ public class Member implements Comparable {
         return age;
     }
 
-    //TODO: delete if not used
-    public String getCompetitiveStatus() {
-        return competitiveStatus;
-    }
-
-
     public void setCompetitiveStatus(String competitiveStatus) {
         this.competitiveStatus = competitiveStatus;
     }
