@@ -1,5 +1,4 @@
 package com.company.domain;
-import com.company.data.Database;
 import com.company.data.FileHandler;
 import com.company.data.ListController;
 import com.company.member.*;
@@ -19,7 +18,7 @@ public class Controller {
         ui.printWelcomeMessage();
         while (running) {
             ui.startMenu();
-            int input = ui.intInput();
+            int input = ui.validateInput();
 
             switch (input) {
                 case 1 -> logIn();
@@ -63,7 +62,7 @@ public class Controller {
     public void adminStart(){
         while (running) {
             ui.adminStartMenu();
-            int input = ui.intInput();
+            int input = ui.validateInput();
 
             switch (input) {
                 case 1 -> mc.createMember();
@@ -78,7 +77,7 @@ public class Controller {
     public void cashierStart(){
         while (running) {
             ui.cashierStartMenu();
-            int input = ui.intInput();
+            int input = ui.validateInput();
 
             switch (input) {
                 case 1 -> checkDelinquentStatus(); //Check what members have not paid their fees.
@@ -91,7 +90,7 @@ public class Controller {
     public void trainerStart(){
         while (running) {
             ui.trainerStartMenu();
-            int input = ui.intInput();
+            int input = ui.validateInput();
 
             switch (input) {
                 case 1 -> scoreBoard();
