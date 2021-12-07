@@ -26,11 +26,6 @@ public class Competitor extends Member{
 
     }
 
-    //TODO: delete if not used
-    public ArrayList<Discipline> getDisciplines() {
-        return disciplines;
-    }
-
     public String makeStringCompetitorShort(){
         return name + ", " + ageRange ;
     }

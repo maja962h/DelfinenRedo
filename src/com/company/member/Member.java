@@ -50,18 +50,11 @@ public class Member implements Comparable {
         return age;
     }
 
-   /* public String getActiveStatus() {
-        return activeStatus;
-    }*/
-
     //TODO: delete if not used
     public String getCompetitiveStatus() {
         return competitiveStatus;
     }
 
-    /*public void setActiveStatus(String activeStatus) {
-        this.activeStatus = activeStatus;
-    }*/
 
     public void setCompetitiveStatus(String competitiveStatus) {
         this.competitiveStatus = competitiveStatus;

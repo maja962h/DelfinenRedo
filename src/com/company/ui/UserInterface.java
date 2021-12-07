@@ -107,10 +107,6 @@ public class UserInterface {
         return input;
     }
 
-    //TODO: delete if not used
-    public void printArray(List list){
-        System.out.println(list);
-    }
 
     public LocalDate dateInput(){
 
