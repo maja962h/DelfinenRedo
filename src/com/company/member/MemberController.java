@@ -1,6 +1,5 @@
 package com.company.member;
 
-import com.company.data.DataHandler;
 import com.company.data.FileHandler;
 import com.company.ui.UserInterface;
 
@@ -176,6 +175,15 @@ public class MemberController {
         int deleteMember = userInterface.intInput() + arrayCorrection;
 
         removeMember(deleteMember);
+    }
+
+    public Member findMember(String name){
+        for (Member member: getMemberList()) {
+            if(member.getName().equals(name)){
+                return member;
+            }
+        }
+        return null;
     }
 
     //TODO: move to memberController
