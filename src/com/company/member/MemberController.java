@@ -37,7 +37,7 @@ public class MemberController {
     }
 
     public Member findMember(String name){
-        for (Member member: getMemberList()) {
+        for (Member member: memberList) {
             if(member.getName().equals(name)){
                 return member;
             }
@@ -56,7 +56,7 @@ public class MemberController {
     }
 
     public void removeMember(int member){
-        getMemberList().remove(member);
+        memberList.remove(member);
         fileHandler.saveMember(memberList);
     }
 
@@ -196,6 +196,12 @@ public class MemberController {
             return false;
     }
 
+    //****************//
+    // Show Member    //
+    // & Competitor   //
+    // methods        //
+    //****************//
+
     public void showMemberList() {
         userInterface.memberListMenu();
         int listInput = userInterface.intInput();
@@ -210,15 +216,15 @@ public class MemberController {
     }
 
     private void fullMemberList() {
-        Collections.sort(getMemberList());
+        Collections.sort(memberList);
 
         userInterface.printMessage(makeStringMember());
     }
 
     private void juniorMemberList() {
-        Collections.sort(getMemberList());
+        Collections.sort(memberList);
 
-        for (Member member : getMemberList()) {
+        for (Member member : memberList) {
             if (member.getAgeRange().equals("JUNIOR")) {
                 userInterface.printMessage(member.toString());
             }
@@ -226,9 +232,9 @@ public class MemberController {
     }
 
     public void seniorMemberList() {
-        Collections.sort(getMemberList());
+        Collections.sort(memberList);
 
-        for (Member member : getMemberList()) {
+        for (Member member : memberList) {
             if (member.getAgeRange().equals("SENIOR")) {
                 userInterface.printMessage(member.toString());
             }
@@ -236,7 +242,7 @@ public class MemberController {
     }
 
     private void fullCompetitorList() {
-        Collections.sort(getMemberList());
+        Collections.sort(competitors);
 
         userInterface.printMessage(makeStringCompetitor());
     }
@@ -244,7 +250,7 @@ public class MemberController {
     public String makeStringMember(){
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (Member member : getMemberList()) {
+        for (Member member : memberList) {
             stringBuilder.append(member.toMemberString());
         }
         return stringBuilder.toString();
