@@ -2,7 +2,7 @@ package com.company.member;
 
 import java.util.ArrayList;
 
-public class Competitor extends Member{
+public class Competitor extends Member {
 
     private ArrayList<Discipline> disciplines;
 
@@ -10,7 +10,7 @@ public class Competitor extends Member{
 
     }
 
-    public Competitor(Member member, ArrayList<Discipline> disciplines){
+    public Competitor(Member member, ArrayList<Discipline> disciplines) {
         super(member);
         this.disciplines = disciplines;
     }
@@ -23,13 +23,13 @@ public class Competitor extends Member{
         setCompetitiveStatus(test[3]);
 
         disciplines = new ArrayList<>();
-        String[] list = test[4].substring(1,test[4].length()-1).split(", ");
-        for( String discipline : list) {
+        String[] list = test[4].substring(1, test[4].length() - 1).split(", ");
+        for (String discipline : list) {
             disciplines.add(Discipline.valueOf(discipline.trim()));
         }
     }
 
-    public String makeStringCompetitorShort(){
+    public String makeStringCompetitorShort() {
         return name;
     }
 
@@ -55,7 +55,7 @@ public class Competitor extends Member{
 
     @Override
     public String toString() {
-        return name + ": " + age + " år, " + ageRange + ". Discipline(s): " + disciplines +  "\n";
+        return name + ": " + age + " år, " + ageRange + ". Discipline(s): " + disciplines + "\n";
     }
 
 }

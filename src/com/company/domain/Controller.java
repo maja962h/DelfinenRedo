@@ -1,4 +1,5 @@
 package com.company.domain;
+
 import com.company.data.FileHandler;
 import com.company.member.*;
 import com.company.ui.UserInterface;
@@ -43,7 +44,7 @@ public class Controller {
         String password = userInterface.stringInput();
 
         boolean user = fileHandler.authenticated(name, password, role);
-        if(user){
+        if (user) {
             userInterface.printMessage("Welcome " + role + " " + name);
         } else {
             userInterface.printMessage("User not found");
@@ -56,7 +57,7 @@ public class Controller {
         }
     }
 
-    public void adminStart(){
+    public void adminStart() {
         while (running) {
             userInterface.adminStartMenu();
             int input = userInterface.validateInput();
@@ -71,7 +72,7 @@ public class Controller {
         }
     }
 
-    public void cashierStart(){
+    public void cashierStart() {
         while (running) {
             userInterface.cashierStartMenu();
             int input = userInterface.validateInput();
@@ -84,7 +85,7 @@ public class Controller {
         }
     }
 
-    public void trainerStart(){
+    public void trainerStart() {
         while (running) {
             userInterface.trainerStartMenu();
             int input = userInterface.validateInput();
@@ -99,7 +100,7 @@ public class Controller {
         }
     }
 
-    public void totalContingentAmount(){
+    public void totalContingentAmount() {
         Calculator calculator = new Calculator();
         calculator.totalContingent(memberController.getMemberList());
         userInterface.printDouble(calculator.getTotal());

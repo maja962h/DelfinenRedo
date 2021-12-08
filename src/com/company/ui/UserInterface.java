@@ -1,4 +1,5 @@
 package com.company.ui;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ public class UserInterface {
 
     Scanner scanner = new Scanner(System.in);
 
-    public void printWelcomeMessage(){
+    public void printWelcomeMessage() {
         //Found:
         //https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
         printMessage("""
@@ -20,7 +21,7 @@ public class UserInterface {
                 """);
     }
 
-    public void startMenu(){
+    public void startMenu() {
         printMessage("""
                 Type (1) to Login.
                 Type (2) to create a member.
@@ -36,7 +37,7 @@ public class UserInterface {
                 """);
     }
 
-    public void adminStartMenu(){
+    public void adminStartMenu() {
         printMessage("""
                 Type (1) to create a member.
                 Type (2) to delete a member.
@@ -45,14 +46,14 @@ public class UserInterface {
                 """);
     }
 
-    public void cashierStartMenu(){
+    public void cashierStartMenu() {
         printMessage("""
                 Type (1) to check which members haven't paid their fees.
                 Type (0) to exit the program.
                 """);
     }
 
-    public void trainerStartMenu(){
+    public void trainerStartMenu() {
         printMessage("""
                 Type (1) to see the swimmer's best results and dates.
                 Type (2) to register time and results for competitive swimmers.
@@ -61,7 +62,7 @@ public class UserInterface {
                 """);
     }
 
-    public void memberListMenu(){
+    public void memberListMenu() {
         printMessage("""
                 Which list would you like to view?
                 (1) Full member list.
@@ -71,7 +72,7 @@ public class UserInterface {
                 """);
     }
 
-    public void disciplineMenu(){
+    public void disciplineMenu() {
         printMessage("""
                 Choose which disciplines you want:
                 (1) Butterfly.
@@ -81,40 +82,40 @@ public class UserInterface {
                 """);
     }
 
-    public void printMessage(String message){
+    public void printMessage(String message) {
         System.out.println(message);
     }
 
-    public void printDouble(double number){
+    public void printDouble(double number) {
         System.out.println(number);
     }
 
-    public void printError(){
+    public void printError() {
         System.out.println("The input was invalid, please try again.");
     }
 
-    public String stringInput(){
+    public String stringInput() {
         return scanner.nextLine();
     }
 
-    public int intInput(){
+    public int intInput() {
         int input = scanner.nextInt();
         scanner.nextLine(); //Scanner bug fix
         return input;
     }
 
-    public LocalDate dateInput(){
+    public LocalDate dateInput() {
         return LocalDate.parse(scanner.nextLine());
     }
 
-    public Duration timeInput(){
+    public Duration timeInput() {
         return Duration.ofSeconds(scanner.nextInt());
     }
 
-    public int validateInput(){
+    public int validateInput() {
         int input = 0;
         boolean valid = true;
-        while(valid) {
+        while (valid) {
             if (scanner.hasNextInt()) {
                 input = scanner.nextInt();
                 valid = false;

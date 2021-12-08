@@ -1,4 +1,5 @@
 package com.company.data;
+
 import com.company.member.AgeRange;
 import com.company.member.Competitor;
 import com.company.member.Member;
@@ -17,13 +18,13 @@ public class FileHandler implements DataInterface {
 
     }
 
-    public void saveMember(ArrayList<Member> memberList){
+    public void saveMember(ArrayList<Member> memberList) {
         File file = new File("data/members.csv");
 
-        try{
+        try {
             FileWriter fileWriter = new FileWriter(file, false);
 
-            for(Member member : memberList){
+            for (Member member : memberList) {
                 fileWriter.append(member.toMemberFileString());
             }
             fileWriter.close();
@@ -33,13 +34,13 @@ public class FileHandler implements DataInterface {
         }
     }
 
-    public void saveCompetitor(ArrayList<Competitor> competitors){
+    public void saveCompetitor(ArrayList<Competitor> competitors) {
         File file = new File("data/competitors.csv");
 
-        try{
+        try {
             FileWriter fileWriter = new FileWriter(file, false);
 
-            for(Competitor competitor : competitors){
+            for (Competitor competitor : competitors) {
                 fileWriter.append(competitor.toCompFileString());
             }
             fileWriter.close();
@@ -49,13 +50,13 @@ public class FileHandler implements DataInterface {
         }
     }
 
-    public void saveResults(ArrayList<Result> results){
+    public void saveResults(ArrayList<Result> results) {
         File file = new File("data/results.csv");
 
-        try{
+        try {
             FileWriter fileWriter = new FileWriter(file, false);
 
-            for(Result result : results){
+            for (Result result : results) {
 
                 fileWriter.append(result.toCompetitionString());
 
@@ -67,14 +68,14 @@ public class FileHandler implements DataInterface {
         }
     }
 
-    public ArrayList<Member> readFile(){
+    public ArrayList<Member> readFile() {
         try {
             Scanner myReader = new Scanner(new File("data/members.csv"));
             ArrayList<Member> allMembers = new ArrayList<>();
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] test = data.split(";");
-                Member member = new Member(test[0],0, test[1], false, test[3], AgeRange.JUNIOR);
+                Member member = new Member(test[0], 0, test[1], false, test[3], AgeRange.JUNIOR);
                 member.setEnum(test[1]);
                 member.setActiveStatus(test[2]);
                 allMembers.add(member);
@@ -88,7 +89,7 @@ public class FileHandler implements DataInterface {
         return null;
     }
 
-    public ArrayList<Competitor> readCompetitorFile(){
+    public ArrayList<Competitor> readCompetitorFile() {
         try {
             Scanner myReader = new Scanner(new File("data/competitors.csv"));
             ArrayList<Competitor> allCompetitors = new ArrayList<>();
@@ -107,7 +108,7 @@ public class FileHandler implements DataInterface {
         return null;
     }
 
-    public ArrayList<Result> readResultFile(ArrayList<Competitor> competitors){
+    public ArrayList<Result> readResultFile(ArrayList<Competitor> competitors) {
         try {
             Scanner myReader = new Scanner(new File("data/results.csv"));
             ArrayList<Result> allResults = new ArrayList<>();
@@ -126,24 +127,24 @@ public class FileHandler implements DataInterface {
         return null;
     }
 
-    public boolean authenticated(String name, String password, String role){
+    public boolean authenticated(String name, String password, String role) {
 
         boolean isAuthenticated = false;
 
         File file = new File("data/users.csv");
 
-        try{
+        try {
             Scanner myReader = new Scanner(file);
 
-            while(myReader.hasNextLine()){
+            while (myReader.hasNextLine()) {
                 String line = myReader.nextLine();
                 String[] values = line.split(";");
 
-                if(values[0].equals(name) && values[1].equals(password) && values[2].equals(role)){
+                if (values[0].equals(name) && values[1].equals(password) && values[2].equals(role)) {
                     isAuthenticated = true;
                 }
             }
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return isAuthenticated;

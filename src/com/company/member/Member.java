@@ -10,11 +10,11 @@ public class Member implements Comparable {
     private AgeRange eAgeRange;
 
 
-    public Member(){
+    public Member() {
 
     }
 
-    public Member(Member clone){
+    public Member(Member clone) {
         this.name = clone.name;
         this.age = clone.age;
         this.activeStatus = clone.activeStatus;
@@ -23,7 +23,7 @@ public class Member implements Comparable {
         this.eAgeRange = clone.eAgeRange;
     }
 
-    public Member(String name, int age, String ageRange, boolean activeStatus, String competitiveStatus, AgeRange eAgeRange){
+    public Member(String name, int age, String ageRange, boolean activeStatus, String competitiveStatus, AgeRange eAgeRange) {
         this.name = name;
         this.age = age;
         this.activeStatus = activeStatus;
@@ -32,7 +32,7 @@ public class Member implements Comparable {
         this.eAgeRange = eAgeRange;
     }
 
-    public Member(String name, int age, String ageRange){
+    public Member(String name, int age, String ageRange) {
         this.name = name;
         this.age = age;
         this.ageRange = ageRange;
@@ -50,7 +50,7 @@ public class Member implements Comparable {
         this.name = name;
     }
 
-    public AgeRange getEnumAgeRange(){
+    public AgeRange getEnumAgeRange() {
         return eAgeRange;
     }
 
@@ -63,21 +63,21 @@ public class Member implements Comparable {
     }
 
     public String getActiveStatusText() {
-        if(!activeStatus()){
+        if (!activeStatus()) {
             return "passive";
         } else {
             return "active";
         }
     }
 
-    public boolean activeStatus(){
-            return this.activeStatus;
+    public boolean activeStatus() {
+        return this.activeStatus;
     }
 
     public void setActiveStatus(String activeStatus) {
-        if(activeStatus.equals('p') || activeStatus.equals("passive")){
+        if (activeStatus.equals('p') || activeStatus.equals("passive")) {
             this.activeStatus = false;
-        } else if(activeStatus.equals("a") || activeStatus.equals("active")){
+        } else if (activeStatus.equals("a") || activeStatus.equals("active")) {
             this.activeStatus = true;
         }
     }

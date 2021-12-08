@@ -48,7 +48,7 @@ public class Result implements Comparable<Result> {
         return stringBuilder.toString();
     }
 
-    public String getCompetitor(){
+    public String getCompetitor() {
         return competitor.makeStringCompetitorShort();
     }
 

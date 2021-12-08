@@ -13,22 +13,22 @@ public class Calculator {
     private final int passiveCon = 500;
     private final double overSixty = seniorCon * 0.75;
 
-    public double contingentCalculator(AgeRange eAgeRange, boolean isActive){
+    public double contingentCalculator(AgeRange eAgeRange, boolean isActive) {
 
         double contingentSum = 0;
-        if(!isActive){
+        if (!isActive) {
             contingentSum = passiveCon;
-        } else if(eAgeRange.equals(AgeRange.JUNIOR)){
+        } else if (eAgeRange.equals(AgeRange.JUNIOR)) {
             contingentSum = juniorCon;
-        } else if(eAgeRange.equals(AgeRange.SENIOR)){
+        } else if (eAgeRange.equals(AgeRange.SENIOR)) {
             contingentSum = seniorCon;
-        }else if (eAgeRange.equals(AgeRange.ELDER)){
+        } else if (eAgeRange.equals(AgeRange.ELDER)) {
             contingentSum = overSixty;
         }
         return contingentSum;
     }
 
-    public void addTotal(double fee){
+    public void addTotal(double fee) {
         this.total = total + fee;
     }
 
@@ -36,9 +36,9 @@ public class Calculator {
         return total;
     }
 
-    public void totalContingent(ArrayList<Member> list){
+    public void totalContingent(ArrayList<Member> list) {
         ArrayList<Member> allMembers = list;
-        for (Member member : allMembers){
+        for (Member member : allMembers) {
             addTotal(contingentCalculator(member.getEnumAgeRange(), member.activeStatus()));
         }
     }

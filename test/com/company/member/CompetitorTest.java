@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CompetitorTest {
 
-  @Test
+    @Test
     void findCompetitor() {
         MemberController memberController = new MemberController();
         Competitor competitor = memberController.findCompetitor("Maja");
@@ -17,9 +17,9 @@ class CompetitorTest {
         assertNotNull(competitor);
     }
 
-   @Test
-    void readFile(){
-       MemberController memberController = new MemberController();
+    @Test
+    void readFile() {
+        MemberController memberController = new MemberController();
         assertNotNull(memberController.getResults());
     }
 
@@ -28,7 +28,6 @@ class CompetitorTest {
         MemberController memberController = new MemberController();
         ArrayList<Competitor> liste = memberController.getCompetitors();
 
-        assertEquals(9,liste.size());
+        assertEquals(9, liste.size());
     }
-
 }

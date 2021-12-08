@@ -16,7 +16,7 @@ public class MemberController {
     private ArrayList<Competitor> competitors;
     private ArrayList<Result> results;
 
-    public MemberController(){
+    public MemberController() {
         receiveAllMembers();
         receiveAllCompetitors();
         receiveAllResults();
@@ -28,7 +28,7 @@ public class MemberController {
     //                //
     //****************//
 
-    public void receiveAllMembers(){
+    public void receiveAllMembers() {
         memberList = fileHandler.readFile();
     }
 
@@ -36,16 +36,16 @@ public class MemberController {
         return memberList;
     }
 
-    public Member findMember(String name){
-        for (Member member: memberList) {
-            if(member.getName().equals(name)){
+    public Member findMember(String name) {
+        for (Member member : memberList) {
+            if (member.getName().equals(name)) {
                 return member;
             }
         }
         return null;
     }
 
-    public void deleteMember(){
+    public void deleteMember() {
         int arrayCorrection = -1;
         userInterface.printMessage("Here is the list of all the members:");
         showMemberList();
@@ -55,12 +55,12 @@ public class MemberController {
         removeMember(deleteMember);
     }
 
-    public void removeMember(int member){
+    public void removeMember(int member) {
         memberList.remove(member);
         fileHandler.saveMember(memberList);
     }
 
-    public void addNewMember(Member member){
+    public void addNewMember(Member member) {
         memberList.add(member);
     }
 
@@ -70,7 +70,7 @@ public class MemberController {
     //                  //
     //******************//
 
-    public void receiveAllCompetitors(){
+    public void receiveAllCompetitors() {
         competitors = fileHandler.readCompetitorFile();
     }
 
@@ -78,16 +78,16 @@ public class MemberController {
         return competitors;
     }
 
-    public Competitor findCompetitor(String name){
-        for (Competitor competitor: competitors) {
-            if(competitor.getName().equalsIgnoreCase(name.trim())){
+    public Competitor findCompetitor(String name) {
+        for (Competitor competitor : competitors) {
+            if (competitor.getName().equalsIgnoreCase(name.trim())) {
                 return competitor;
             }
         }
         return null;
     }
 
-    public void addNewCompetitor(Competitor competitor){
+    public void addNewCompetitor(Competitor competitor) {
         competitors.add(competitor);
     }
 
@@ -121,13 +121,13 @@ public class MemberController {
             ageRange = "Junior";
         } else if (age < 60) {
             ageRange = "Senior";
-        } else if(age >= 60){
+        } else if (age >= 60) {
             ageRange = "elder";
         }
         return ageRange;
     }
 
-    public void isActiveOrPassive(Member member, String input){
+    public void isActiveOrPassive(Member member, String input) {
         switch (input) {
             case "a" -> {
                 member.setActiveStatus("active");
@@ -143,7 +143,7 @@ public class MemberController {
         }
     }
 
-    public void isCompetitorOrExerciser(Member member, String input){
+    public void isCompetitorOrExerciser(Member member, String input) {
         switch (input) {
             case "c" -> {
                 member.setCompetitiveStatus("Competitor");
@@ -158,14 +158,14 @@ public class MemberController {
         boolean keepAdding;
         ArrayList<Discipline> selectedDiscipline = new ArrayList<>();
 
-        do{
+        do {
             userInterface.disciplineMenu();
             int choice = userInterface.intInput();
             selectedDiscipline = chooseDisciplines(choice, selectedDiscipline);
             userInterface.printMessage("do you want to add another discipline? yes(y) or no(n)");
             String addAnotherDiscipline = userInterface.stringInput();
             keepAdding = continueAddingDisciplines(addAnotherDiscipline);
-        } while(keepAdding);
+        } while (keepAdding);
 
         Competitor competitor = new Competitor(member, selectedDiscipline);
 
@@ -188,11 +188,11 @@ public class MemberController {
     }
 
     public boolean continueAddingDisciplines(String input) {
-        if(input.equals("y")){
+        if (input.equals("y")) {
             return true;
-        }else if(input.equals("n")){
+        } else if (input.equals("n")) {
             return false;
-        }else
+        } else
             return false;
     }
 
@@ -247,7 +247,7 @@ public class MemberController {
         userInterface.printMessage(makeStringCompetitor());
     }
 
-    public String makeStringMember(){
+    public String makeStringMember() {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (Member member : memberList) {
@@ -256,7 +256,7 @@ public class MemberController {
         return stringBuilder.toString();
     }
 
-    public String makeStringCompetitor(){
+    public String makeStringCompetitor() {
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -273,7 +273,7 @@ public class MemberController {
     //                //
     //****************//
 
-    public void receiveAllResults(){
+    public void receiveAllResults() {
         results = fileHandler.readResultFile(competitors);
     }
 
@@ -281,7 +281,7 @@ public class MemberController {
         return results;
     }
 
-    public void addNewResult(Result tr){
+    public void addNewResult(Result tr) {
         results.add(tr);
     }
 
@@ -315,9 +315,9 @@ public class MemberController {
         String answer = userInterface.stringInput();
         Result registeredResult = null;
 
-        if(answer.equalsIgnoreCase("n")){
-            registeredResult = new Result(findCompetitor(compName),date, ds, time);
-        } else if(answer.equalsIgnoreCase("y")){
+        if (answer.equalsIgnoreCase("n")) {
+            registeredResult = new Result(findCompetitor(compName), date, ds, time);
+        } else if (answer.equalsIgnoreCase("y")) {
             userInterface.printMessage("Type in the name of the competition: ");
             String competitionName = userInterface.stringInput();
             registeredResult = new Result(findCompetitor(compName), date, ds, time, competitionName);
