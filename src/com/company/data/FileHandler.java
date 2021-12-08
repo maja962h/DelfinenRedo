@@ -109,7 +109,7 @@ public class FileHandler implements DataInterface {
         File file = new File("data/results.csv");
 
         try{
-            FileWriter fileWriter = new FileWriter(file, true);
+            FileWriter fileWriter = new FileWriter(file, false);
 
             for(Result result : results){
 

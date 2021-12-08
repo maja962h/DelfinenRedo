@@ -7,7 +7,7 @@ import com.company.ui.UserInterface;
 
 public class Controller {
 
-    private final UserInterface ui = new UserInterface();
+    private final UserInterface userInterface = new UserInterface();
     private final FileHandler fileHandler = new FileHandler();
     private boolean running = true;
     private MemberController memberController = new MemberController();
@@ -15,10 +15,10 @@ public class Controller {
 
     public void start() {
 
-        ui.printWelcomeMessage();
+        userInterface.printWelcomeMessage();
         while (running) {
-            ui.startMenu();
-            int input = ui.validateInput();
+            userInterface.startMenu();
+            int input = userInterface.validateInput();
 
             switch (input) {
                 case 1 -> logIn();
@@ -32,24 +32,24 @@ public class Controller {
                 case 9 -> totalContingentAmount();
                 case 10 -> System.out.println(fileHandler.getResults());
                 case 0 -> exit();
-                default -> ui.printError();
+                default -> userInterface.printError();
             }
         }
     }
 
     public void logIn() {
-        ui.printMessage("Are you logging in as the admin, cashier or trainer?");
-        String role = ui.stringInput();
-        ui.printMessage("Type in user name: ");
-        String name = ui.stringInput();
-        ui.printMessage("Type in password: ");
-        String password = ui.stringInput();
+        userInterface.printMessage("Are you logging in as the admin, cashier or trainer?");
+        String role = userInterface.stringInput();
+        userInterface.printMessage("Type in user name: ");
+        String name = userInterface.stringInput();
+        userInterface.printMessage("Type in password: ");
+        String password = userInterface.stringInput();
 
         boolean user = fileHandler.authenticated(name, password, role);
         if(user){
-            ui.printMessage("Welcome " + role + " " + name);
+            userInterface.printMessage("Welcome " + role + " " + name);
         } else {
-            ui.printMessage("User not found");
+            userInterface.printMessage("User not found");
         }
 
         switch (role) {
@@ -61,51 +61,51 @@ public class Controller {
 
     public void adminStart(){
         while (running) {
-            ui.adminStartMenu();
-            int input = ui.validateInput();
+            userInterface.adminStartMenu();
+            int input = userInterface.validateInput();
 
             switch (input) {
                 case 1 -> memberController.createMember();
                 case 2 -> listController.deleteMember();
                 case 3 -> listController.showMemberList();
                 case 0 -> exit();
-                default -> ui.printError();
+                default -> userInterface.printError();
             }
         }
     }
 
     public void cashierStart(){
         while (running) {
-            ui.cashierStartMenu();
-            int input = ui.validateInput();
+            userInterface.cashierStartMenu();
+            int input = userInterface.validateInput();
 
             switch (input) {
                 case 1 -> checkDelinquentStatus(); //Check what members have not paid their fees.
                 case 0 -> exit();
-                default -> ui.printError();
+                default -> userInterface.printError();
             }
         }
     }
 
     public void trainerStart(){
         while (running) {
-            ui.trainerStartMenu();
-            int input = ui.validateInput();
+            userInterface.trainerStartMenu();
+            int input = userInterface.validateInput();
 
             switch (input) {
                 case 1 -> scoreBoard();
                 case 2 -> listController.addCompetitorResults(); //place, time and registration for competitions.
                 case 3 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 0 -> exit();
-                default -> ui.printError();
+                default -> userInterface.printError();
             }
         }
     }
 
     public void totalContingentAmount(){
-        Calculator calc = new Calculator();
-        calc.totalContingent(fileHandler);
-        ui.printDouble(calc.getTotal());
+        Calculator calculator = new Calculator();
+        calculator.totalContingent(fileHandler);
+        userInterface.printDouble(calculator.getTotal());
     }
 
 
@@ -124,5 +124,6 @@ public class Controller {
     public void exit() {
         running = false;
     }
+
 
 }

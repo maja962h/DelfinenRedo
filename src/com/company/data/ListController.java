@@ -12,34 +12,34 @@ import java.util.Collections;
 
 public class ListController {
 
-    private final UserInterface ui = new UserInterface();
+    private final UserInterface userInterface = new UserInterface();
     private final FileHandler fileHandler = new FileHandler();
-    private final Database database = new Database();
+    private final DataHandler dataHandler = new DataHandler();
 
 
     public void showMemberList() {
-        ui.memberListMenu();
-        int listInput = ui.intInput();
+        userInterface.memberListMenu();
+        int listInput = userInterface.intInput();
 
         switch (listInput) {
             case 1 -> fullMemberList();
             case 2 -> juniorMemberList();
             case 3 -> seniorMemberList();
             case 4 -> fullCompetitorList();
-            default -> ui.printError();
+            default -> userInterface.printError();
         }
     }
 
     private void fullMemberList() {
         Collections.sort(fileHandler.getMemberList());
 
-        ui.printMessage(fileHandler.makeStringMember());
+        userInterface.printMessage(fileHandler.makeStringMember());
     }
 
     private void fullCompetitorList() {
         Collections.sort(fileHandler.getMemberList());
 
-        ui.printMessage(fileHandler.makeStringCompetitor());
+        userInterface.printMessage(fileHandler.makeStringCompetitor());
     }
 
     private void juniorMemberList() {
@@ -47,7 +47,7 @@ public class ListController {
 
         for (Member member : fileHandler.getMemberList()) {
             if (member.getEnumAgeRange().equals(AgeRange.JUNIOR)) {
-                ui.printMessage(member.toString());
+                userInterface.printMessage(member.toString());
             }
         }
     }
@@ -57,17 +57,17 @@ public class ListController {
 
         for (Member member : fileHandler.getMemberList()) {
             if (member.getEnumAgeRange().equals(AgeRange.SENIOR)) {
-                ui.printMessage(member.toString());
+                userInterface.printMessage(member.toString());
             }
         }
     }
 
     public void deleteMember(){
         int arrayCorrection = -1;
-        ui.printMessage("Here is the list of all the members:");
+        userInterface.printMessage("Here is the list of all the members:");
         showMemberList();
-        ui.printMessage("Please enter the number of the person you want to delete: ");
-        int deleteMember = ui.intInput() + arrayCorrection;
+        userInterface.printMessage("Please enter the number of the person you want to delete: ");
+        int deleteMember = userInterface.intInput() + arrayCorrection;
 
         fileHandler.removeMember(deleteMember);
     }
@@ -75,19 +75,19 @@ public class ListController {
     public void addCompetitorResults() {
 
         Discipline ds = null;
-        ui.printMessage("Start by typing competitor name: ");
-        String compName = ui.stringInput();
+        userInterface.printMessage("Start by typing competitor name: ");
+        String compName = userInterface.stringInput();
 
-        ui.printMessage("Type training date (YYYY-MM-DD): ");
-        LocalDate date = ui.dateInput();
+        userInterface.printMessage("Type training date (YYYY-MM-DD): ");
+        LocalDate date = userInterface.dateInput();
 
-        ui.printMessage("Next, type the swimmer's time (in seconds): ");
-        Duration time = ui.timeInput();
+        userInterface.printMessage("Next, type the swimmer's time (in seconds): ");
+        Duration time = userInterface.timeInput();
 
-        ui.printMessage("Lastly, chose the discipline: ");
+        userInterface.printMessage("Lastly, chose the discipline: ");
 
-        ui.disciplineMenu();
-        int input = ui.intInput();
+        userInterface.disciplineMenu();
+        int input = userInterface.intInput();
         if (input == 1) {
             ds = Discipline.BUTTERFLY;
         } else if (input == 2) {
@@ -98,16 +98,16 @@ public class ListController {
             ds = Discipline.BREASTSTROKE;
         }
 
-        ui.printMessage("Is this a competition result? ('y' / 'n')");
-        String answer = ui.stringInput();
+        userInterface.printMessage("Is this a competition result? ('y' / 'n')");
+        String answer = userInterface.stringInput();
         Result registeredResult = null;
 
         if(answer.equalsIgnoreCase("n")){
-            registeredResult = new Result(database.findCompetitor(compName),date, ds, time);
+            registeredResult = new Result(dataHandler.findCompetitor(compName),date, ds, time);
         } else if(answer.equalsIgnoreCase("y")){
-            ui.printMessage("Type in the name of the competition: ");
-            String competitionName = ui.stringInput();
-            registeredResult = new Result(database.findCompetitor(compName), date, ds, time, competitionName);
+            userInterface.printMessage("Type in the name of the competition: ");
+            String competitionName = userInterface.stringInput();
+            registeredResult = new Result(dataHandler.findCompetitor(compName), date, ds, time, competitionName);
         }
 
         fileHandler.addNewResult(registeredResult);

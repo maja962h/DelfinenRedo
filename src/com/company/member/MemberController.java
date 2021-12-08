@@ -7,20 +7,20 @@ import java.util.ArrayList;
 
 public class MemberController {
 
-    private final UserInterface ui = new UserInterface();
+    private final UserInterface userInterface = new UserInterface();
     private final FileHandler fileHandler = new FileHandler();
 
 
     public void createMember() {
-        ui.printMessage("Please enter the members full name: ");
-        String name = ui.stringInput();
+        userInterface.printMessage("Please enter the members full name: ");
+        String name = userInterface.stringInput();
 
-        ui.printMessage("Please enter the members age: ");
-        int age = ui.intInput();
+        userInterface.printMessage("Please enter the members age: ");
+        int age = userInterface.intInput();
         String ageRange = ageRange(age);
 
-        ui.printMessage("Is the member active(a) or passive(p)?");
-        String input = ui.stringInput();
+        userInterface.printMessage("Is the member active(a) or passive(p)?");
+        String input = userInterface.stringInput();
 
         Member member = new Member(name, age, ageRange);
         isActiveOrPassive(member, input);
@@ -33,15 +33,15 @@ public class MemberController {
         switch (input) {
             case "a" -> {
                 member.setActiveStatus("active");
-                ui.printMessage("Is the member an exerciser(e) or competitor(c)?");
-                String eOrc = ui.stringInput();
+                userInterface.printMessage("Is the member an exerciser(e) or competitor(c)?");
+                String eOrc = userInterface.stringInput();
                 isCompetitorOrExerciser(member, eOrc);
             }
             case "p" -> {
                 member.setActiveStatus("passive");
                 member.setCompetitiveStatus("none");
             }
-            default -> ui.printMessage("try again");
+            default -> userInterface.printMessage("try again");
         }
     }
 
@@ -52,7 +52,7 @@ public class MemberController {
                 chooseDisciplines(member);
             }
             case "e" -> member.setCompetitiveStatus("Exerciser");
-            default -> ui.printMessage("try again");
+            default -> userInterface.printMessage("try again");
         }
     }
 
@@ -61,11 +61,11 @@ public class MemberController {
         ArrayList<Discipline> selectedDiscipline = new ArrayList<>();
 
         do{
-            ui.disciplineMenu();
-            int choice = ui.intInput();
+            userInterface.disciplineMenu();
+            int choice = userInterface.intInput();
             selectedDiscipline = chooseDisciplines(choice, selectedDiscipline);
-            ui.printMessage("do you want to add another discipline? yes(y) or no(n)");
-            String addAnotherDiscipline = ui.stringInput();
+            userInterface.printMessage("do you want to add another discipline? yes(y) or no(n)");
+            String addAnotherDiscipline = userInterface.stringInput();
             keepAdding = continueAddingDisciplines(addAnotherDiscipline);
         } while(keepAdding);
 
