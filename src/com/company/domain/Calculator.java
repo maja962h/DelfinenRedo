@@ -38,9 +38,9 @@ public class Calculator {
         return total;
     }
 
-    public void totalContingent(FileHandler fileHandler){
-        fileHandler.readFile();
-        ArrayList<Member> allMembers = fileHandler.getMemberList();
+    public void totalContingent(ArrayList<Member> list){
+        //fileHandler.readFile();
+        ArrayList<Member> allMembers = list;
         for (Member member : allMembers){
             addTotal(contingentCalculator(member.getEnumAgeRange(), member.activeStatus()));
         }

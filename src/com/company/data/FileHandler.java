@@ -13,17 +13,16 @@ import java.util.Scanner;
 
 public class FileHandler implements DataInterface {
 
-    private final ArrayList<Member> memberList = new ArrayList<>();
-    private final ArrayList<Competitor> competitors = new ArrayList<>();
-    private final ArrayList<Result> results = new ArrayList<>();
+    private ArrayList<Competitor> competitors = new ArrayList<>();
+    private ArrayList<Result> results = new ArrayList<>();
 
     public FileHandler() {
-        readFile();
+        //readFile();
         readCompetitorFile();
         readResultFile();
     }
 
-    public void saveMember(){
+    public void saveMember(ArrayList<Member> memberList){
         File file = new File("data/members.csv");
 
         try{
@@ -73,22 +72,25 @@ public class FileHandler implements DataInterface {
         }
     }
 
-    public void readFile(){
+    public ArrayList<Member> readFile(){
         try {
             Scanner myReader = new Scanner(new File("data/members.csv"));
+            ArrayList<Member> allMembers = new ArrayList<>();
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String[] test = data.split(";");
                 Member member = new Member(test[0],0, test[1], false, test[3], AgeRange.JUNIOR);
                 member.setEnum(test[1]);
                 member.setActiveStatus(test[2]);
-                memberList.add(member);
+                allMembers.add(member);
             }
+            return allMembers;
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        return null;
     }
 
     public void readCompetitorFile(){
@@ -123,9 +125,7 @@ public class FileHandler implements DataInterface {
         }
     }
 
-    public ArrayList<Member> getMemberList() {
-        return memberList;
-    }
+
 
     public ArrayList<Competitor> getCompetitors() {
         return competitors;

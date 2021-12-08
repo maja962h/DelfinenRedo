@@ -1,6 +1,5 @@
 package com.company.domain;
 import com.company.data.FileHandler;
-import com.company.data.ListController;
 import com.company.member.*;
 import com.company.ui.UserInterface;
 
@@ -11,7 +10,6 @@ public class Controller {
     private final FileHandler fileHandler = new FileHandler();
     private boolean running = true;
     private MemberController memberController = new MemberController();
-    private ListController listController = new ListController();
 
     public void start() {
 
@@ -23,11 +21,11 @@ public class Controller {
             switch (input) {
                 case 1 -> logIn();
                 case 2 -> memberController.createMember();
-                case 3 -> listController.deleteMember();
-                case 4 -> listController.showMemberList();
+                case 3 -> memberController.deleteMember();
+                case 4 -> memberController.showMemberList();
                 case 5 -> checkDelinquentStatus(); //Check what members have not paid their fees.
                 case 6 -> scoreBoard();
-                case 7 -> listController.addCompetitorResults(); //place, time and registration for competitions.
+                case 7 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
                 case 8 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 9 -> totalContingentAmount();
                 case 10 -> System.out.println(fileHandler.getResults());
@@ -66,8 +64,8 @@ public class Controller {
 
             switch (input) {
                 case 1 -> memberController.createMember();
-                case 2 -> listController.deleteMember();
-                case 3 -> listController.showMemberList();
+                case 2 -> memberController.deleteMember();
+                case 3 -> memberController.showMemberList();
                 case 0 -> exit();
                 default -> userInterface.printError();
             }
@@ -94,7 +92,7 @@ public class Controller {
 
             switch (input) {
                 case 1 -> scoreBoard();
-                case 2 -> listController.addCompetitorResults(); //place, time and registration for competitions.
+                case 2 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
                 case 3 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 0 -> exit();
                 default -> userInterface.printError();
@@ -104,7 +102,7 @@ public class Controller {
 
     public void totalContingentAmount(){
         Calculator calculator = new Calculator();
-        calculator.totalContingent(fileHandler);
+        calculator.totalContingent(memberController.getMemberList());
         userInterface.printDouble(calculator.getTotal());
     }
 

@@ -6,7 +6,7 @@ public class
 DataHandler {
     FileHandler fileHandler = new FileHandler();
 
-    //TODO: delete if not used
+  /*  //TODO: delete if not used
     public Member findMember(String name){
         for (Member member: fileHandler.getMemberList()) {
             if(member.getName().equals(name)){
@@ -14,7 +14,7 @@ DataHandler {
             }
         }
         return null;
-    }
+    }*/
 
     public Competitor findCompetitor(String name){
         for (Competitor competitor: fileHandler.getCompetitors()) {
