@@ -16,23 +16,66 @@ public class MemberController {
     private ArrayList<Competitor> competitors;
     private ArrayList<Result> results;
 
-
     public MemberController(){
         receiveAllMembers();
         receiveAllCompetitors();
         receiveAllResults();
     }
 
+    //****************//
+    //                //
+    // Member Methods //
+    //                //
+    //****************//
+
+    public void receiveAllMembers(){
+        memberList = fileHandler.readFile();
+    }
+
+    public ArrayList<Member> getMemberList() {
+        return memberList;
+    }
+
+    public Member findMember(String name){
+        for (Member member: getMemberList()) {
+            if(member.getName().equals(name)){
+                return member;
+            }
+        }
+        return null;
+    }
+
+    public void deleteMember(){
+        int arrayCorrection = -1;
+        userInterface.printMessage("Here is the list of all the members:");
+        showMemberList();
+        userInterface.printMessage("Please enter the number of the person you want to delete: ");
+        int deleteMember = userInterface.intInput() + arrayCorrection;
+
+        removeMember(deleteMember);
+    }
+
+    public void removeMember(int member){
+        getMemberList().remove(member);
+        fileHandler.saveMember(memberList);
+    }
+
+    public void addNewMember(Member member){
+        memberList.add(member);
+    }
+
+    //******************//
+    //                  //
+    //Competitor Methods//
+    //                  //
+    //******************//
+
     public void receiveAllCompetitors(){
         competitors = fileHandler.readCompetitorFile();
     }
 
-    public void receiveAllResults(){
-        results = fileHandler.readResultFile(competitors);
-    }
-
-    public ArrayList<Result> getResults() {
-        return results;
+    public ArrayList<Competitor> getCompetitors() {
+        return competitors;
     }
 
     public Competitor findCompetitor(String name){
@@ -44,6 +87,15 @@ public class MemberController {
         return null;
     }
 
+    public void addNewCompetitor(Competitor competitor){
+        competitors.add(competitor);
+    }
+
+    //****************//
+    // Create Member  //
+    // & Competitor   //
+    // methods        //
+    //****************//
 
     public void createMember() {
         userInterface.printMessage("Please enter the members full name: ");
@@ -61,6 +113,18 @@ public class MemberController {
 
         addNewMember(member);
         fileHandler.saveMember(memberList);
+    }
+
+    private String ageRange(int age) {
+        String ageRange = "";
+        if (age < 18) {
+            ageRange = "Junior";
+        } else if (age < 60) {
+            ageRange = "Senior";
+        } else if(age >= 60){
+            ageRange = "elder";
+        }
+        return ageRange;
     }
 
     public void isActiveOrPassive(Member member, String input){
@@ -90,108 +154,6 @@ public class MemberController {
         }
     }
 
-    public void showMemberList() {
-        userInterface.memberListMenu();
-        int listInput = userInterface.intInput();
-
-        switch (listInput) {
-            case 1 -> fullMemberList();
-            case 2 -> juniorMemberList();
-            case 3 -> seniorMemberList();
-            case 4 -> fullCompetitorList();
-            default -> userInterface.printError();
-        }
-    }
-
-    private void fullMemberList() {
-        Collections.sort(getMemberList());
-
-        userInterface.printMessage(makeStringMember());
-    }
-
-
-
-    private void fullCompetitorList() {
-        Collections.sort(getMemberList());
-
-        userInterface.printMessage(makeStringCompetitor());
-    }
-
-    private void juniorMemberList() {
-        Collections.sort(getMemberList());
-
-        for (Member member : getMemberList()) {
-            if (member.getAgeRange().equals("JUNIOR")) {
-                userInterface.printMessage(member.toString());
-            }
-        }
-    }
-
-    public String makeStringMember(){
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (Member member : getMemberList()) {
-            stringBuilder.append(member.toMemberString());
-        }
-        return stringBuilder.toString();
-    }
-
-    //TODO: move to memberController
-    public String makeStringCompetitor(){
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-
-        for (Competitor competitor : competitors) {
-            stringBuilder.append(competitor.toCompString());
-        }
-        return stringBuilder.toString();
-    }
-
-    public ArrayList<Member> getMemberList() {
-        return memberList;
-    }
-
-    public void receiveAllMembers(){
-        memberList = fileHandler.readFile();
-    }
-
-
-    public void seniorMemberList() {
-        Collections.sort(getMemberList());
-
-        for (Member member : getMemberList()) {
-            if (member.getAgeRange().equals("SENIOR")) {
-                userInterface.printMessage(member.toString());
-            }
-        }
-    }
-
-    public void deleteMember(){
-        int arrayCorrection = -1;
-        userInterface.printMessage("Here is the list of all the members:");
-        showMemberList();
-        userInterface.printMessage("Please enter the number of the person you want to delete: ");
-        int deleteMember = userInterface.intInput() + arrayCorrection;
-
-        removeMember(deleteMember);
-    }
-
-    public Member findMember(String name){
-        for (Member member: getMemberList()) {
-            if(member.getName().equals(name)){
-                return member;
-            }
-        }
-        return null;
-    }
-
-    //TODO: move to memberController
-    public void removeMember(int member){
-        getMemberList().remove(member);
-        fileHandler.saveMember(memberList);
-    }
-
     public void chooseDisciplines(Member member) {
         boolean keepAdding;
         ArrayList<Discipline> selectedDiscipline = new ArrayList<>();
@@ -211,28 +173,6 @@ public class MemberController {
         fileHandler.saveCompetitor(competitors);
     }
 
-    public void addNewMember(Member member){
-        memberList.add(member);
-    }
-
-    public void addNewCompetitor(Competitor competitor){
-        competitors.add(competitor);
-    }
-
-
-    public ArrayList<Competitor> getCompetitors() {
-        return competitors;
-    }
-
-    public boolean continueAddingDisciplines(String input) {
-        if(input.equals("y")){
-            return true;
-        }else if(input.equals("n")){
-            return false;
-        }else
-            return false;
-    }
-
     public ArrayList<Discipline> chooseDisciplines(int input, ArrayList<Discipline> selectedDisciplines) {
 
         if (input == 1) {
@@ -247,19 +187,94 @@ public class MemberController {
         return selectedDisciplines;
     }
 
-    private String ageRange(int age) {
-        String ageRange = "";
-        if (age < 18) {
-            ageRange = "Junior";
-        } else if (age >= 18 && age < 60) {
-            ageRange = "Senior";
-        } else if(age >= 60){
-            ageRange = "elder";
-        }
-        return ageRange;
+    public boolean continueAddingDisciplines(String input) {
+        if(input.equals("y")){
+            return true;
+        }else if(input.equals("n")){
+            return false;
+        }else
+            return false;
     }
 
-    //TODO: move to memberController
+    public void showMemberList() {
+        userInterface.memberListMenu();
+        int listInput = userInterface.intInput();
+
+        switch (listInput) {
+            case 1 -> fullMemberList();
+            case 2 -> juniorMemberList();
+            case 3 -> seniorMemberList();
+            case 4 -> fullCompetitorList();
+            default -> userInterface.printError();
+        }
+    }
+
+    private void fullMemberList() {
+        Collections.sort(getMemberList());
+
+        userInterface.printMessage(makeStringMember());
+    }
+
+    private void juniorMemberList() {
+        Collections.sort(getMemberList());
+
+        for (Member member : getMemberList()) {
+            if (member.getAgeRange().equals("JUNIOR")) {
+                userInterface.printMessage(member.toString());
+            }
+        }
+    }
+
+    public void seniorMemberList() {
+        Collections.sort(getMemberList());
+
+        for (Member member : getMemberList()) {
+            if (member.getAgeRange().equals("SENIOR")) {
+                userInterface.printMessage(member.toString());
+            }
+        }
+    }
+
+    private void fullCompetitorList() {
+        Collections.sort(getMemberList());
+
+        userInterface.printMessage(makeStringCompetitor());
+    }
+
+    public String makeStringMember(){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Member member : getMemberList()) {
+            stringBuilder.append(member.toMemberString());
+        }
+        return stringBuilder.toString();
+    }
+
+    public String makeStringCompetitor(){
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+
+        for (Competitor competitor : competitors) {
+            stringBuilder.append(competitor.toCompString());
+        }
+        return stringBuilder.toString();
+    }
+
+    //****************//
+    //                //
+    // Result Methods //
+    //                //
+    //****************//
+
+    public void receiveAllResults(){
+        results = fileHandler.readResultFile(competitors);
+    }
+
+    public ArrayList<Result> getResults() {
+        return results;
+    }
+
     public void addNewResult(Result tr){
         results.add(tr);
     }
@@ -304,7 +319,6 @@ public class MemberController {
 
         addNewResult(registeredResult);
         fileHandler.saveResults(results);
-
     }
 
 }
