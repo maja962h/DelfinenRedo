@@ -1,36 +1,34 @@
 package com.company.member;
-import com.company.data.DataHandler;
-import com.company.data.DataHandler;
-import com.company.data.FileHandler;
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CompetitorTest {
 
-  /* @Test
-    void setEnum() {
-        DataHandler database = new DataHandler();
-        Competitor competitor = database.findCompetitor("Maja");
+  @Test
+    void findCompetitor() {
+        MemberController memberController = new MemberController();
+        Competitor competitor = memberController.findCompetitor("Maja");
 
         assertNotNull(competitor);
-    }*/
+    }
 
- /*   @Test
+   @Test
     void readFile(){
-       FileHandler fileHandler = new FileHandler();
-        assertNotNull(fileHandler.getResults());
+       MemberController memberController = new MemberController();
+        assertNotNull(memberController.getResults());
     }
 
     @Test
     void getCompetitors() {
-        FileHandler fileHandler = new FileHandler();
-        ArrayList<Competitor> liste = fileHandler.getCompetitors();
+        MemberController memberController = new MemberController();
+        ArrayList<Competitor> liste = memberController.getCompetitors();
 
         assertEquals(9,liste.size());
     }
-*/
+
 }

@@ -1,4 +1,4 @@
-/*
+
 package com.company.domain;
 
 import com.company.member.AgeRange;
@@ -16,4 +16,4 @@ class CalculatorTest {
         calc.addTotal(calc.contingentCalculator(AgeRange.JUNIOR, true));
         assertEquals(2600, calc.getTotal());
     }
-}*/
+}
