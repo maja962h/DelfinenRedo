@@ -109,7 +109,7 @@ public class MemberController {
         String input = userInterface.stringInput();
 
         Member member = new Member(name, age, ageRange);
-        isActiveOrPassive(member, input);
+        isActive(member, input);
 
         addNewMember(member);
         fileHandler.saveMember(memberList);
@@ -127,13 +127,13 @@ public class MemberController {
         return ageRange;
     }
 
-    public void isActiveOrPassive(Member member, String input) {
+    public void isActive(Member member, String input) {
         switch (input) {
             case "a" -> {
                 member.setActiveStatus("active");
                 userInterface.printMessage("Is the member an exerciser(e) or competitor(c)?");
                 String eOrc = userInterface.stringInput();
-                isCompetitorOrExerciser(member, eOrc);
+                isCompetitor(member, eOrc);
             }
             case "p" -> {
                 member.setActiveStatus("passive");
@@ -143,7 +143,7 @@ public class MemberController {
         }
     }
 
-    public void isCompetitorOrExerciser(Member member, String input) {
+    public void isCompetitor(Member member, String input) {
         switch (input) {
             case "c" -> {
                 member.setCompetitiveStatus("Competitor");
@@ -164,7 +164,7 @@ public class MemberController {
             selectedDiscipline = chooseDisciplines(choice, selectedDiscipline);
             userInterface.printMessage("do you want to add another discipline? yes(y) or no(n)");
             String addAnotherDiscipline = userInterface.stringInput();
-            keepAdding = continueAddingDisciplines(addAnotherDiscipline);
+            keepAdding = addingDisciplines(addAnotherDiscipline);
         } while (keepAdding);
 
         Competitor competitor = new Competitor(member, selectedDiscipline);
@@ -187,7 +187,7 @@ public class MemberController {
         return selectedDisciplines;
     }
 
-    public boolean continueAddingDisciplines(String input) {
+    public boolean addingDisciplines(String input) {
         if (input.equals("y")) {
             return true;
         } else if (input.equals("n")) {
