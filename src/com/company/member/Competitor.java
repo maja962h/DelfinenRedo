@@ -6,6 +6,10 @@ public class Competitor extends Member{
 
     private ArrayList<Discipline> disciplines;
 
+    public Competitor() {
+
+    }
+
     public Competitor(Member member, ArrayList<Discipline> disciplines){
         super(member);
         this.disciplines = disciplines;
@@ -23,42 +27,35 @@ public class Competitor extends Member{
         for( String discipline : list) {
             disciplines.add(Discipline.valueOf(discipline.trim()));
         }
-
-    }
-
-    public Competitor() {
-
     }
 
     public String makeStringCompetitorShort(){
         return name;
     }
 
+    public String toCompFileString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(name + ";");
+        stringBuilder.append(ageRange + ";");
+        stringBuilder.append(getActiveStatusText() + ";");
+        stringBuilder.append(competitiveStatus + ";");
+        stringBuilder.append(disciplines);
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    public String toCompString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(name + " ");
+        stringBuilder.append(ageRange + " ");
+        stringBuilder.append(disciplines);
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
     @Override
     public String toString() {
         return name + ": " + age + " år, " + ageRange + ". Discipline(s): " + disciplines +  "\n";
     }
-
-    public String toCompFileString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name + ";");
-        sb.append(ageRange + ";");
-        sb.append(getActiveStatusText() + ";");
-        sb.append(competitiveStatus + ";");
-        sb.append(disciplines);
-        sb.append("\n");
-        return sb.toString();
-    }
-
-    public String toCompString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name + " ");
-        sb.append(ageRange + " ");
-        sb.append(disciplines);
-        sb.append("\n");
-        return sb.toString();
-    }
-
-
 
 }

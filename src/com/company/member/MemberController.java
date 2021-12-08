@@ -297,7 +297,7 @@ public class MemberController {
         userInterface.printMessage("Next, type the swimmer's time (in seconds): ");
         Duration time = userInterface.timeInput();
 
-        userInterface.printMessage("Lastly, chose the discipline: ");
+        userInterface.printMessage("Lastly, choose the discipline: ");
 
         userInterface.disciplineMenu();
         int input = userInterface.intInput();

@@ -46,23 +46,20 @@ public class Member implements Comparable {
         return name;
     }
 
-    public int getAge() {
-        return age;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public AgeRange getEnumAgeRange(){
+        return eAgeRange;
+    }
+
+    public void setEnum(String ageRange) {
+        this.eAgeRange = AgeRange.valueOf(ageRange);
     }
 
     public void setCompetitiveStatus(String competitiveStatus) {
         this.competitiveStatus = competitiveStatus;
-    }
-
-    @Override
-    public String toString() {
-        return name + ": " + ageRange + ". " + activeStatus + " " + competitiveStatus + "\n";
-    }
-
-    @Override
-    public int compareTo(Object other) {
-        Member anotherMember = (Member) other; // Typecasting
-        return name.compareTo(anotherMember.name);
     }
 
     public String getActiveStatusText() {
@@ -85,39 +82,34 @@ public class Member implements Comparable {
         }
     }
 
-    public AgeRange getEnumAgeRange(){
-        return eAgeRange;
-    }
-
-    public void setEnum(String ageRange) {
-        this.eAgeRange = AgeRange.valueOf(ageRange);
-    }
-
     public String toMemberFileString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name + ";");
-        sb.append(ageRange.toUpperCase() + ";");
-        sb.append(getActiveStatusText() + ";");
-        sb.append(competitiveStatus + ";");
-        sb.append("\n");
-        return sb.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(name + ";");
+        stringBuilder.append(ageRange.toUpperCase() + ";");
+        stringBuilder.append(getActiveStatusText() + ";");
+        stringBuilder.append(competitiveStatus + ";");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 
     public String toMemberString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name + " ");
-        sb.append(ageRange.toLowerCase() + " ");
-        sb.append(getActiveStatusText() + " ");
-        sb.append(competitiveStatus + " ");
-        sb.append("\n");
-        return sb.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(name + " ");
+        stringBuilder.append(ageRange.toLowerCase() + " ");
+        stringBuilder.append(getActiveStatusText() + " ");
+        stringBuilder.append(competitiveStatus + " ");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public int compareTo(Object other) {
+        Member anotherMember = (Member) other; // Typecasting
+        return name.compareTo(anotherMember.name);
     }
 
-    public void setAgeRange(String ageRange) {
-        this.ageRange = ageRange;
+    @Override
+    public String toString() {
+        return name + ": " + ageRange + ". " + activeStatus + " " + competitiveStatus + "\n";
     }
 }

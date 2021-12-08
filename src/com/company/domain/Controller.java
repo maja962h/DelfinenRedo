@@ -3,11 +3,10 @@ import com.company.data.FileHandler;
 import com.company.member.*;
 import com.company.ui.UserInterface;
 
-
 public class Controller {
 
-    private final UserInterface userInterface = new UserInterface();
-    private final FileHandler fileHandler = new FileHandler();
+    private UserInterface userInterface = new UserInterface();
+    private FileHandler fileHandler = new FileHandler();
     private boolean running = true;
     private MemberController memberController = new MemberController();
 
@@ -106,7 +105,6 @@ public class Controller {
         userInterface.printDouble(calculator.getTotal());
     }
 
-
     public void checkDelinquentStatus() {
 
     }
@@ -115,13 +113,11 @@ public class Controller {
 
     }
 
-
     public void swimmerTierList() {
     }
 
     public void exit() {
         running = false;
     }
-
 
 }

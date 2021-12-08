@@ -30,6 +30,8 @@ public class UserInterface {
                 Type (6) to see the swimmer's best results and dates.
                 Type (7) to register an event, time and location for the swimmers that have participated.
                 Type (8) to see the top 5 swimmers in each category.
+                Type (9) to see the total contingent amount.
+                Type (10) to show results.
                 Type (0) to exit the program.
                 """);
     }
@@ -87,10 +89,6 @@ public class UserInterface {
         System.out.println(number);
     }
 
-    public void printInt(int number){
-        System.out.println(number);
-    }
-
     public void printError(){
         System.out.println("The input was invalid, please try again.");
     }
@@ -105,15 +103,12 @@ public class UserInterface {
         return input;
     }
 
-
     public LocalDate dateInput(){
-
         return LocalDate.parse(scanner.nextLine());
     }
 
     public Duration timeInput(){
-        Duration input = Duration.ofSeconds(scanner.nextInt());
-        return input;
+        return Duration.ofSeconds(scanner.nextInt());
     }
 
     public int validateInput(){
@@ -130,6 +125,5 @@ public class UserInterface {
         }
         return input;
     }
-
 
 }

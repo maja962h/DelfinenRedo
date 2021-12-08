@@ -1,6 +1,5 @@
 package com.company.domain;
 
-import com.company.data.FileHandler;
 import com.company.member.AgeRange;
 import com.company.member.Member;
 
@@ -29,9 +28,8 @@ public class Calculator {
         return contingentSum;
     }
 
-    //TODO: make method void since the return value is never used?
-    public double addTotal(double fee){
-        return this.total = total + fee;
+    public void addTotal(double fee){
+        this.total = total + fee;
     }
 
     public double getTotal() {
@@ -39,7 +37,6 @@ public class Calculator {
     }
 
     public void totalContingent(ArrayList<Member> list){
-        //fileHandler.readFile();
         ArrayList<Member> allMembers = list;
         for (Member member : allMembers){
             addTotal(contingentCalculator(member.getEnumAgeRange(), member.activeStatus()));

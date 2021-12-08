@@ -13,13 +13,8 @@ import java.util.Scanner;
 
 public class FileHandler implements DataInterface {
 
-
-
-
     public FileHandler() {
-        //readFile();
-        //readCompetitorFile();
-        //readResultFile();
+
     }
 
     public void saveMember(ArrayList<Member> memberList){
@@ -87,7 +82,7 @@ public class FileHandler implements DataInterface {
             return allMembers;
 
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred.");//TODO: fix or delete
             e.printStackTrace();
         }
         return null;
@@ -106,7 +101,7 @@ public class FileHandler implements DataInterface {
             return allCompetitors;
 
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred.");//TODO: fix or delete
             e.printStackTrace();
         }
         return null;
@@ -125,17 +120,11 @@ public class FileHandler implements DataInterface {
             return allResults;
 
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred.");//TODO: fix or delete
             e.printStackTrace();
         }
         return null;
     }
-
-
-
-
-
-
 
     public boolean authenticated(String name, String password, String role){
 
