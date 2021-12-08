@@ -23,32 +23,6 @@ public class FileHandler implements DataInterface {
         readResultFile();
     }
 
-    public ArrayList<Result> getResults() {
-        return results;
-    }
-
-    public ArrayList<Member> getMemberList() {
-
-        return memberList;
-    }
-
-    //TODO: move to memberController
-    public void addNewMember(Member member){
-        memberList.add(member);
-    }
-
-    //TODO: move to memberController
-    public void removeMember(int member){
-        memberList.remove(member);
-        saveMember();
-        System.out.println("done");
-    }
-
-    //TODO: move to memberController
-    public void addNewResult(Result tr){
-        results.add(tr);
-    }
-
     public void saveMember(){
         File file = new File("data/members.csv");
 
@@ -79,11 +53,90 @@ public class FileHandler implements DataInterface {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
-    //TODO: move?
+    public void saveResults(){
+        File file = new File("data/results.csv");
+
+        try{
+            FileWriter fileWriter = new FileWriter(file, false);
+
+            for(Result result : results){
+
+                fileWriter.append(result.toCompetitionString());
+
+            }
+            fileWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFile(){
+        try {
+            Scanner myReader = new Scanner(new File("data/members.csv"));
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String[] test = data.split(";");
+                Member member = new Member(test[0],0, test[1], false, test[3], AgeRange.JUNIOR);
+                member.setEnum(test[1]);
+                member.setActiveStatus(test[2]);
+                memberList.add(member);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void readCompetitorFile(){
+        try {
+            Scanner myReader = new Scanner(new File("data/competitors.csv"));
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+
+                Competitor competitor = new Competitor(data);
+                competitors.add(competitor);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void readResultFile(){
+        try {
+            Scanner myReader = new Scanner(new File("data/results.csv"));
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+
+                Result result = new Result(data, competitors.get(0));
+                results.add(result);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Member> getMemberList() {
+        return memberList;
+    }
+
+    public ArrayList<Competitor> getCompetitors() {
+        return competitors;
+    }
+
+    public ArrayList<Result> getResults() {
+        return results;
+    }
+
     public boolean authenticated(String name, String password, String role){
+
         boolean isAuthenticated = false;
 
         File file = new File("data/users.csv");
@@ -104,116 +157,5 @@ public class FileHandler implements DataInterface {
         }
         return isAuthenticated;
     }
-
-    public void saveResults(){
-        File file = new File("data/results.csv");
-
-        try{
-            FileWriter fileWriter = new FileWriter(file, false);
-
-            for(Result result : results){
-
-                    fileWriter.append(result.toCompetitionString());
-
-            }
-            fileWriter.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    //TODO: make method void since the return value is never used?
-    public ArrayList<Member> readFile(){
-        try {
-            Scanner myReader = new Scanner(new File("data/members.csv"));
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] test = data.split(";");
-                Member member = new Member(test[0],0, test[1], false, test[3], AgeRange.JUNIOR);
-                member.setEnum(test[1]);
-                member.setActiveStatus(test[2]);
-                memberList.add(member);
-            }
-            return memberList;
-
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    //TODO: make method void since the return value is never used?
-    public ArrayList<Competitor> readCompetitorFile(){
-        try {
-            Scanner myReader = new Scanner(new File("data/competitors.csv"));
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-
-                Competitor competitor = new Competitor(data);
-                competitors.add(competitor);
-            }
-            return competitors;
-
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public ArrayList<Result> readResultFile(){
-        try {
-            Scanner myReader = new Scanner(new File("data/results.csv"));
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-
-                Result result = new Result(data, competitors.get(0));
-                results.add(result);
-            }
-            return results;
-
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    //TODO: move to memberController
-    public String makeStringMember(){
-        StringBuilder stringBuilder = new StringBuilder();
-
-        for (Member member : memberList) {
-            stringBuilder.append(member.toMemberString());
-        }
-        return stringBuilder.toString();
-    }
-
-    //TODO: move to memberController
-    public String makeStringCompetitor(){
-
-        StringBuilder stringBuilder = new StringBuilder();
-
-
-        for (Competitor competitor : competitors) {
-            stringBuilder.append(competitor.toCompString());
-        }
-        return stringBuilder.toString();
-    }
-
-
-    public ArrayList<Competitor> getCompetitors() {
-
-        return competitors;
-    }
-
-    //TODO: move to memberController
-    public void addNewCompetitor(Competitor competitor){
-
-        competitors.add(competitor);
-    }
-
 
 }

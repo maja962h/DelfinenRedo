@@ -27,16 +27,16 @@ public class Result implements Comparable<Result> {
         this.competitionName = compName;
     }
 
-    public Result(String lineFromFile, Competitor competitor){
+    public Result(String lineFromFile, Competitor competitor) {
 
         String[] test = lineFromFile.split(";");
         //Competitor competitor = new Competitor();
         competitor.setName(test[0]);
-        competitor.setAgeRange(test[1]);
-        date = LocalDate.parse(test[2]);
-        discipline = Discipline.valueOf(test[3]);
-        swimTime = Duration.parse(test[4]);
-        competitionName = test[5];
+        //competitor.setAgeRange(test[1]);
+        date = LocalDate.parse(test[1]);
+        discipline = Discipline.valueOf(test[2]);
+        swimTime = Duration.parse(test[3]);
+        competitionName = test[4];
     }
 
 

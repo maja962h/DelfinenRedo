@@ -1,9 +1,6 @@
 package com.company.data;
 
-import com.company.member.AgeRange;
-import com.company.member.Discipline;
-import com.company.member.Member;
-import com.company.member.Result;
+import com.company.member.*;
 import com.company.ui.UserInterface;
 
 import java.time.Duration;
@@ -30,16 +27,30 @@ public class ListController {
         }
     }
 
+    //TODO: move to memberController
+
+
+    //TODO: move to memberController
+    public void removeMember(int member){
+        fileHandler.getMemberList().remove(member);
+        fileHandler.saveMember();
+    }
+
+    //TODO: move to memberController
+    public void addNewResult(Result tr){
+        fileHandler.getResults().add(tr);
+    }
+
     private void fullMemberList() {
         Collections.sort(fileHandler.getMemberList());
 
-        userInterface.printMessage(fileHandler.makeStringMember());
+        userInterface.printMessage(makeStringMember());
     }
 
     private void fullCompetitorList() {
         Collections.sort(fileHandler.getMemberList());
 
-        userInterface.printMessage(fileHandler.makeStringCompetitor());
+        userInterface.printMessage(makeStringCompetitor());
     }
 
     private void juniorMemberList() {
@@ -69,7 +80,7 @@ public class ListController {
         userInterface.printMessage("Please enter the number of the person you want to delete: ");
         int deleteMember = userInterface.intInput() + arrayCorrection;
 
-        fileHandler.removeMember(deleteMember);
+        removeMember(deleteMember);
     }
 
     public void addCompetitorResults() {
@@ -110,9 +121,31 @@ public class ListController {
             registeredResult = new Result(dataHandler.findCompetitor(compName), date, ds, time, competitionName);
         }
 
-        fileHandler.addNewResult(registeredResult);
+        addNewResult(registeredResult);
         fileHandler.saveResults();
 
+    }
+
+    //TODO: move to memberController
+    public String makeStringMember(){
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Member member : fileHandler.getMemberList()) {
+            stringBuilder.append(member.toMemberString());
+        }
+        return stringBuilder.toString();
+    }
+
+    //TODO: move to memberController
+    public String makeStringCompetitor(){
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+
+        for (Competitor competitor : fileHandler.getCompetitors()) {
+            stringBuilder.append(competitor.toCompString());
+        }
+        return stringBuilder.toString();
     }
 
 

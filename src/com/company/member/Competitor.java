@@ -31,7 +31,7 @@ public class Competitor extends Member{
     }
 
     public String makeStringCompetitorShort(){
-        return name + ";" + ageRange ;
+        return name;
     }
 
     @Override

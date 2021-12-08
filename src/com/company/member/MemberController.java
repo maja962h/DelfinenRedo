@@ -25,7 +25,7 @@ public class MemberController {
         Member member = new Member(name, age, ageRange);
         isActiveOrPassive(member, input);
 
-        fileHandler.addNewMember(member);
+        addNewMember(member);
         fileHandler.saveMember();
     }
 
@@ -71,9 +71,17 @@ public class MemberController {
 
         Competitor competitor = new Competitor(member, selectedDiscipline);
 
-        fileHandler.addNewCompetitor(competitor);
+        addNewCompetitor(competitor);
         fileHandler.saveCompetitor();
+    }
 
+    public void addNewMember(Member member){
+        fileHandler.getMemberList().add(member);
+    }
+
+    //TODO: move to memberController
+    public void addNewCompetitor(Competitor competitor){
+        fileHandler.getCompetitors().add(competitor);
     }
 
     public boolean continueAddingDisciplines(String input) {

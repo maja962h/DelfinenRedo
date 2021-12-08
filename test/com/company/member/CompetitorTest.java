@@ -1,22 +1,28 @@
 package com.company.member;
-/*import com.company.data.Database;
+import com.company.data.DataHandler;
+import com.company.data.DataHandler;
 import com.company.data.FileHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;*/
+import static org.junit.jupiter.api.Assertions.*;
 
 class CompetitorTest {
 
-   /* @Test
+   @Test
     void setEnum() {
-        Database database = new Database();
-        FileHandler fileHandler = new FileHandler();
+        DataHandler database = new DataHandler();
         Competitor competitor = database.findCompetitor("Maja");
 
         assertNotNull(competitor);
+    }
+
+    @Test
+    void readFile(){
+       FileHandler fileHandler = new FileHandler();
+       assertNotNull(fileHandler.getResults());
     }
 
     @Test
@@ -24,7 +30,7 @@ class CompetitorTest {
         FileHandler fileHandler = new FileHandler();
         ArrayList<Competitor> liste = fileHandler.getCompetitors();
 
-        assertEquals(10,liste.size());
-    }*/
+        assertEquals(9,liste.size());
+    }
 
 }
