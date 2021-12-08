@@ -28,7 +28,7 @@ public class Controller {
                 case 7 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
                 case 8 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 9 -> totalContingentAmount();
-                case 10 -> System.out.println(fileHandler.getResults());
+                case 10 -> System.out.println(memberController.getResults());
                 case 0 -> exit();
                 default -> userInterface.printError();
             }

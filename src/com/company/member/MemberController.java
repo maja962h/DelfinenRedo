@@ -13,12 +13,36 @@ public class MemberController {
 
     private UserInterface userInterface = new UserInterface();
     private FileHandler fileHandler = new FileHandler();
-    private final DataHandler dataHandler = new DataHandler();
     private ArrayList<Member> memberList;
+    private ArrayList<Competitor> competitors;
+    private ArrayList<Result> results;
 
 
     public MemberController(){
         receiveAllMembers();
+        receiveAllCompetitors();
+        receiveAllResults();
+    }
+
+    public void receiveAllCompetitors(){
+        competitors = fileHandler.readCompetitorFile();
+    }
+
+    public void receiveAllResults(){
+        results = fileHandler.readResultFile(competitors);
+    }
+
+    public ArrayList<Result> getResults() {
+        return results;
+    }
+
+    public Competitor findCompetitor(String name){
+        for (Competitor competitor: competitors) {
+            if(competitor.getName().equalsIgnoreCase(name.trim())){
+                return competitor;
+            }
+        }
+        return null;
     }
 
 
@@ -98,7 +122,7 @@ public class MemberController {
         Collections.sort(getMemberList());
 
         for (Member member : getMemberList()) {
-            if (member.getEnumAgeRange().equals(AgeRange.JUNIOR)) {
+            if (member.getAgeRange().equals("JUNIOR")) {
                 userInterface.printMessage(member.toString());
             }
         }
@@ -119,7 +143,7 @@ public class MemberController {
         StringBuilder stringBuilder = new StringBuilder();
 
 
-        for (Competitor competitor : fileHandler.getCompetitors()) {
+        for (Competitor competitor : competitors) {
             stringBuilder.append(competitor.toCompString());
         }
         return stringBuilder.toString();
@@ -138,7 +162,7 @@ public class MemberController {
         Collections.sort(getMemberList());
 
         for (Member member : getMemberList()) {
-            if (member.getEnumAgeRange().equals(AgeRange.SENIOR)) {
+            if (member.getAgeRange().equals("SENIOR")) {
                 userInterface.printMessage(member.toString());
             }
         }
@@ -176,7 +200,7 @@ public class MemberController {
         Competitor competitor = new Competitor(member, selectedDiscipline);
 
         addNewCompetitor(competitor);
-        fileHandler.saveCompetitor();
+        fileHandler.saveCompetitor(competitors);
     }
 
     public void addNewMember(Member member){
@@ -184,10 +208,13 @@ public class MemberController {
     }
 
     public void addNewCompetitor(Competitor competitor){
-        fileHandler.getCompetitors().add(competitor);
+        competitors.add(competitor);
     }
 
 
+    public ArrayList<Competitor> getCompetitors() {
+        return competitors;
+    }
 
     public boolean continueAddingDisciplines(String input) {
         if(input.equals("y")){
@@ -226,7 +253,7 @@ public class MemberController {
 
     //TODO: move to memberController
     public void addNewResult(Result tr){
-        fileHandler.getResults().add(tr);
+        results.add(tr);
     }
 
     public void addCompetitorResults() {
@@ -260,15 +287,15 @@ public class MemberController {
         Result registeredResult = null;
 
         if(answer.equalsIgnoreCase("n")){
-            registeredResult = new Result(dataHandler.findCompetitor(compName),date, ds, time);
+            registeredResult = new Result(findCompetitor(compName),date, ds, time);
         } else if(answer.equalsIgnoreCase("y")){
             userInterface.printMessage("Type in the name of the competition: ");
             String competitionName = userInterface.stringInput();
-            registeredResult = new Result(dataHandler.findCompetitor(compName), date, ds, time, competitionName);
+            registeredResult = new Result(findCompetitor(compName), date, ds, time, competitionName);
         }
 
         addNewResult(registeredResult);
-        fileHandler.saveResults();
+        fileHandler.saveResults(results);
 
     }
 

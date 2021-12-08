@@ -11,18 +11,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CompetitorTest {
 
-   @Test
+  /* @Test
     void setEnum() {
         DataHandler database = new DataHandler();
         Competitor competitor = database.findCompetitor("Maja");
 
         assertNotNull(competitor);
-    }
+    }*/
 
-    @Test
+ /*   @Test
     void readFile(){
        FileHandler fileHandler = new FileHandler();
-       assertNotNull(fileHandler.getResults());
+        assertNotNull(fileHandler.getResults());
     }
 
     @Test
@@ -32,5 +32,5 @@ class CompetitorTest {
 
         assertEquals(9,liste.size());
     }
-
+*/
 }

@@ -16,12 +16,12 @@ DataHandler {
         return null;
     }*/
 
-    public Competitor findCompetitor(String name){
+    /*public Competitor findCompetitor(String name){
         for (Competitor competitor: fileHandler.getCompetitors()) {
             if(competitor.getName().equalsIgnoreCase(name.trim())){
                 return competitor;
             }
         }
         return null;
-    }
+    }*/
 }

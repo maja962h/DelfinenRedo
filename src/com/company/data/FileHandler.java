@@ -13,13 +13,13 @@ import java.util.Scanner;
 
 public class FileHandler implements DataInterface {
 
-    private ArrayList<Competitor> competitors = new ArrayList<>();
-    private ArrayList<Result> results = new ArrayList<>();
+
+
 
     public FileHandler() {
         //readFile();
-        readCompetitorFile();
-        readResultFile();
+        //readCompetitorFile();
+        //readResultFile();
     }
 
     public void saveMember(ArrayList<Member> memberList){
@@ -38,7 +38,7 @@ public class FileHandler implements DataInterface {
         }
     }
 
-    public void saveCompetitor(){
+    public void saveCompetitor(ArrayList<Competitor> competitors){
         File file = new File("data/competitors.csv");
 
         try{
@@ -54,7 +54,7 @@ public class FileHandler implements DataInterface {
         }
     }
 
-    public void saveResults(){
+    public void saveResults(ArrayList<Result> results){
         File file = new File("data/results.csv");
 
         try{
@@ -93,47 +93,49 @@ public class FileHandler implements DataInterface {
         return null;
     }
 
-    public void readCompetitorFile(){
+    public ArrayList<Competitor> readCompetitorFile(){
         try {
             Scanner myReader = new Scanner(new File("data/competitors.csv"));
+            ArrayList<Competitor> allCompetitors = new ArrayList<>();
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
 
                 Competitor competitor = new Competitor(data);
-                competitors.add(competitor);
+                allCompetitors.add(competitor);
             }
+            return allCompetitors;
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        return null;
     }
 
-    public void readResultFile(){
+    public ArrayList<Result> readResultFile(ArrayList<Competitor> competitors){
         try {
             Scanner myReader = new Scanner(new File("data/results.csv"));
+            ArrayList<Result> allResults = new ArrayList<>();
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
 
                 Result result = new Result(data, competitors.get(0));
-                results.add(result);
+                allResults.add(result);
             }
+            return allResults;
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+        return null;
     }
 
 
 
-    public ArrayList<Competitor> getCompetitors() {
-        return competitors;
-    }
 
-    public ArrayList<Result> getResults() {
-        return results;
-    }
+
+
 
     public boolean authenticated(String name, String password, String role){
 
