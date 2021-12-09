@@ -13,8 +13,8 @@ public class Controller {
 
     private UserInterface userInterface = new UserInterface();
     private FileHandler fileHandler = new FileHandler();
-    private boolean running = true;
     private MemberController memberController = new MemberController();
+    private boolean running = true;
 
     public void start() {
 
@@ -83,6 +83,7 @@ public class Controller {
             switch (input) {
                 case 1 -> memberController.showMemberList();
                 case 2 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
+                case 3 -> showResultList(); //show results of competition swimmers
                 case 0 -> exit();
                 default -> userInterface.printError();
             }
@@ -93,6 +94,10 @@ public class Controller {
         Calculator calculator = new Calculator();
         calculator.totalContingent(memberController.getMemberList());
         userInterface.printDouble(calculator.getTotal());
+    }
+
+    public void showResultList() {
+        userInterface.printMessage(memberController.makeStringResult());
     }
 
     public void exit() {

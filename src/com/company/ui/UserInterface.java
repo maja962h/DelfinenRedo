@@ -47,6 +47,7 @@ public class UserInterface {
         printMessage("""
                 Type (1) to get the list of members.
                 Type (2) to register training results for competitive swimmers.
+                Type (3) to show result list.
                 Type (0) to exit the program.
                 """);
     }
