@@ -11,9 +11,9 @@ import com.company.ui.UserInterface;
 
 public class Controller {
 
-    private UserInterface userInterface = new UserInterface();
-    private FileHandler fileHandler = new FileHandler();
-    private MemberController memberController = new MemberController();
+    private final UserInterface userInterface = new UserInterface();
+    private final FileHandler fileHandler = new FileHandler();
+    private final MemberController memberController = new MemberController();
     private boolean running = true;
 
     public void start() {

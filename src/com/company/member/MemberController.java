@@ -15,8 +15,8 @@ import java.util.Collections;
 
 public class MemberController {
 
-    private UserInterface userInterface = new UserInterface();
-    private FileHandler fileHandler = new FileHandler();
+    private final UserInterface userInterface = new UserInterface();
+    private final FileHandler fileHandler = new FileHandler();
     private ArrayList<Member> memberList;
     private ArrayList<Competitor> competitors;
     private ArrayList<Result> results;

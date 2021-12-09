@@ -1,7 +1,6 @@
 // @Kenneth
 // @Güler
 
-
 package com.company.domain;
 
 import com.company.member.AgeRange;
