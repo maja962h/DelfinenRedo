@@ -161,10 +161,10 @@ public class MemberController {
         do {
             userInterface.disciplineMenu();
             int choice = userInterface.intInput();
-            selectedDiscipline = chooseDisciplines(choice, selectedDiscipline);
+            selectedDiscipline = addDisciplines(choice, selectedDiscipline);
             userInterface.printMessage("do you want to add another discipline? yes(y) or no(n)");
             String addAnotherDiscipline = userInterface.stringInput();
-            keepAdding = addingDisciplines(addAnotherDiscipline);
+            keepAdding = addingMoreDisciplines(addAnotherDiscipline);
         } while (keepAdding);
 
         Competitor competitor = new Competitor(member, selectedDiscipline);
@@ -173,7 +173,7 @@ public class MemberController {
         fileHandler.saveCompetitor(competitors);
     }
 
-    public ArrayList<Discipline> chooseDisciplines(int input, ArrayList<Discipline> selectedDisciplines) {
+    public ArrayList<Discipline> addDisciplines(int input, ArrayList<Discipline> selectedDisciplines) {
 
         if (input == 1) {
             selectedDisciplines.add(Discipline.BUTTERFLY);
@@ -187,7 +187,7 @@ public class MemberController {
         return selectedDisciplines;
     }
 
-    public boolean addingDisciplines(String input) {
+    public boolean addingMoreDisciplines(String input) {
         if (input.equals("y")) {
             return true;
         } else if (input.equals("n")) {

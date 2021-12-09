@@ -21,22 +21,6 @@ public class UserInterface {
                 """);
     }
 
-    public void startMenu() {
-        printMessage("""
-                Type (1) to Login.
-                Type (2) to create a member.
-                Type (3) to delete a member.
-                Type (4) to get the list of members.
-                Type (5) to check which members haven't paid their fees.
-                Type (6) to see the swimmer's best results and dates.
-                Type (7) to register an event, time and location for the swimmers that have participated.
-                Type (8) to see the top 5 swimmers in each category.
-                Type (9) to see the total contingent amount.
-                Type (10) to show results.
-                Type (0) to exit the program.
-                """);
-    }
-
     public void adminStartMenu() {
         printMessage("""
                 Type (1) to create a member.
@@ -55,9 +39,8 @@ public class UserInterface {
 
     public void trainerStartMenu() {
         printMessage("""
-                Type (1) to see the swimmer's best results and dates.
-                Type (2) to register time and results for competitive swimmers.
-                Type (3) to see the top 5 swimmers in each category.
+                Type (1) to register training results for competitive swimmers.
+                Type (2) to see the swimmer's best results and dates.
                 Type (0) to exit the program.
                 """);
     }

@@ -15,23 +15,7 @@ public class Controller {
 
         userInterface.printWelcomeMessage();
         while (running) {
-            userInterface.startMenu();
-            int input = userInterface.validateInput();
-
-            switch (input) {
-                case 1 -> logIn();
-                case 2 -> memberController.createMember();
-                case 3 -> memberController.deleteMember();
-                case 4 -> memberController.showMemberList();
-                case 5 -> checkDelinquentStatus(); //Check what members have not paid their fees.
-                case 6 -> scoreBoard();
-                case 7 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
-                case 8 -> swimmerTierList(); //top 5 swimmers in every category.
-                case 9 -> totalContingentAmount();
-                case 10 -> System.out.println(memberController.getResults());
-                case 0 -> exit();
-                default -> userInterface.printError();
-            }
+            logIn();
         }
     }
 
@@ -78,7 +62,7 @@ public class Controller {
             int input = userInterface.validateInput();
 
             switch (input) {
-                case 1 -> checkDelinquentStatus(); //Check what members have not paid their fees.
+                case 1 -> totalContingentAmount(); //Check what members have not paid their fees.
                 case 0 -> exit();
                 default -> userInterface.printError();
             }
@@ -91,9 +75,8 @@ public class Controller {
             int input = userInterface.validateInput();
 
             switch (input) {
-                case 1 -> scoreBoard();
-                case 2 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
-                case 3 -> swimmerTierList(); //top 5 swimmers in every category.
+                case 1 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
+                case 2 -> swimmerTierList(); //top 5 swimmers in every category.
                 case 0 -> exit();
                 default -> userInterface.printError();
             }
@@ -104,14 +87,6 @@ public class Controller {
         Calculator calculator = new Calculator();
         calculator.totalContingent(memberController.getMemberList());
         userInterface.printDouble(calculator.getTotal());
-    }
-
-    public void checkDelinquentStatus() {
-
-    }
-
-    public void scoreBoard() {
-
     }
 
     public void swimmerTierList() {
