@@ -13,8 +13,8 @@ public class Controller {
 
     private UserInterface userInterface = new UserInterface();
     private FileHandler fileHandler = new FileHandler();
-    private boolean running = true;
     private MemberController memberController = new MemberController();
+    private boolean running = true;
 
     public void start() {
 
