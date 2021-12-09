@@ -259,6 +259,17 @@ public class MemberController {
         return stringBuilder.toString();
     }
 
+    public String makeStringResult() {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+
+        for (Result result : results) {
+            stringBuilder.append(result.toCompetitionString(result.getCompetitor()));
+        }
+        return stringBuilder.toString();
+    }
+
     //****************//
     //                //
     // Result Methods //
