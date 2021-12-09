@@ -31,7 +31,7 @@ public class Result implements Comparable<Result> {
     }
 
     public Result(String lineFromFile, Competitor competitor) {
-
+        this.competitor = competitor;
         String[] test = lineFromFile.split(";");
         competitor.setName(test[0]);
         date = LocalDate.parse(test[1]);
@@ -40,9 +40,9 @@ public class Result implements Comparable<Result> {
         competitionName = test[4];
     }
 
-    public String toCompetitionString() {
+    public String toCompetitionString(String competitorName) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(getCompetitor() + ";");
+        stringBuilder.append(competitorName + ";");
         stringBuilder.append(date + ";");
         stringBuilder.append(discipline + ";");
         stringBuilder.append(swimTime + ";");

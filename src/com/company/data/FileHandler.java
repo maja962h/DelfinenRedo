@@ -63,7 +63,7 @@ public class FileHandler implements DataInterface {
 
             for (Result result : results) {
 
-                fileWriter.append(result.toCompetitionString());
+                fileWriter.append(result.toCompetitionString(result.getCompetitor()));
 
             }
             fileWriter.close();
