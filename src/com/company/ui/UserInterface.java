@@ -110,7 +110,7 @@ public class UserInterface {
                 input = scanner.nextInt();
                 valid = false;
             } else {
-                printMessage("Dette er ikke et nummer.");
+                printMessage("This is not a number.");
                 scanner.next();
             }
         }
