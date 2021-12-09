@@ -67,7 +67,8 @@ public class Controller {
             int input = userInterface.validateInput();
 
             switch (input) {
-                case 1 -> totalContingentAmount(); //Check what members have not paid their fees.
+                case 1 -> memberController.showMemberList();
+                case 2 -> totalContingentAmount(); //Check what members have not paid their fees.
                 case 0 -> exit();
                 default -> userInterface.printError();
             }
@@ -80,8 +81,8 @@ public class Controller {
             int input = userInterface.validateInput();
 
             switch (input) {
-                case 1 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
-                case 2 -> swimmerTierList(); //top 5 swimmers in every category.
+                case 1 -> memberController.showMemberList();
+                case 2 -> memberController.addCompetitorResults(); //place, time and registration for competitions.
                 case 0 -> exit();
                 default -> userInterface.printError();
             }
@@ -92,9 +93,6 @@ public class Controller {
         Calculator calculator = new Calculator();
         calculator.totalContingent(memberController.getMemberList());
         userInterface.printDouble(calculator.getTotal());
-    }
-
-    public void swimmerTierList() {
     }
 
     public void exit() {

@@ -37,15 +37,16 @@ public class UserInterface {
 
     public void cashierStartMenu() {
         printMessage("""
-                Type (1) to check which members haven't paid their fees.
+                Type (1) to get the list of members.
+                Type (2) to check which members haven't paid their fees.
                 Type (0) to exit the program.
                 """);
     }
 
     public void trainerStartMenu() {
         printMessage("""
-                Type (1) to register training results for competitive swimmers.
-                Type (2) to see the swimmer's best results and dates.
+                Type (1) to get the list of members.
+                Type (2) to register training results for competitive swimmers.
                 Type (0) to exit the program.
                 """);
     }

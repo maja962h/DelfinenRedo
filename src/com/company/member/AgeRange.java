@@ -1,6 +1,5 @@
 // @Christopher
 
-
 package com.company.member;
 
 public enum AgeRange {

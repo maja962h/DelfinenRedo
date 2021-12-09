@@ -41,15 +41,6 @@ public class MemberController {
         return memberList;
     }
 
-    public Member findMember(String name) {
-        for (Member member : memberList) {
-            if (member.getName().equals(name)) {
-                return member;
-            }
-        }
-        return null;
-    }
-
     public void deleteMember() {
         int arrayCorrection = -1;
         userInterface.printMessage("Here is the list of all the members:");
@@ -77,10 +68,6 @@ public class MemberController {
 
     public void receiveAllCompetitors() {
         competitors = fileHandler.readCompetitorFile();
-    }
-
-    public ArrayList<Competitor> getCompetitors() {
-        return competitors;
     }
 
     public Competitor findCompetitor(String name) {
@@ -280,10 +267,6 @@ public class MemberController {
 
     public void receiveAllResults() {
         results = fileHandler.readResultFile(competitors);
-    }
-
-    public ArrayList<Result> getResults() {
-        return results;
     }
 
     public void addNewResult(Result tr) {
