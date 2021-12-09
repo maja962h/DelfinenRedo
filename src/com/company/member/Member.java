@@ -1,3 +1,9 @@
+// @Maja
+// @Christopher
+// @Kenneth
+// @Güler
+
+
 package com.company.member;
 
 public class Member implements Comparable {

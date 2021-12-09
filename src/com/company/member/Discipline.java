@@ -1,3 +1,5 @@
+// @Maja
+
 package com.company.member;
 
 public enum Discipline {

@@ -1,3 +1,6 @@
+// @Maja
+// @Christopher
+
 package com.company.member;
 
 import java.util.ArrayList;

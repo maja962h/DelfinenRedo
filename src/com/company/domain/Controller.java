@@ -1,3 +1,8 @@
+// @Maja
+// @Christopher
+// @Kenneth
+// @Güler
+
 package com.company.domain;
 
 import com.company.data.FileHandler;

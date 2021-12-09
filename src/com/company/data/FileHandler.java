@@ -1,3 +1,8 @@
+// @Maja
+// @Christopher
+// @Kenneth
+// @Güler
+
 package com.company.data;
 
 import com.company.member.AgeRange;

@@ -1,3 +1,6 @@
+// @Maja
+// @Güler
+
 package com.company.member;
 
 import java.time.Duration;

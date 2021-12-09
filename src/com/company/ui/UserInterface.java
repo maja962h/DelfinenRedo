@@ -1,3 +1,8 @@
+// @Maja
+// @Christopher
+// @Kenneth
+// @Güler
+
 package com.company.ui;
 
 import java.time.Duration;
